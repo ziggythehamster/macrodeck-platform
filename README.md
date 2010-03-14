@@ -12,8 +12,8 @@ related, but we can't just have fields on there all willy-nilly :).
 Base Classes
 ============
 
-`DataObjectDefinition`
-----------------------
+DataObjectDefinition
+--------------------
 
 Properties
 
@@ -39,6 +39,31 @@ Map/Reduce functions
  * `by_object_type-map`: Returns the `object_type` as the key and the document
    as the value.
 
-`DataObject`
-------------
+DataObject
+----------
 
+Properties
+
+ * `_id`: Assigned by CouchDB though should be specific to each class. A Place
+   might use the ID assigned by GeoAPI whereas an Event might just stick to
+   using the default.
+ * `type`: The type of the object. Must point at an `object_type` defined by a
+   `DataObjectDefinition`. This will be Place, City, etc.
+ * `parent`: The document ID of the object's parent. `null` if no parent.
+ * `title`: A title for the data object. Will be the summary for an event, the
+   name of a city for a city, and so on.
+ * `description`: An optional description for the data object. Usually will be
+   filled in by an end user.
+ * `tags`: An array of tags. `[ "chunky", "bacon" ]`
+ * The fields defined in the `DataObjectDefinition`'s `fields`.
+
+Map/Reduce functions
+
+ * `by_type-map`: Key returned is the object's `type`, value is the document.
+   The purpose is to allow searching for all Cities, for example.
+ * `by_tags-map`: Key returned is a tag, value returned is the document.
+ * `by_parent-map`: Key returned is the parent's ID, value is the document.
+   Used to traverse the tree.
+ * Others not yet defined but likely will need to be. Ideas might be to have a
+   standard way to store geographic locations and then index that. Though I
+   haven't found a good way to store geographic coordinates yet.
