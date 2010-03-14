@@ -27,7 +27,7 @@ Properties
    Obviously, `is_required` will be true if the field is required, false
    otherwise. Think of it as if it were the same as NULL/NOT NULL
  * `validations`: An array whose format is as follows:
-      [ [ "validation_name", ARGV ], ... ]
+       [ [ "validation_name", ARGV ], ... ]
    `validation_name` is the name of the validation, and ARGV is the argument
    to pass to the validation. We will be implementing [Validatable][2], which
    is very similar to ActiveRecord's validations.
