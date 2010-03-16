@@ -6,5 +6,5 @@ require "validatable"
 class MacroDeck::Model < CouchRest::ExtendedDocument
 	include Validatable
 
-	use_database CouchRest.new.database!("macrodeck-#{RAILS_ENV}")
+	use_database CouchRest.new.database!(MacroDeck::Platform.database_name)
 end
