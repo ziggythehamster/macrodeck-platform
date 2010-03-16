@@ -2,14 +2,15 @@
 # a class inheriting from DataObject is created.
 class DataObjectDefinition < MacroDeck::Model
 	# Properties
-	property :object_type,	String
-	property :fields,	Array
-	property :validations,	Array
+	property :object_type
+	property :fields
+	property :validations
 
 	# Validations that happen on this class.
 	validates_presence_of :object_type
 	validates_presence_of :fields
 	validates_presence_of :validations
+	validates_true_for :object_type, :logic => lambda { object_type.is_a?(String) }
 	validates_true_for :fields, :logic => :validate_fields, :message => "is not valid"
 	validates_true_for :validations, :logic => :validate_validations, :message => "is not valid"
 
