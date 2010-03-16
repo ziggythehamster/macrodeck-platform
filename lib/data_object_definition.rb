@@ -1,42 +1,55 @@
 # This class handles a data object definition record. When objects are defined,
 # a class inheriting from DataObject is created.
 class DataObjectDefinition < MacroDeck::Model
-	# Mixins
-	include CouchRest::Validation # FIXME: Use Validatable instead.
-
 	# Properties
-	property :object_type, String
-	property :fields, Array
-	property :validations, Array
+	property :object_type,	String
+	property :fields,	Array
+	property :validations,	Array
 
 	# Validations that happen on this class.
-	validates_presence_of :object_type, :fields, :validations
-	validates_with_method :fields, :validate_fields
-	validates_with_method :validations, :validate_validations
+	validates_presence_of :object_type
+	validates_presence_of :fields
+	validates_presence_of :validations
+	validates_true_for :fields, :logic => :validate_fields, :message => "is not valid"
+	validates_true_for :validations, :logic => :validate_validations, :message => "is not valid"
 
 	private
 		# Returns true if the fields array is at least visibly valid.
 		# We won't know for sure since we don't check every detail.
 		def validate_fields
-			if @fields.is_a?(Array)
-				if @fields.length == 0
+			if self.fields.is_a?(Array)
+				if self.fields.length == 0
 					return true
-				elsif @fields.length > 0
-					@fields.each do |field|
+				else
+					self.fields.each do |field|
 						if field.is_a?(Array) && field.length == 3 && field[0].is_a?(String) && field[1].is_a?(String) && (field[2].is_a?(TrueClass) || field[2].is_a?(FalseClass))
 							return true
 						else
-							return [false, "has a field which is invalid"]
+							return false
 						end
 					end
 				end
 			else
-				return [false, "is not an array"]
+				return false
 			end
 		end
 
 		# Returns true if the validations array looks visibly valid.
 		def validate_validations
-			# TODO: STUB
+			if self.validations.is_a?(Array)
+				if self.validations.length == 0
+					return true
+				else
+					self.validations.each do |validation|
+						if validation.is_a?(Array) && validation.length == 2 && validation[0].is_a?(String)
+							return true
+						else
+							return false
+						end
+					end
+				end
+			else
+				return false
+			end
 		end
 end
