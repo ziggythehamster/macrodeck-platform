@@ -9,6 +9,37 @@ related, but we can't just have fields on there all willy-nilly :).
 
 [1]: http://github.com/couchrest/couchrest
 
+License
+=======
+
+This library is licensed under the [GNU General Public License, version 2.0][2]
+or later (at your option), with the exception that [Poseidon Imaging][3]
+retains all copyright and can sublicense any code.
+
+Please do not submit patches unless you agree to these terms.
+
+[2]: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+[3]: http://www.poseidonimaging.com/
+
+Startup
+=======
+
+To start the MacroDeck platform, put this in your environments/`name`.rb file:
+
+    MacroDeck::Platform.start!("database-name")
+
+You can call it whatever, or even load it from database.yml. Since this library
+does not depend on Rails, this doesn't happen automatically. Patches welcome
+for code that automatically determines if Rails is being used and adds magic if
+so.
+
+Tests
+=====
+
+I haven't been good about adding tests in the past - so suggestions are
+definitely welcome. This library will hopefully be very well tested by the
+time it gets put into production.
+
 Base Classes
 ============
 
@@ -29,10 +60,10 @@ Properties
  * `validations`: An array whose format is as follows:
        [ [ "validation_name", ARGV ], ... ]
    `validation_name` is the name of the validation, and ARGV is the argument
-   to pass to the validation. We will be implementing [Validatable][2], which
+   to pass to the validation. We will be implementing [Validatable][4], which
    is very similar to ActiveRecord's validations.
 
-[2]: http://validatable.rubyforge.org/
+[4]: http://validatable.rubyforge.org/
 
 Map/Reduce functions
 
