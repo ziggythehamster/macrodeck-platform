@@ -24,7 +24,8 @@ Please do not submit patches unless you agree to these terms.
 Startup
 =======
 
-To start the MacroDeck platform, put this in your environments/`name`.rb file:
+To start the MacroDeck platform, put this in your config/environments/`name`.rb
+file:
 
     MacroDeck::Platform.start!("database-name")
 
