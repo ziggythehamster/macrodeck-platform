@@ -1,2 +1,5 @@
 # Load required files.
-require "platform" # in lib/
+$LOAD_PATH << "./lib"
+require "model"
+require "data_object_definition"
+require "platform"
