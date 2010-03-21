@@ -13,6 +13,11 @@ module MacroDeck
 			def test_database_name
 				assert_equal MacroDeck::Platform.database_name, "macrodeck-test"
 			end
+
+			# Tests that the started flag is set.
+			def test_started
+				assert_equal MacroDeck::Platform.started, true
+			end
 		end
 	end
 end
