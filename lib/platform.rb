@@ -11,16 +11,19 @@ module MacroDeck
 			attr_reader :database_name
 			attr_reader :started
 
+			# Starts the platform, connects to CouchDB, etc.
 			def start!(database_name)
-				@database_name = database_name
-				@started = true
+				unless @started
+					@database_name = database_name
+					@started = true
 
-				# Add the use_database to the model
-				Kernel.eval "module MacroDeck
-					class Model < CouchRest::ExtendedDocument
-						use_database CouchRest.new.database!(\"#{@database_name}\")
-					end
-				end"
+					# Add the use_database to the model
+					Kernel.eval "module MacroDeck
+						class Model < CouchRest::ExtendedDocument
+							use_database CouchRest.new.database!(\"#{@database_name}\")
+						end
+					end"
+				end
 			end
 		end
 	end
