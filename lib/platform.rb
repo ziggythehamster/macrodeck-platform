@@ -9,9 +9,11 @@ module MacroDeck
 	class Platform
 		class << self
 			attr_reader :database_name
+			attr_reader :started
 
 			def start!(database_name)
 				@database_name = database_name
+				@started = true
 
 				# Add the use_database to the model
 				Kernel.eval "module MacroDeck
