@@ -23,6 +23,11 @@ module MacroDeck
 							use_database CouchRest.new.database!(\"#{@database_name}\")
 						end
 					end"
+
+					# And since DataObjectDefinition is already defined...
+					Kernel.eval "class DataObjectDefinition < MacroDeck::Model
+						use_database CouchRest.new.database!(\"#{@database_name}\")
+					end"
 				end
 			end
 		end
