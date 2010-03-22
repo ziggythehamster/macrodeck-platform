@@ -16,7 +16,7 @@ module MacroDeck
 
 			# Tests that the started flag is set.
 			def test_started
-				assert_equal MacroDeck::Platform.started, true
+				assert MacroDeck::Platform.started
 			end
 		end
 	end
