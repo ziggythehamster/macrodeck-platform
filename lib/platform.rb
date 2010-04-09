@@ -1,3 +1,8 @@
+require "rubygems"
+require "validatable"
+require "couchrest"
+require "data_object_definition"
+
 module MacroDeck
 	# This class starts up the platform, pulls data object definitions, etc.
 	#
@@ -17,17 +22,22 @@ module MacroDeck
 					@database_name = database_name
 					@started = true
 
-					# Add the use_database to the model
-					Kernel.eval "module MacroDeck
+					# Define the base inherited model like this so that we can specify the
+					# database_name at runtime. 
+					Kernel.eval "
+					module MacroDeck
 						class Model < CouchRest::ExtendedDocument
-							use_database CouchRest.new.database!(\"#{@database_name}\")
+							include Validatable
+							use_database CouchRest.database!(\"#{@database_name}\")
 						end
 					end"
 
-					# And since DataObjectDefinition is already defined...
-					Kernel.eval "class DataObjectDefinition < MacroDeck::Model
-						use_database CouchRest.new.database!(\"#{@database_name}\")
-					end"
+					# Now create the DataObjectDefinition class, which bootstraps everything
+					# else.
+					Kernel.eval "class ::DataObjectDefinition < MacroDeck::Model; end"
+					
+					# Include the class methods.
+					::DataObjectDefinition.send(:include, ::MacroDeck::PlatformSupport::DataObjectDefinition)
 				end
 			end
 		end
