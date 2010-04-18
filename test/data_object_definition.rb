@@ -9,6 +9,15 @@ module MacroDeck
 				MacroDeck::Platform.start!("macrodeck-test")
 			end
 
+			# Tests that stuff exists that should exist.
+			def test_000_sanity_check
+				assert_nothing_raised do
+					::DataObjectDefinition
+					::MacroDeck
+					::MacroDeck::Model
+				end
+			end
+
 			# Creates a test object and verifies it exists.
 			def test_001_create_test_definition
 				object = {
