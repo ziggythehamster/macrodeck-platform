@@ -25,7 +25,7 @@ module MacroDeck
 					# Define the base inherited model like this so that we can specify the
 					# database_name at runtime. 
 					Kernel.eval "
-					module MacroDeck
+					module ::MacroDeck
 						class Model < CouchRest::ExtendedDocument
 							include Validatable
 							use_database CouchRest.database!(\"#{@database_name}\")
@@ -34,7 +34,7 @@ module MacroDeck
 
 					# Now create the DataObjectDefinition class, which bootstraps everything
 					# else.
-					Kernel.eval "class ::DataObjectDefinition < MacroDeck::Model; end"
+					Kernel.eval "class ::DataObjectDefinition < ::MacroDeck::Model; end"
 					
 					# Include the class methods.
 					::DataObjectDefinition.send(:include, ::MacroDeck::PlatformSupport::DataObjectDefinition)
