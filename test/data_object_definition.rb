@@ -34,6 +34,19 @@ module MacroDeck
 				]
 				assert_equal test_object.validations, []
 			end
+
+			# Tests that the define! method works.
+			def test_003_get_defined_object
+				test_definition = ::DataObjectDefinition.view("by_object_type", :key => "MacroDeckTestObject")[0]
+				assert test_definition.valid?
+
+				# Make sure that the object isn't yet defined
+				assert_raise NameError do
+					::MacroDeckTestObject
+				end
+				test_definition.define!
+				puts ::MacroDeckTestObject.class
+			end
 		end
 	end
 end
