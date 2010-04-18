@@ -10,6 +10,8 @@ module MacroDeck
 				base.property :fields
 				base.property :validations
 
+				base.view_by :object_type
+
 				base.send(:attr_reader, :defined)
                                 
 				# Validations that happen on this class.
