@@ -23,6 +23,17 @@ module MacroDeck
 				assert test_object.valid?
 				assert test_object.save
 			end
+			
+			# Tests that the previously created object can be retrieved.
+			def test_002_get_test_definition
+				test_object = ::DataObjectDefinition.view("by_object_type", :key => "MacroDeckTestObject")[0]
+				assert test_object.valid?
+				assert_equal test_object.fields, [
+					["not_required_str", "String", false],
+					["required_str", "String", true]
+				]
+				assert_equal test_object.validations, []
+			end
 		end
 	end
 end
