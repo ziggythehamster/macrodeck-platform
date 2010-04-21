@@ -54,7 +54,9 @@ module MacroDeck
 					::MacroDeckTestObject
 				end
 				test_definition.define!
-				puts ::MacroDeckTestObject.class
+				assert_nothing_raised do
+					::MacroDeckTestObject
+				end
 			end
 		end
 	end
