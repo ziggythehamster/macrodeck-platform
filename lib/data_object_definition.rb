@@ -26,6 +26,7 @@ module MacroDeck
 			# Executes the code necessary to define this object
 			def define!
 				properties = ""
+				validations = ""
 				class_body = ""
 
 				# Populate properties.
@@ -39,13 +40,17 @@ module MacroDeck
 						properties << "validates_presence_of #{symbol}\n" if field[2] == true
 					end
 
-					# TODO: Iterate the validations and define them.
+					# Iterate the validations and define them.
+					self.validations.each do |validation|
+						validations << "#{validation[0].to_s} #{validation[1].join(",")}"
+					end
 
 					# Define the class.
 					klass = self.object_type.split(" ")[0]
 					class_body =
 						"class ::#{klass} < ::MacroDeck::Model
 							#{properties}
+							#{validations}
 						end"
 					Kernel.eval(class_body)
 				end
@@ -79,7 +84,7 @@ module MacroDeck
 							return true
 						else
 							self.validations.each do |validation|
-								if validation.is_a?(Array) && validation.length == 2 && validation[0].is_a?(String)
+								if validation.is_a?(Array) && validation.length == 2 && validation[0].is_a?(String) && validation[0] =~ /^validates_/
 									return true
 								else
 									return false
