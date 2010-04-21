@@ -44,7 +44,7 @@ module MacroDeck
 					# Define the class.
 					klass = self.object_type.split(" ")[0]
 					class_body =
-						"class #{klass} < ::MacroDeck::Model
+						"class ::#{klass} < ::MacroDeck::Model
 							#{properties}
 						end"
 					Kernel.eval(class_body)
