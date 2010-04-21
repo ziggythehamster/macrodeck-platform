@@ -58,6 +58,14 @@ module MacroDeck
 					::MacroDeckTestObject
 				end
 			end
+
+			# Tests that fields gets populated.
+			def test_004_defined_object_fields
+				assert_equal ::MacroDeckTestObject.fields, [
+					["not_required_str", "String", false],
+					["required_str", "String", true]
+				]
+			end
 		end
 	end
 end
