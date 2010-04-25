@@ -83,6 +83,11 @@ module MacroDeck
 				assert_equal ::MacroDeckTestObject.validations[1].attribute,	:required_str
 				assert_equal ::MacroDeckTestObject.validations[2].class,	Validatable::ValidatesPresenceOf
 				assert_equal ::MacroDeckTestObject.validations[2].attribute,	:required_str
+				assert_equal ::MacroDeckTestObject.validations[3].class,	Validatable::ValidatesTrueFor
+				assert_equal ::MacroDeckTestObject.validations[3].attribute,	:validated_str
+				assert_equal ::MacroDeckTestObject.validations[4].class,	Validatable::ValidatesInclusionOf
+				assert_equal ::MacroDeckTestObject.validations[4].attribute,	:validated_str
+				assert_equal ["One", "Two", "Three"],	::MacroDeckTestObject.validations[4].within
 			end
 		end
 	end
