@@ -71,6 +71,8 @@ module MacroDeck
 				assert_equal ::MacroDeckTestObject.properties[0].type, "String"
 				assert_equal ::MacroDeckTestObject.properties[1].name, "required_str"
 				assert_equal ::MacroDeckTestObject.properties[1].type, "String"
+				assert_equal ::MacroDeckTestObject.properties[2].name, "validated_str"
+				assert_equal ::MacroDeckTestObject.properties[2].type, "String"
 			end
 
 			# Tests that the object's validations get populated.
