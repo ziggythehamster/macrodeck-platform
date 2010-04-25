@@ -59,12 +59,13 @@ Properties
    Obviously, `is_required` will be true if the field is required, false
    otherwise. Think of it as if it were the same as NULL/NOT NULL
  * `validations`: An array whose format is as follows:
-       [ [ "validation_name", ARGV ], ... ]
-   `validation_name` is the name of the validation, and ARGV is the argument
-   to pass to the validation. We will be implementing [Validatable][4], which
+       [ [ "validation_name", "field_name" { ARGV } ], ... ]
+   `validation_name` is the name of the validation, field_name is the name of
+   the field that will be validated, and ARGV is the argument list to pass to
+   the validation. We will be implementing [jnunemaker-Validatable][4], which
    is very similar to ActiveRecord's validations.
 
-[4]: http://validatable.rubyforge.org/
+[4]: http://github.com/jnunemaker/validatable/
 
 Map/Reduce functions
 

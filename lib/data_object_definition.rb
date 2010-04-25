@@ -42,7 +42,13 @@ module MacroDeck
 
 					# Iterate the validations and define them.
 					self.validations.each do |validation|
-						validations << "#{validation[0].to_s} #{validation[1].join(",")}"
+						symbol = validation[1].to_sym.inspect
+						# Converts the strings to hashes.
+						args = {}
+						validation[2].each_pair do |key, value|
+							args[key.to_sym] = value
+						end
+						validations << "#{validation[0].to_s} #{symbol}, #{args.inspect}\n"
 					end
 
 					# Define the class.
@@ -77,14 +83,17 @@ module MacroDeck
 					end
 				end
 
-				# Returns true if the validations array looks visibly valid.
+				# Returns true if the validations array looks visibly valid. A validation is [ "validates_blah", :field, { args } ].
 				def validate_validations
 					if self.validations.is_a?(Array)
 						if self.validations.length == 0
 							return true
 						else
 							self.validations.each do |validation|
-								if validation.is_a?(Array) && validation.length == 2 && validation[0].is_a?(String) && validation[0] =~ /^validates_/
+								if validation.is_a?(Array) && validation.length == 3 &&
+									validation[0].is_a?(String) && validation[0] =~ /^validates_/ &&
+									(validation[1].is_a?(Symbol) || validation[1].is_a?(String)) && # TODO: Validate the field exists.
+									validation[2].is_a?(Hash)
 									return true
 								else
 									return false
