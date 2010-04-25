@@ -77,17 +77,17 @@ module MacroDeck
 
 			# Tests that the object's validations get populated.
 			def test_005_defined_object_validations
-				assert_equal ::MacroDeckTestObject.validations[0].class, 	Validatable::ValidatesTrueFor
-				assert_equal ::MacroDeckTestObject.validations[0].attribute,	:not_required_str
-				assert_equal ::MacroDeckTestObject.validations[1].class,	Validatable::ValidatesTrueFor
-				assert_equal ::MacroDeckTestObject.validations[1].attribute,	:required_str
-				assert_equal ::MacroDeckTestObject.validations[2].class,	Validatable::ValidatesPresenceOf
-				assert_equal ::MacroDeckTestObject.validations[2].attribute,	:required_str
-				assert_equal ::MacroDeckTestObject.validations[3].class,	Validatable::ValidatesTrueFor
-				assert_equal ::MacroDeckTestObject.validations[3].attribute,	:validated_str
-				assert_equal ::MacroDeckTestObject.validations[4].class,	Validatable::ValidatesInclusionOf
-				assert_equal ::MacroDeckTestObject.validations[4].attribute,	:validated_str
-				assert_equal ["One", "Two", "Three"],	::MacroDeckTestObject.validations[4].within
+				assert_equal Validatable::ValidatesTrueFor,		::MacroDeckTestObject.validations[0].class
+				assert_equal :not_required_str,				::MacroDeckTestObject.validations[0].attribute
+				assert_equal Validatable::ValidatesTrueFor,		::MacroDeckTestObject.validations[1].class
+				assert_equal :required_str,				::MacroDeckTestObject.validations[1].attribute
+				assert_equal Validatable::ValidatesPresenceOf,		::MacroDeckTestObject.validations[2].class
+				assert_equal :required_str,				::MacroDeckTestObject.validations[2].attribute
+				assert_equal Validatable::ValidatesTrueFor,		::MacroDeckTestObject.validations[3].class
+				assert_equal :validated_str,				::MacroDeckTestObject.validations[3].attribute
+				assert_equal Validatable::ValidatesInclusionOf,		::MacroDeckTestObject.validations[4].class
+				assert_equal :validated_str,				::MacroDeckTestObject.validations[4].attribute
+				assert_equal ["One", "Two", "Three"],			::MacroDeckTestObject.validations[4].within
 			end
 		end
 	end
