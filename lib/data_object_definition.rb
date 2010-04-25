@@ -51,10 +51,6 @@ module MacroDeck
 						"class ::#{klass} < ::MacroDeck::Model
 							#{properties}
 							#{validations}
-
-							def self.fields
-								return #{self.fields.inspect}
-							end
 						end"
 					Kernel.eval(class_body)
 				end
