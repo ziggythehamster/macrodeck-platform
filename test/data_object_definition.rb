@@ -24,9 +24,12 @@ module MacroDeck
 					"object_type" => "MacroDeckTestObject",
 					"fields" => [
 						["not_required_str", "String", false],
-						["required_str", "String", true]
+						["required_str", "String", true],
+						["validated_str", "String", false]
 					],
-					"validations" => []
+					"validations" => [
+						[ "validates_inclusion_of", "validated_str", { "within" => [ "One", "Two", "Three" ], "allow_nil" => true } ]
+					]
 				}
 				test_object = ::DataObjectDefinition.new(object)
 				assert test_object.valid?
@@ -37,11 +40,14 @@ module MacroDeck
 			def test_002_get_test_definition
 				test_object = ::DataObjectDefinition.view("by_object_type", :key => "MacroDeckTestObject")[0]
 				assert test_object.valid?
-				assert_equal test_object.fields, [
+				assert_equal [
 					["not_required_str", "String", false],
-					["required_str", "String", true]
-				]
-				assert_equal test_object.validations, []
+					["required_str", "String", true],
+					["validated_str", "String", false]
+				], test_object.fields
+				assert_equal [
+					[ "validates_inclusion_of", "validated_str", { "within" => [ "One", "Two", "Three" ], "allow_nil" => true } ]
+				], test_object.validations
 			end
 
 			# Tests that the define! method works.
@@ -59,12 +65,22 @@ module MacroDeck
 				end
 			end
 
-			# Tests that fields gets populated.
-			def test_004_defined_object_fields
+			# Tests that the object's properties gets populated.
+			def test_004_defined_object_properties
 				assert_equal ::MacroDeckTestObject.properties[0].name, "not_required_str"
 				assert_equal ::MacroDeckTestObject.properties[0].type, "String"
 				assert_equal ::MacroDeckTestObject.properties[1].name, "required_str"
 				assert_equal ::MacroDeckTestObject.properties[1].type, "String"
+			end
+
+			# Tests that the object's validations get populated.
+			def test_005_defined_object_validations
+				assert_equal ::MacroDeckTestObject.validations[0].class, 	Validatable::ValidatesTrueFor
+				assert_equal ::MacroDeckTestObject.validations[0].attribute,	:not_required_str
+				assert_equal ::MacroDeckTestObject.validations[1].class,	Validatable::ValidatesTrueFor
+				assert_equal ::MacroDeckTestObject.validations[1].attribute,	:required_str
+				assert_equal ::MacroDeckTestObject.validations[2].class,	Validatable::ValidatesPresenceOf
+				assert_equal ::MacroDeckTestObject.validations[2].attribute,	:required_str
 			end
 		end
 	end
