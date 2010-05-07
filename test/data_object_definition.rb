@@ -36,7 +36,7 @@ module MacroDeck
 				assert test_object.save
 			end
 			
-			# Tests that the previously created object can be retrieved.
+			# Tests that the previously created object can be retrieved and has the correct fields.
 			def test_002_get_test_definition
 				test_object = ::DataObjectDefinition.view("by_object_type", :key => "MacroDeckTestObject")[0]
 				assert test_object.valid?
@@ -48,6 +48,7 @@ module MacroDeck
 				assert_equal [
 					[ "validates_inclusion_of", "validated_str", { "within" => [ "One", "Two", "Three" ], "allow_nil" => true } ]
 				], test_object.validations
+				assert_equal "MacroDeckTestObject", test_object["_id"]
 			end
 
 			# Tests that the define! method works.
