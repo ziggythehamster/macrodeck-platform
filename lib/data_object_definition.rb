@@ -6,6 +6,7 @@ module MacroDeck
 	module PlatformSupport
 		module DataObjectDefinition
 			def self.included(base)
+				base.unique_id :object_type
 				base.property :object_type
 				base.property :fields
 				base.property :validations
