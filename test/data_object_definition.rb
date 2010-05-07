@@ -90,6 +90,20 @@ module MacroDeck
 				assert_equal :validated_str,				::MacroDeckTestObject.validations[4].attribute
 				assert_equal ["One", "Two", "Three"],			::MacroDeckTestObject.validations[4].within
 			end
+
+			# Tests that the object cannot be created more than once.
+			def test_006_no_duplicates_allowed
+				duplicate = {
+					"object_type" => "MacroDeckTestObject",
+					"fields" => [],
+					"validations" => []
+				}
+				duplicate_object = ::DataObjectDefinition.new(duplicate)
+				assert duplicate_object.valid?
+				assert_raise RestClient::Conflict do
+					duplicate_object.save # will generate an error, hopefully.
+				end
+			end
 		end
 	end
 end
