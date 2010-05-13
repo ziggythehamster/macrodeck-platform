@@ -21,6 +21,35 @@ module MacroDeck
 				base.view_by :human_id # this might need special treatment.
 
 				# TODO: Advanced views (tags, path, possibly human_id)
+
+				# Return the tag as the key and the value as 1 to allow for
+				# reduction. Use include_docs to retrieve the documents if
+				# you need to. The reduce function will count the number of
+				# uses of a tag.
+				base.view_by :tags, {
+					:map => 
+					"function(doc) {
+						if (doc.tags) {
+							doc.tags.map(function(tag) {
+								emit(tag, 1);
+							});
+						}
+					}",
+					:reduce =>
+					"function(key, values, rereduce) {
+						return sum(values);
+					}"
+				}
+
+				# Return the key as the path and the value as the doc's ID.
+				base.view_by :path, {
+					:map =>
+					"function(doc) {
+						if (doc.path) {
+							emit(doc.path, doc);
+						}
+					}"
+				}
 				
 				# Validations that happen on this class.
 				base.validates_presence_of :path
