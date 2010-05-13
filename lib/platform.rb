@@ -9,6 +9,7 @@ rescue Gem::LoadError
 end
 require "validatable"
 require "couchrest"
+require "data_object"
 require "data_object_definition"
 
 module MacroDeck
