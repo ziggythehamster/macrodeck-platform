@@ -10,8 +10,12 @@ namespace :macrodeck do
 
 	desc "Clear the test database"
 	task(:clear_test) do
-		db = CouchRest.database("macrodeck-test")
-		db.delete!
+		begin
+			db = CouchRest.database("macrodeck-test")
+			db.delete!
+		rescue
+			puts "Couldn't clear the database, this might be an error..."
+		end
 	end
 
 	desc "Run the MacroDeck test suite"
