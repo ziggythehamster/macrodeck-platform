@@ -44,8 +44,13 @@ module MacroDeck
 					# else.
 					Kernel.eval "class ::DataObjectDefinition < ::MacroDeck::Model; end"
 					
+					# Now create the DataObject class, which is the parent of all classes
+					# defined by DataObject.
+					Kernel.eval "class ::DataObject < ::MacroDeck::Model; end"
+
 					# Include the class methods.
 					::DataObjectDefinition.send(:include, ::MacroDeck::PlatformSupport::DataObjectDefinition)
+					::DataObject.send(:include, ::MacroDeck::PlatformSupport::DataObject)
 				end
 			end
 		end
