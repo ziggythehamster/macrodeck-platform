@@ -128,6 +128,14 @@ module MacroDeck
 				assert_equal "user/testOwnedBy", test_object5.owned_by
 				assert_equal "A fake test item to test with.", test_object5.description
 				assert_equal "alternate-owned-by", test_object5.human_id
+
+				# Count of items tagged test
+				test_tags1 = ::DataObject.view("by_tags", :key => "awesome")
+				test_tags2 = ::DataObject.view("by_tags", :key => "test")
+				test_tags3 = ::DataObject.view("by_tags", :key => "bro")
+				assert 1, test_tags1.length
+				assert 4, test_tags2.length
+				assert 1, test_tags3.length
 			end
 		end
 	end
