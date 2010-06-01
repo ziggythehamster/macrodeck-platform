@@ -39,6 +39,11 @@ module MacroDeck
 				object3["title"] = "Test Alternate Updated By"
 				object3["updated_by"] = "user/csakon"
 				object3["human_id"] = "alternate-updated-by"
+				object4 = object3.dup
+				object4["title"] = "Test Alternate Owned By"
+				object4["owned_by"] = "user/yourmom"
+				object4["human_id"] = "alternate-owned-by"
+
 
 				test_object = ::DataObject.new(object)
 				assert test_object.valid?
@@ -51,6 +56,10 @@ module MacroDeck
 				test_object3 = ::DataObject.new(object3)
 				assert test_object3.valid?
 				assert test_object3.save
+
+				test_object4 = ::DataObject.new(object4)
+				assert test_object4.valid?
+				assert test_object4.save
 			end
 			
 			# Tests that the previously created record can be retrieved.
@@ -88,9 +97,18 @@ module MacroDeck
 				assert_equal "user/System", test_object3.owned_by
 				assert_equal "A fake test item to test with.", test_object3.description
 				assert_equal "alternate-updated-by", test_object3.human_id
-			end
 
-			
+				test_object4 = ::DataObject.view("by_owned_by", :key => "user/yourmom", :include_docs => true)[0]
+				assert test_object4.valid?
+				assert_equal [], test_object4.path
+				assert_equal "Test Alternate Owned By", test_object4.title
+				assert_equal ["test"], test_object4.tags
+				assert_equal "user/ZiggyTheHamster", test_object4.created_by
+				assert_equal "user/csakon", test_object4.updated_by
+				assert_equal "user/yourmom", test_object4.owned_by
+				assert_equal "A fake test item to test with.", test_object4.description
+				assert_equal "alternate-owned-by", test_object4.human_id
+			end
 		end
 	end
 end
