@@ -19,7 +19,7 @@ module MacroDeck
 			end
 
 			# Creates a test item and saves it to the database.
-			def test_001_create_test_data_object_item
+			def test_001_create_test_data_object_items
 				object = {
 					"path" => [],
 					"tags" => ["awesome", "test", "bro"],
@@ -30,23 +30,47 @@ module MacroDeck
 					"description" => "A fake test item to test with.",
 					"human_id" => "test-data-object-item"
 				}
+				object2 = object.dup
+				object2["tags"] = ["test"]
+				object2["created_by"] = "user/ZiggyTheHamster"
+				object2["title"] = "Test Alternate Created By"
+				object2["human_id"] = "alternate-created-by"
+
 				test_object = ::DataObject.new(object)
 				assert test_object.valid?
 				assert test_object.save
+
+				test_object2 = ::DataObject.new(object2)
+				assert test_object2.valid?
+				assert test_object2.save
 			end
 			
 			# Tests that the previously created record can be retrieved.
-			def test_002_get_test_data_object_item
+			def test_002_get_test_data_object_items
 				test_object = ::DataObject.view("by_title", :key => "Test Data Object Item", :include_docs => true)[0]
 				assert test_object.valid?
 				assert_equal [], test_object.path
+				assert_equal "Test Data Object Item", test_object.title
 				assert_equal ["awesome", "test", "bro"], test_object.tags
 				assert_equal "user/System", test_object.created_by
 				assert_equal "user/System", test_object.updated_by
 				assert_equal "user/System", test_object.owned_by
 				assert_equal "A fake test item to test with.", test_object.description
 				assert_equal "test-data-object-item", test_object.human_id
+
+				test_object2 = ::DataObject.view("by_created_by", :key => "user/ZiggyTheHamster", :include_docs => true)[0]
+				assert test_object2.valid?
+				assert_equal [], test_object2.path
+				assert_equal "Test Alternate Created By", test_object2.title
+				assert_equal ["test"], test_object2.tags
+				assert_equal "user/ZiggyTheHamster", test_object2.created_by
+				assert_equal "user/System", test_object2.updated_by
+				assert_equal "user/System", test_object2.owned_by
+				assert_equal "A fake test item to test with.", test_object2.description
+				assert_equal "alternate-created-by", test_object2.human_id
 			end
+
+			
 		end
 	end
 end
