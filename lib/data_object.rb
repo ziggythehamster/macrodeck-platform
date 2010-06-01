@@ -13,7 +13,6 @@ module MacroDeck
 				base.property :human_id		# A human-readable identifier. Was called url_part in the old platform.
 
 				# Some basic views.
-				base.view_by :path
 				base.view_by :created_by
 				base.view_by :updated_by
 				base.view_by :owned_by
