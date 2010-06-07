@@ -67,8 +67,8 @@ module MacroDeck
 				assert test_object4.save
 			end
 			
-			# Tests that the previously created record can be retrieved.
-			def test_002_get_test_data_object_items
+			# Tests find by title.
+			def test_002_find_by_title
 				# Test find by title.
 				test_object = ::DataObject.view("by_title", :key => "Test Data Object Item", :include_docs => true)[0]
 				assert test_object.valid?
@@ -80,8 +80,10 @@ module MacroDeck
 				assert_equal "user/System", test_object.owned_by
 				assert_equal "A fake test item to test with.", test_object.description
 				assert_equal "test-data-object-item", test_object.human_id
+			end
 
-				# Test find by created by
+			# Test find by created by
+			def test_003_find_by_created_by
 				test_object2 = ::DataObject.view("by_created_by", :key => "user/testCreatedBy", :include_docs => true)[0]
 				assert test_object2.valid?
 				assert_equal [], test_object2.path
@@ -92,8 +94,10 @@ module MacroDeck
 				assert_equal "user/testCreatedBy", test_object2.owned_by
 				assert_equal "A fake test item to test with.", test_object2.description
 				assert_equal "alternate-created-by", test_object2.human_id
+			end
 
-				# Test find by updated by
+			# Test find by updated by
+			def test_004_find_by_updated_by
 				test_object3 = ::DataObject.view("by_updated_by", :key => "user/testUpdatedBy", :include_docs => true)[0]
 				assert test_object3.valid?
 				assert_equal [], test_object3.path
@@ -104,8 +108,10 @@ module MacroDeck
 				assert_equal "user/testUpdatedBy", test_object3.owned_by
 				assert_equal "A fake test item to test with.", test_object3.description
 				assert_equal "alternate-updated-by", test_object3.human_id
+			end
 
-				# Test find by owned by
+			# Test find by owned by.
+			def test_005_find_by_owned_by
 				test_object4 = ::DataObject.view("by_owned_by", :key => "user/testOwnedBy", :include_docs => true)[0]
 				assert test_object4.valid?
 				assert_equal [], test_object4.path
@@ -116,8 +122,10 @@ module MacroDeck
 				assert_equal "user/testOwnedBy", test_object4.owned_by
 				assert_equal "A fake test item to test with.", test_object4.description
 				assert_equal "alternate-owned-by", test_object4.human_id
+			end
 
-				# Test find by human ID.
+			# Test find by human ID
+			def test_006_find_by_human_id
 				test_object5 = ::DataObject.view("by_human_id", :key => "alternate-owned-by", :include_docs => true)[0]
 				assert test_object5.valid?
 				assert_equal [], test_object5.path
@@ -128,8 +136,10 @@ module MacroDeck
 				assert_equal "user/testOwnedBy", test_object5.owned_by
 				assert_equal "A fake test item to test with.", test_object5.description
 				assert_equal "alternate-owned-by", test_object5.human_id
+			end
 
-				# Count of items tagged test
+			# Test that tag reduce view is working.
+			def test_007_tag_count
 				test_tags1 = ::DataObject.view("by_tags", :key => "awesome")
 				test_tags2 = ::DataObject.view("by_tags", :key => "test")
 				test_tags3 = ::DataObject.view("by_tags", :key => "bro")
