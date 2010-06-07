@@ -82,7 +82,7 @@ module MacroDeck
 				startkey = self.path.dup
 				startkey.push 0
 				endkey = self.path.dup
-				endkey.push {}
+				endkey.push Hash.new
 				return ::DataObject.view("by_path", :reduce => false, :startkey => startkey, :endkey => endkey, :include_docs => include_docs)
 			end
 
@@ -91,8 +91,13 @@ module MacroDeck
 				startkey = self.path.dup
 				startkey.push 0
 				endkey = self.path.dup
-				endkey.push {}
-				return ::DataObject.view("by_path", :reduce => true, :startkey => startkey, :endkey => endkey)["rows"].length
+				endkey.push Hash.new
+				result = ::DataObject.view("by_path", :reduce => true, :startkey => startkey, :endkey => endkey)
+				if result["rows"] == []
+					return 0
+				else
+					return result["rows"][0]["value"]
+				end
 			end
 		end
 	end
