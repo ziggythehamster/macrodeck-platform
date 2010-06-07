@@ -76,6 +76,24 @@ module MacroDeck
 				parent.pop
 				return parent
 			end
+
+			# Returns the children of this object. Pass true if you want the documents returned as well.
+			def children(include_docs = false)
+				startkey = self.path.dup
+				startkey.push 0
+				endkey = self.path.dup
+				endkey.push {}
+				return self.view("by_path", :reduce => false, :startkey => startkey, :endkey => endkey, :include_docs => include_docs)
+			end
+
+			# Returns the number of children of this object.
+			def children_count
+				startkey = self.path.dup
+				startkey.push 0
+				endkey = self.path.dup
+				endkey.push {}
+				return self.view("by_path", :reduce => true, :startkey => startkey, :endkey => endkey)["value"]
+			end
 		end
 	end
 end
