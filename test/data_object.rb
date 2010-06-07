@@ -46,6 +46,7 @@ module MacroDeck
 				object3["owned_by"] = "user/testUpdatedBy"
 				object3["human_id"] = "alternate-updated-by"
 				object4 = object3.dup
+				object4["path"] = ["level1", "level2", "level3"]
 				object4["title"] = "Test Alternate Owned By"
 				object4["created_by"] = "user/testOwnedBy"
 				object4["updated_by"] = "user/testOwnedBy"
@@ -116,7 +117,7 @@ module MacroDeck
 			def test_005_find_by_owned_by
 				test_object4 = ::DataObject.view("by_owned_by", :key => "user/testOwnedBy", :include_docs => true)[0]
 				assert test_object4.valid?
-				assert_equal ["level1", "level2"], test_object4.path
+				assert_equal ["level1", "level2", "level3"], test_object4.path
 				assert_equal "Test Alternate Owned By", test_object4.title
 				assert_equal ["test"], test_object4.tags
 				assert_equal "user/testOwnedBy", test_object4.created_by
@@ -130,7 +131,7 @@ module MacroDeck
 			def test_006_find_by_human_id
 				test_object5 = ::DataObject.view("by_human_id", :key => "alternate-owned-by", :include_docs => true)[0]
 				assert test_object5.valid?
-				assert_equal ["level1", "level2"], test_object5.path
+				assert_equal ["level1", "level2", "level3"], test_object5.path
 				assert_equal "Test Alternate Owned By", test_object5.title
 				assert_equal ["test"], test_object5.tags
 				assert_equal "user/testOwnedBy", test_object5.created_by
