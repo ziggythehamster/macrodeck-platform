@@ -69,6 +69,13 @@ module MacroDeck
 				base.validates_true_for :updated_by,	:logic => lambda { updated_by.is_a?(String) }
 				base.validates_true_for :owned_by,	:logic => lambda { owned_by.is_a?(String) }
 			end
+
+			# Returns the parent of the object. If the object is at the root, this will return [].
+			def parent
+				parent = self.path.dup
+				parent.pop
+				return parent
+			end
 		end
 	end
 end
