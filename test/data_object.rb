@@ -88,6 +88,7 @@ module MacroDeck
 				assert_equal "A fake test item to test with.", test_object.description
 				assert_equal "test-data-object-item", test_object.human_id
 				assert_equal [], test_object.parent
+				assert_equal 0, test_object.children_count
 			end
 
 			# Test find by created by
@@ -103,6 +104,7 @@ module MacroDeck
 				assert_equal "A fake test item to test with.", test_object2.description
 				assert_equal "alternate-created-by", test_object2.human_id
 				assert_equal [], test_object2.parent
+				assert_equal 2, test_object2.children_count
 			end
 
 			# Test find by updated by
@@ -118,6 +120,7 @@ module MacroDeck
 				assert_equal "A fake test item to test with.", test_object3.description
 				assert_equal "alternate-updated-by", test_object3.human_id
 				assert_equal ["alternate-created-by"], test_object3.parent
+				assert_equal 1, test_object3.children_count
 			end
 
 			# Test find by owned by.
@@ -133,6 +136,7 @@ module MacroDeck
 				assert_equal "A fake test item to test with.", test_object4.description
 				assert_equal "alternate-owned-by", test_object4.human_id
 				assert_equal ["alternate-created-by", "alternate-updated-by"], test_object4.parent
+				assert_equal 0, test_object4.children_count
 			end
 
 			# Test find by human ID
@@ -148,6 +152,7 @@ module MacroDeck
 				assert_equal "A fake test item to test with.", test_object5.description
 				assert_equal "alternate-owned-by", test_object5.human_id
 				assert_equal ["alternate-created-by", "alternate-updated-by"], test_object5.parent
+				assert_equal 0, test_object5.children_count
 			end
 
 			# Test that tag reduce view is working.
