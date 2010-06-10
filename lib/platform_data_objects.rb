@@ -80,13 +80,13 @@ module MacroDeck
 					puts "Processing #{obj}"
 
 					# Get the definition
-					definition = self.send(obj.to_sym)
+					definition = self.send(obj.to_sym).dup
 
 					# Check if the definition exists.
 					check_definition = ::DataObjectDefinition.view("by_object_type", :key => definition["object_type"])
 					if check_definition.length == 1
 						puts "Deleting..."
-						check_definition.delete
+						check_definition[0].destroy
 					elsif check_definition.length > 1
 						puts "MORE THAN ONE EXISTS WTF!"
 					end
