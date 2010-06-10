@@ -22,7 +22,7 @@ module MacroDeck
 					"validations" => [
 						["validates_length_of", "abbreviation", { "is" => 2 }]
 					]
-				}
+				}.freeze
 			end
 
 			# A region is a state, province, etc. We're calling it
@@ -40,7 +40,7 @@ module MacroDeck
 						["abbreviation", "String", false]
 					],
 					"validations" => []
-				}
+				}.freeze
 			end
 
 			# A locality is a city, town, etc. The address microformat
@@ -51,7 +51,7 @@ module MacroDeck
 					"object_type" => "Locality",
 					"fields" => [],
 					"validations" => []
-				}
+				}.freeze
 			end
 
 			# A place is a place within a locality. This has the most
@@ -71,13 +71,29 @@ module MacroDeck
 						["hours", "Hash", false]
 					],
 					"validations" => []
-				}
+				}.freeze
 			end
 
 			# Run this to define all of the objects.
 			def define!
 				self.objects.each do |obj|
-					puts "Defining #{obj}"
+					puts "Processing #{obj}"
+
+					# Get the definition
+					definition = self.send(obj.to_sym)
+
+					# Check if the definition exists.
+					check_definition = ::DataObjectDefinition.view("by_object_type", :key => definition.object_type)
+					if check_definition.length == 1
+						puts "Deleting..."
+						check_definition.delete
+					elsif check_definition.length > 1
+						puts "MORE THAN ONE EXISTS WTF!"
+					end
+
+					new_definition = ::DataObjectDefinition.new(definition)
+					new_definition.save
+					puts "Saved."
 				end
 			end
 		end
