@@ -3,6 +3,11 @@
 module MacroDeck
 	class PlatformDataObjects
 		class << self
+			# Returns an array of the objects defined here.
+			def objects
+				["country", "region", "locality", "place"]
+			end
+			
 			# A country is a simple object. The name of the
 			# country is stored in title (provided by DataObject)
 			# and the abbreviation is required and must be two
@@ -36,6 +41,44 @@ module MacroDeck
 					],
 					"validations" => []
 				}
+			end
+
+			# A locality is a city, town, etc. The address microformat
+			# calls it locality, so we are too. The name of the city
+			# is stored in the title.
+			def locality
+				{
+					"object_type" => "Locality",
+					"fields" => [],
+					"validations" => []
+				}
+			end
+
+			# A place is a place within a locality. This has the most
+			# fields of anything.. see below for more info.
+			def place
+				{
+					"object_type" => "Place",
+					"fields" => [
+						["address", "String", false],
+						["postal_code", "String", false],
+						["phone_number", "String", false],
+						["url", "String", false],
+						["geo", "Array", false], # [lat,lng]
+						["cuisine", "String", false],
+						["features", "Array", false],
+						["parking", "String", false],
+						["hours", "Hash", false]
+					],
+					"validations" => []
+				}
+			end
+
+			# Run this to define all of the objects.
+			def define!
+				self.objects.each do |obj|
+					puts "Defining #{obj}"
+				end
 			end
 		end
 	end
