@@ -83,7 +83,7 @@ module MacroDeck
 					definition = self.send(obj.to_sym)
 
 					# Check if the definition exists.
-					check_definition = ::DataObjectDefinition.view("by_object_type", :key => definition.object_type)
+					check_definition = ::DataObjectDefinition.view("by_object_type", :key => definition["object_type"])
 					if check_definition.length == 1
 						puts "Deleting..."
 						check_definition.delete
