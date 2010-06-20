@@ -79,23 +79,20 @@ module MacroDeck
 			# Run this to define all of the objects.
 			def define!
 				self.objects.each do |obj|
-					puts "Processing #{obj}"
-
 					# Get the definition
 					definition = self.send(obj.to_sym).dup
 
 					# Check if the definition exists.
 					check_definition = ::DataObjectDefinition.view("by_object_type", :key => definition["object_type"])
 					if check_definition.length == 1
-						puts "Deleting..."
 						check_definition[0].destroy
 					elsif check_definition.length > 1
-						puts "MORE THAN ONE EXISTS WTF!"
+						raise "Duplicate definition exists for #{definition['object_type']}"
 					end
 
 					new_definition = ::DataObjectDefinition.new(definition)
 					new_definition.save
-					puts "Saved."
+					new_definition.define!
 				end
 			end
 		end
