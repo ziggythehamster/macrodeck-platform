@@ -5,7 +5,7 @@ module MacroDeck
 		class << self
 			# Returns an array of the objects defined here.
 			def objects
-				["country", "region", "locality", "place"]
+				["country", "region", "locality", "place"].freeze
 			end
 			
 			# A country is a simple object. The name of the
