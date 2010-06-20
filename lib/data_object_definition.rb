@@ -66,7 +66,7 @@ module MacroDeck
 						# Define the class.
 						klass = self.object_type.split(" ")[0]
 						class_body =
-							"class ::#{klass} < ::MacroDeck::Model
+							"class ::#{klass} < ::DataObject
 								#{properties}
 								#{validations}
 							end"
