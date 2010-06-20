@@ -23,8 +23,8 @@ module MacroDeck
 
 			# Tests that country has the appropriate properties.
 			def test_002_defined_object_properties
-				assert_equal "abbreviation",	::Country.properties[0].name
-				assert_equal "String",		::Country.properties[0].type
+				assert_equal "abbreviation",	::Country.properties[8].name
+				assert_equal "String",		::Country.properties[8].type
 			end
 		end
 	end
