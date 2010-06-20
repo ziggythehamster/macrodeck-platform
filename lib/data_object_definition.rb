@@ -70,7 +70,6 @@ module MacroDeck
 								#{properties}
 								#{validations}
 							end"
-						puts class_body
 						Kernel.eval(class_body)
 					else
 						raise "DataObjectDefinition #{self.object_type} is invalid!"
@@ -110,6 +109,10 @@ module MacroDeck
 									validation[0].is_a?(String) && validation[0] =~ /^validates_/ &&
 									(validation[1].is_a?(Symbol) || validation[1].is_a?(String)) && # TODO: Validate the field exists.
 									validation[2].is_a?(Hash)
+									return true
+								elsif validation.is_a?(Array) && validation.length == 2 &&
+									validation[0].is_a?(String) && validation[0] =~ /^validates_/ &&
+									(validation[1].is_a?(Symbol) || validation[1].is_a?(String)) # TODO: Validate the field exists.
 									return true
 								else
 									return false
