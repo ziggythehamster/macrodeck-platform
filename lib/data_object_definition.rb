@@ -30,42 +30,51 @@ module MacroDeck
 				validations = ""
 				class_body = ""
 
-				# Populate properties.
-				if self.valid?
-					# Iterate all of the fields and define them.
-					self.fields.each do |field|
-						symbol = field[0].to_sym.inspect
-						klass = eval(field[1].split(" ")[0]) # NB: This could potentially be a very unsafe operation...
-						properties << "property #{symbol}\n"
-						properties << "validates_true_for #{symbol}, :logic => lambda { #{field[0]}.is_a?(#{klass}) }\n"
-						properties << "validates_presence_of #{symbol}\n" if field[2] == true
-					end
+				@defined = false if @defined.nil?
 
-					# Iterate the validations and define them.
-					self.validations.each do |validation|
-						symbol = validation[1].to_sym.inspect
+				unless @defined
+					@defined = true
 
-						if validation.length == 3
-							# Build the validation if arguments are required
-							args = {}
-							validation[2].each_pair do |key, value|
-								args[key.to_sym] = value
-							end
-							validations << "#{validation[0].to_s} #{symbol}, #{args.inspect}\n"
-						elsif validation.length == 2
-							# Build the validation if arguments aren't required.
-							validations << "#{validation[0].to_s} #{symbol}"
+					# Populate properties.
+					if self.valid?
+						# Iterate all of the fields and define them.
+						self.fields.each do |field|
+							symbol = field[0].to_sym.inspect
+							klass = eval(field[1].split(" ")[0]) # NB: This could potentially be a very unsafe operation...
+							properties << "property #{symbol}\n"
+							properties << "validates_true_for #{symbol}, :logic => lambda { #{field[0]}.is_a?(::#{klass}) }\n"
+							properties << "validates_presence_of #{symbol}\n" if field[2] == true
 						end
-					end
 
-					# Define the class.
-					klass = self.object_type.split(" ")[0]
-					class_body =
-						"class ::#{klass} < ::MacroDeck::Model
-							#{properties}
-							#{validations}
-						end"
-					Kernel.eval(class_body)
+						# Iterate the validations and define them.
+						self.validations.each do |validation|
+							symbol = validation[1].to_sym.inspect
+	
+							if validation.length == 3
+								# Build the validation if arguments are required
+								args = {}
+								validation[2].each_pair do |key, value|
+									args[key.to_sym] = value
+								end
+								validations << "#{validation[0].to_s} #{symbol}, #{args.inspect}\n"
+							elsif validation.length == 2
+								# Build the validation if arguments aren't required.
+								validations << "#{validation[0].to_s} #{symbol}\n"
+							end
+						end
+
+						# Define the class.
+						klass = self.object_type.split(" ")[0]
+						class_body =
+							"class ::#{klass} < ::MacroDeck::Model
+								#{properties}
+								#{validations}
+							end"
+						puts class_body
+						Kernel.eval(class_body)
+					else
+						raise "DataObjectDefinition #{self.object_type} is invalid!"
+					end
 				end
 			end
 
