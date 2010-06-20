@@ -45,12 +45,14 @@ module MacroDeck
 
 			# A locality is a city, town, etc. The address microformat
 			# calls it locality, so we are too. The name of the city
-			# is stored in the title.
+			# is stored in the title, so we require a title.
 			def locality
 				{
 					"object_type" => "Locality",
 					"fields" => [],
-					"validations" => []
+					"validations" => [
+						["validates_presence_of", "title"] 
+					]
 				}.freeze
 			end
 
