@@ -44,12 +44,18 @@ module MacroDeck
 					# Iterate the validations and define them.
 					self.validations.each do |validation|
 						symbol = validation[1].to_sym.inspect
-						# Converts the strings to hashes.
-						args = {}
-						validation[2].each_pair do |key, value|
-							args[key.to_sym] = value
+
+						if validation.length == 3
+							# Build the validation if arguments are required
+							args = {}
+							validation[2].each_pair do |key, value|
+								args[key.to_sym] = value
+							end
+							validations << "#{validation[0].to_s} #{symbol}, #{args.inspect}\n"
+						elsif validation.length == 2
+							# Build the validation if arguments aren't required.
+							validations << "#{validation[0].to_s} #{symbol}"
 						end
-						validations << "#{validation[0].to_s} #{symbol}, #{args.inspect}\n"
 					end
 
 					# Define the class.
