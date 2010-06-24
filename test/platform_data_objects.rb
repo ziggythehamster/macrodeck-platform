@@ -18,11 +18,30 @@ module MacroDeck
 					::Region
 					::Locality
 					::Place
+					::DataObject
 				end
 			end
 
-			# Tests that country has the appropriate properties.
-			def test_002_defined_object_properties
+			def test_002_data_object_common_properties
+				assert_equal "path",		::DataObject.properties[0].name
+				assert_equal "String",		::DataObject.properties[0].type
+				assert_equal "tags",		::DataObject.properties[1].name
+				assert_equal "String",		::DataObject.properties[1].type # should be array???
+				assert_equal "created_by",	::DataObject.properties[2].name
+				assert_equal "String",		::DataObject.properties[2].type
+				assert_equal "updated_by",	::DataObject.properties[3].name
+				assert_equal "String",		::DataObject.properties[3].type
+				assert_equal "owned_by",	::DataObject.properties[4].name
+				assert_equal "String",		::DataObject.properties[4].type
+				assert_equal "title",		::DataObject.properties[5].name
+				assert_equal "String",		::DataObject.properties[5].type
+				assert_equal "description",	::DataObject.properties[6].name
+				assert_equal "String",		::DataObject.properties[6].type
+				assert_equal "human_id",	::DataObject.properties[7].name
+				assert_equal "String",		::DataObject.properties[7].type
+			end
+
+			def test_002_country_properties
 				assert_equal "abbreviation",	::Country.properties[8].name
 				assert_equal "String",		::Country.properties[8].type
 			end
