@@ -24,9 +24,9 @@ module MacroDeck
 
 			def test_002_data_object_common_properties
 				assert_equal "path",		::DataObject.properties[0].name
-				assert_equal "String",		::DataObject.properties[0].type
+				assert_equal "Array",		::DataObject.properties[0].type
 				assert_equal "tags",		::DataObject.properties[1].name
-				assert_equal "String",		::DataObject.properties[1].type # should be array???
+				assert_equal "Array",		::DataObject.properties[1].type
 				assert_equal "created_by",	::DataObject.properties[2].name
 				assert_equal "String",		::DataObject.properties[2].type
 				assert_equal "updated_by",	::DataObject.properties[3].name
