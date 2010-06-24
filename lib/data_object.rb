@@ -3,8 +3,8 @@ module MacroDeck
 	module PlatformSupport
 		module DataObject
 			def self.included(base)
-				base.property :path		# An array containing where this object sits in the tree. See <http://wiki.apache.org/couchdb/How_to_store_hierarchical_data>.
-				base.property :tags		# FINALLY! Easy tags. This is also an array.
+				base.property :path,		:type => ["String"]	# An array containing where this object sits in the tree. See <http://wiki.apache.org/couchdb/How_to_store_hierarchical_data>.
+				base.property :tags,		:type => ["String"]	# FINALLY! Easy tags. This is also an array.
 				base.property :created_by	# The ID of the author of the item.
 				base.property :updated_by	# The ID of the updater of the item.
 				base.property :owned_by		# The ID of the owner of the item.
