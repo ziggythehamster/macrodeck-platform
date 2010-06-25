@@ -66,9 +66,22 @@ module MacroDeck
 				assert_equal :owned_by,				::DataObject.validations[9].attribute
 			end
 
-			def test_004_country_properties
+			# Test the behavior of Country.
+			def test_004_country
+				assert_equal ::DataObject,			::Country.superclass
+			end
+
+			# Test the properties of Country.
+			def test_005_country_properties
 				assert_equal "abbreviation",	::Country.properties[8].name
 				assert_equal "String",		::Country.properties[8].type
+			end
+
+			# Test the validations of Country.
+			def test_006_country_validations
+				assert_equal Validatable::ValidatesLengthOf,	::Country.validations[10].class
+				assert_equal :abbreviation,			::Country.validations[10].attribute
+				assert_equal 2,					::Country.validations[10].is
 			end
 		end
 	end
