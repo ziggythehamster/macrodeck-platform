@@ -22,6 +22,7 @@ module MacroDeck
 				end
 			end
 
+			# Tests the common properties of all DataObjects.
 			def test_002_data_object_common_properties
 				assert_equal "path",		::DataObject.properties[0].name
 				assert_equal ["String"],	::DataObject.properties[0].type
@@ -41,7 +42,31 @@ module MacroDeck
 				assert_equal "String",		::DataObject.properties[7].type
 			end
 
-			def test_002_country_properties
+			# Tests the common validations of all DataObjects
+			def test_003_data_object_common_validations
+				assert_equal Validatable::ValidatesPresenceOf,	::DataObject.validations[0].class
+				assert_equal :path,				::DataObject.validations[0].attribute
+				assert_equal Validatable::ValidatesPresenceOf,	::DataObject.validations[1].class
+				assert_equal :tags,				::DataObject.validations[1].attribute
+				assert_equal Validatable::ValidatesPresenceOf,	::DataObject.validations[2].class
+				assert_equal :created_by,			::DataObject.validations[2].attribute
+				assert_equal Validatable::ValidatesPresenceOf,	::DataObject.validations[3].class
+				assert_equal :updated_by,			::DataObject.validations[3].attribute
+				assert_equal Validatable::ValidatesPresenceOf,	::DataObject.validations[4].class
+				assert_equal :owned_by,				::DataObject.validations[4].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::DataObject.validations[5].class
+				assert_equal :path,				::DataObject.validations[5].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::DataObject.validations[6].class
+				assert_equal :tags,				::DataObject.validations[6].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::DataObject.validations[7].class
+				assert_equal :created_by,			::DataObject.validations[7].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::DataObject.validations[8].class
+				assert_equal :updated_by,			::DataObject.validations[8].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::DataObject.validations[9].class
+				assert_equal :owned_by,				::DataObject.validations[9].attribute
+			end
+
+			def test_004_country_properties
 				assert_equal "abbreviation",	::Country.properties[8].name
 				assert_equal "String",		::Country.properties[8].type
 			end
