@@ -41,7 +41,7 @@ module MacroDeck
 						self.fields.each do |field|
 							symbol = field[0].to_sym.inspect
 							klass = eval(field[1].split(" ")[0]) # NB: This could potentially be a very unsafe operation...
-							properties << "property #{symbol}\n"
+							properties << "property #{symbol}, :type => \"#{klass}\"\n"
 							properties << "validates_true_for #{symbol}, :logic => lambda { #{field[0]}.is_a?(::#{klass}) }\n"
 							properties << "validates_presence_of #{symbol}\n" if field[2] == true
 						end
