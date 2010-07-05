@@ -142,6 +142,28 @@ module MacroDeck
 				assert_equal "hours",				::Place.properties[16].name
 				assert_equal "Hash",				::Place.properties[16].type
 			end
+
+			# Test the validations of Place.
+			def test_015_place_validations
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[10].class
+				assert_equal :address,				::Place.validations[10].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[11].class
+				assert_equal :postal_code,			::Place.validations[11].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[12].class
+				assert_equal :phone_number,			::Place.validations[12].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[13].class
+				assert_equal :url,				::Place.validations[13].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[14].class
+				assert_equal :geo,				::Place.validations[14].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[15].class
+				assert_equal :cuisine,				::Place.validations[15].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[16].class
+				assert_equal :features,				::Place.validations[16].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[17].class
+				assert_equal :parking,				::Place.validations[17].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[18].class
+				assert_equal :hours,				::Place.validations[18].attribute
+			end
 		end
 	end
 end
