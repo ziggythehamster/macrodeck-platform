@@ -104,6 +104,17 @@ module MacroDeck
 				assert_equal Validatable::ValidatesTrueFor,	::Region.validations[10].class
 				assert_equal :abbreviation,			::Region.validations[10].attribute
 			end
+
+			# Test the behavior of Locality.
+			def test_010_locality
+				assert_equal ::DataObject,			::Locality.superclass
+			end
+
+			# Test the validations of Locality (there are no properties).
+			def test_012_locality_validations
+				assert_equal Validatable::ValidatesPresenceOf,	::Locality.validations[10].class
+				assert_equal :title,				::Locality.validations[10].attribute
+			end
 		end
 	end
 end
