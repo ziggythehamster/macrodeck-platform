@@ -79,9 +79,13 @@ module MacroDeck
 
 			# Test the validations of Country.
 			def test_006_country_validations
-				assert_equal Validatable::ValidatesLengthOf,	::Country.validations[10].class
+				assert_equal Validatable::ValidatesTrueFor,	::Country.validations[10].class
 				assert_equal :abbreviation,			::Country.validations[10].attribute
-				assert_equal 2,					::Country.validations[10].is
+				assert_equal Validatable::ValidatesPresenceOf,	::Country.validations[11].class
+				assert_equal :abbreviation,			::Country.validations[11].attribute
+				assert_equal Validatable::ValidatesLengthOf,	::Country.validations[12].class
+				assert_equal :abbreviation,			::Country.validations[12].attribute
+				assert_equal 2,					::Country.validations[12].is
 			end
 		end
 	end
