@@ -67,6 +67,7 @@ module MacroDeck
 						klass = self.object_type.split(" ")[0]
 						class_body =
 							"class ::#{klass} < ::DataObject
+								include ::MacroDeck::PlatformSupport::DataObject
 								#{properties}
 								#{validations}
 							end"
