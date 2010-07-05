@@ -87,6 +87,23 @@ module MacroDeck
 				assert_equal :abbreviation,			::Country.validations[12].attribute
 				assert_equal 2,					::Country.validations[12].is
 			end
+
+			# Test the behavior of Region.
+			def test_007_region
+				assert_equal ::DataObject,			::Region.superclass
+			end
+
+			# Test the properties of Region.
+			def test_008_region_properties
+				assert_equal "abbreviation",			::Region.properties[8].name
+				assert_equal "String",				::Region.properties[8].type
+			end
+
+			# Test the validations of Region
+			def test_009_region_validations
+				assert_equal Validatable::ValidatesTrueFor,	::Region.validations[10].class
+				assert_equal :abbreviation,			::Region.validations[10].attribute
+			end
 		end
 	end
 end
