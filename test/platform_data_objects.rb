@@ -180,6 +180,17 @@ module MacroDeck
 				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[22].class
 				assert_equal :reservations,			::Place.validations[22].attribute
 			end
+
+			# Test the behavior of Neighborhood
+			def test_016_neighborhood
+				assert_equal ::DataObject,			::Neighborhood.superclass
+			end
+
+			# Test the validations of Neighborhood (there are no properties).
+			def test_012_locality_validations
+				assert_equal Validatable::ValidatesPresenceOf,	::Neighborhood.validations[10].class
+				assert_equal :title,				::Neighborhood.validations[10].attribute
+			end
 		end
 	end
 end
