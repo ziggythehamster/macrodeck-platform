@@ -5,7 +5,7 @@ module MacroDeck
 		class << self
 			# Returns an array of the objects defined here.
 			def objects
-				["country", "region", "locality", "neighborhood", "place"].freeze
+				["country", "region", "locality", "neighborhood", "place", "event"].freeze
 			end
 			
 			# A country is a simple object. The name of the
@@ -66,6 +66,21 @@ module MacroDeck
 					"validations" => [
 						["validates_presence_of", "title"]
 					]
+				}.freeze
+			end
+
+			# An event is something happening. +event_type+ specifies what
+			# kind of event (party, special, band, etc.). The rest are fairly
+			# self explanitory.
+			def event
+				{
+					"object_type" => "Event",
+					"fields" => [
+						["start_time", "Time", true],
+						["end_time", "Time", false],
+						["recurrence", "Symbol", false]
+					],
+					"validations" => []
 				}.freeze
 			end
 
