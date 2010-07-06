@@ -171,6 +171,14 @@ module MacroDeck
 				assert_equal :parking,				::Place.validations[17].attribute
 				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[18].class
 				assert_equal :hours,				::Place.validations[18].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[19].class
+				assert_equal :atmosphere,			::Place.validations[19].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[20].class
+				assert_equal :alcohol,				::Place.validations[20].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[21].class
+				assert_equal :credit_cards_accepted,		::Place.validations[21].attribute
+				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[22].class
+				assert_equal :reservations,			::Place.validations[22].attribute
 			end
 		end
 	end
