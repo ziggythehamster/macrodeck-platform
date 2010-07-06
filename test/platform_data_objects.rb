@@ -187,9 +187,24 @@ module MacroDeck
 			end
 
 			# Test the validations of Neighborhood (there are no properties).
-			def test_012_locality_validations
+			def test_017_neighborhood_validations
 				assert_equal Validatable::ValidatesPresenceOf,	::Neighborhood.validations[10].class
 				assert_equal :title,				::Neighborhood.validations[10].attribute
+			end
+
+			# Test the behavior of Event.
+			def test_018_event
+				assert_equal ::DataObject,			::Event.superclass
+			end
+
+			# Tests the properties of Event.
+			def test_019_event_properties
+				assert_equal "start_time",			::Event.properties[8].name
+				assert_equal "Time",				::Event.properties[8].type
+				assert_equal "end_time",			::Event.properties[9].name
+				assert_equal "Time",				::Event.properties[9].type
+				assert_equal "recurrence",			::Event.properties[10].name
+				assert_equal "Symbol",				::Event.properties[10].type
 			end
 		end
 	end
