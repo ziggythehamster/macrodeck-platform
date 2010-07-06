@@ -133,8 +133,8 @@ module MacroDeck
 				assert_equal "String",				::Place.properties[11].type
 				assert_equal "geo",				::Place.properties[12].name
 				assert_equal "Array",				::Place.properties[12].type
-				assert_equal "cuisine",				::Place.properties[13].name
-				assert_equal "String",				::Place.properties[13].type
+				assert_equal "fare",				::Place.properties[13].name
+				assert_equal "Array",				::Place.properties[13].type
 				assert_equal "features",			::Place.properties[14].name
 				assert_equal "Array",				::Place.properties[14].type
 				assert_equal "parking",				::Place.properties[15].name
@@ -156,7 +156,7 @@ module MacroDeck
 				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[14].class
 				assert_equal :geo,				::Place.validations[14].attribute
 				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[15].class
-				assert_equal :cuisine,				::Place.validations[15].attribute
+				assert_equal :fare,				::Place.validations[15].attribute
 				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[16].class
 				assert_equal :features,				::Place.validations[16].attribute
 				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[17].class
