@@ -5,7 +5,7 @@ module MacroDeck
 		class << self
 			# Returns an array of the objects defined here.
 			def objects
-				["country", "region", "locality", "place"].freeze
+				["country", "region", "locality", "neighborhood", "place"].freeze
 			end
 			
 			# A country is a simple object. The name of the
@@ -52,6 +52,19 @@ module MacroDeck
 					"fields" => [],
 					"validations" => [
 						["validates_presence_of", "title"] 
+					]
+				}.freeze
+			end
+
+			# A neighborhood is a part of a city, town, etc. In Tulsa,
+			# you might have Brookside, Blue Dome District, Woodland Hills,
+			# Tulsa Hills, etc.
+			def neighborhood
+				{
+					"object_type" => "Neighborhood",
+					"fields" => [],
+					"validations" => [
+						["validates_presence_of", "title"]
 					]
 				}.freeze
 			end
