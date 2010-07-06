@@ -141,6 +141,14 @@ module MacroDeck
 				assert_equal "String",				::Place.properties[15].type
 				assert_equal "hours",				::Place.properties[16].name
 				assert_equal "Hash",				::Place.properties[16].type
+				assert_equal "atmosphere",			::Place.properties[17].name
+				assert_equal "String",				::Place.properties[17].type
+				assert_equal "alcohol",				::Place.properties[18].name
+				assert_equal "Array",				::Place.properties[18].type
+				assert_equal "credit_cards_accepted",		::Place.properties[19].name
+				assert_equal "Array",				::Place.properties[19].type
+				assert_equal "reservations",			::Place.properties[20].name
+				assert_equal "String",				::Place.properties[20].type
 			end
 
 			# Test the validations of Place.
