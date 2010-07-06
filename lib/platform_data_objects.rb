@@ -67,10 +67,14 @@ module MacroDeck
 						["phone_number", "String", false],
 						["url", "String", false],
 						["geo", "Array", false], # [lat,lng]
-						["cuisine", "String", false],
+						["fare", "Array", false],
 						["features", "Array", false],
 						["parking", "String", false],
-						["hours", "Hash", false]
+						["hours", "Hash", false],
+						["atmosphere", "String", false],
+						["alcohol", "Array", false],
+						["credit_cards_accepted", "Array", false],
+						["reservations", "String", false]
 					],
 					"validations" => []
 				}.freeze
