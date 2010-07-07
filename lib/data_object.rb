@@ -43,7 +43,7 @@ module MacroDeck
 				# Return the key as the path and the value as 1 for
 				# proper reduction. Use include_docs to get the docs.
 				# Reduce to return the number of items under a given path.
-				# Also path does NOT include the current element.
+				# Also path DOES include the current element.
 				base.view_by :path, {
 					:map =>
 					"function(doc) {
