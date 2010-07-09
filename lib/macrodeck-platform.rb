@@ -1,0 +1,5 @@
+require "macrodeck-platform/model"
+require "macrodeck-platform/data_object_definition"
+require "macrodeck-platform/data_object"
+require "macrodeck-platform/platform"
+require "macrodeck-platform/platform_data_objects"
