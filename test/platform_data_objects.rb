@@ -76,7 +76,7 @@ module MacroDeck
 				country.created_by = "_system"; assert !country.valid?
 				country.updated_by = "_system"; assert !country.valid?
 				country.owned_by = "_system"; assert !country.valid?
-				country.path = ["country-test"]; assert !country.valid?
+				country.path = ["country-test"]; assert country.valid?
 			end
 
 			# Test the properties of Country.
