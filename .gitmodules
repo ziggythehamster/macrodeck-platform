@@ -1,0 +1,3 @@
+[submodule "lib/validatable"]
+	path = lib/validatable
+	url = git://github.com/ziggythehamster/validatable.git
