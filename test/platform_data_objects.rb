@@ -148,8 +148,7 @@ module MacroDeck
 				place.created_by = "_system"; assert !place.valid?
 				place.updated_by = "_system"; assert !place.valid?
 				place.owned_by = "_system"; assert !place.valid?
-				place.path = ["place-test"]; assert !place.valid?
-				puts place.errors.full_messages
+				place.path = ["place-test"]; assert place.valid?
 			end
 
 			# Test the properties of Place.
