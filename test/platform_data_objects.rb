@@ -69,6 +69,14 @@ module MacroDeck
 			# Test the behavior of Country.
 			def test_004_country
 				assert_equal ::DataObject,			::Country.superclass
+				country = ::Country.new
+				country.title = "Test"; assert !country.valid?
+				country.abbreviation = "TE"; assert !country.valid?
+				country.tags = ["test", "tags"]; assert !country.valid?
+				country.created_by = "_system"; assert !country.valid?
+				country.updated_by = "_system"; assert !country.valid?
+				country.owned_by = "_system"; assert !country.valid?
+				country.path = ["country-test"]; assert !country.valid?
 			end
 
 			# Test the properties of Country.
