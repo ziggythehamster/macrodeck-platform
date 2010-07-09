@@ -142,6 +142,14 @@ module MacroDeck
 			# Test the behavior of Place.
 			def test_013_place
 				assert_equal ::DataObject,			::Place.superclass
+				place = ::Place.new
+				place.title = "Place"; assert !place.valid?
+				place.tags = ["complicated", "test"]; assert !place.valid?
+				place.created_by = "_system"; assert !place.valid?
+				place.updated_by = "_system"; assert !place.valid?
+				place.owned_by = "_system"; assert !place.valid?
+				place.path = ["place-test"]; assert !place.valid?
+				puts place.errors.full_messages
 			end
 
 			# Test the properties of Place.
