@@ -1,5 +1,5 @@
 # Load required files and libraries
-$LOAD_PATH << "./lib"
+$LOAD_PATH << "./lib/macrodeck-platform"
 
 require "rubygems"
 
