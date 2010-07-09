@@ -99,6 +99,14 @@ module MacroDeck
 			# Test the behavior of Region.
 			def test_007_region
 				assert_equal ::DataObject,			::Region.superclass
+				region = ::Region.new
+				region.title = "Test"; assert !region.valid?
+				region.abbreviation = "TE"; assert !region.valid?
+				region.tags = ["test", "tags"]; assert !region.valid?
+				region.created_by = "_system"; assert !region.valid?
+				region.updated_by = "_system"; assert !region.valid?
+				region.owned_by = "_system"; assert !region.valid?
+				region.path = ["region-test"]; assert region.valid?
 			end
 
 			# Test the properties of Region.
