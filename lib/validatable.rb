@@ -1,5 +1,7 @@
 # gem 'activesupport', '2.3.5'
 
+puts "Loaded custom validatable"
+
 begin
   require 'active_support/core_ext/object/blank' # newer versions of active_support (>= 3.0)
 rescue LoadError => e
