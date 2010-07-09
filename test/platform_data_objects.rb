@@ -124,6 +124,13 @@ module MacroDeck
 			# Test the behavior of Locality.
 			def test_010_locality
 				assert_equal ::DataObject,			::Locality.superclass
+				locality = ::Locality.new
+				locality.title = "Test"; assert !locality.valid?
+				locality.tags = [ "test", "tags"]; assert !locality.valid?
+				locality.created_by = "_system"; assert !locality.valid?
+				locality.updated_by = "_system"; assert !locality.valid?
+				locality.owned_by = "_system"; assert !locality.valid?
+				locality.path = ["locality-test"]; assert locality.valid?
 			end
 
 			# Test the validations of Locality (there are no properties).
