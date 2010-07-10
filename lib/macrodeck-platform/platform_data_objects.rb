@@ -175,6 +175,15 @@ module MacroDeck
 									"Drinks"
 								   ]
 							}
+						],
+						["validates_list_items_in_list", "credit_cards_accepted",
+							{ "allow_nil" => true,
+							  "list" => [	"Visa",
+							  		"MasterCard",
+									"American Express",
+									"Diner's Club"
+								    ]
+							}
 						]
 					]
 				}.freeze
