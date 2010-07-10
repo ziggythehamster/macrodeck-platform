@@ -149,6 +149,14 @@ module MacroDeck
 				place.updated_by = "_system"; assert !place.valid?
 				place.owned_by = "_system"; assert !place.valid?
 				place.path = ["place-test"]; assert place.valid?
+				place.credit_cards_accepted = ["test"]; assert !place.valid?
+				place.credit_cards_accepted = ["Visa"]; assert place.valid?
+				place.features = ["test"]; assert !place.valid?
+				place.features = ["Wi-Fi"]; assert place.valid?
+				place.fare = ["test"]; assert !place.valid?
+				place.fare = ["American"]; assert place.valid?
+				place.alcohol = ["test"]; assert !place.valid?
+				place.alcohol = ["Beer"]; assert place.valid?
 			end
 
 			# Test the properties of Place.
