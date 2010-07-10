@@ -217,6 +217,14 @@ module MacroDeck
 				assert_equal :credit_cards_accepted,		::Place.validations[21].attribute
 				assert_equal Validatable::ValidatesTrueFor,	::Place.validations[22].class
 				assert_equal :reservations,			::Place.validations[22].attribute
+				assert_equal Validatable::ValidatesListItemsInList,	::Place.validations[23].class
+				assert_equal :features,					::Place.validations[23].attribute
+				assert_equal Validatable::ValidatesListItemsInList,	::Place.validations[24].class
+				assert_equal :alcohol,					::Place.validations[24].attribute
+				assert_equal Validatable::ValidatesListItemsInList,	::Place.validations[25].class
+				assert_equal :fare,					::Place.validations[25].attribute
+				assert_equal Validatable::ValidatesListItemsInList,	::Place.validations[26].class
+				assert_equal :credit_cards_accepted,			::Place.validations[26].attribute
 			end
 
 			# Test the behavior of Neighborhood
