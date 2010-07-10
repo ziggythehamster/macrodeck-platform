@@ -104,7 +104,76 @@ module MacroDeck
 						["credit_cards_accepted", "Array", false],
 						["reservations", "String", false]
 					],
-					"validations" => []
+					"validations" => [
+						["validates_list_items_in_list", "features",
+							{ "list" => [ 	"Date-Friendly",
+									"Kid Friendly",
+									"Outdoor Seating",
+									"Vegetarian-Friendly",
+									"Wi-Fi",
+									"Live Music",
+									"Delivery",
+									"Great Wines" # subjective?
+								    ]
+							}
+						],
+						["validates_list_items_in_list", "alcohol",
+							{ "list" => [	"BYO", # Not legal everywhere :(
+									"Beer", # Should we split it into Domestic Beer and Imported Beer?
+									"Wine",
+									"Liquor"
+								    ]
+							}
+						],
+						["validates_list_items_in_list", "fare",
+							{ "list" => [	"Modern",
+									"Italian",
+									"Pizza",
+									"American",
+									"Dim Sum",
+									"Ethiopian",
+									"Burgers",
+									"Greek",
+									"Spanish",
+									"Deli",
+									"Middle Eastern",
+									"Mexican",
+									"Brazilian",
+									"Tex-Mex",
+									"Baked Goods",
+									"Japanese",
+									"Groceries",
+									"French",
+									"Korean",
+									# "Sweet drinks" # this exists for Koriente but is it a fare?
+									"Vietnamese",
+									"Thai",
+									"Southern",
+									"Barbecue",
+									"Pan-Asian",
+									"Indian",
+									"Chinese",
+									"Steakhouse",
+									"Hawaiian",
+									"Tacos", # perhaps not a fare/isn't every Mexican place going to have this?
+									"Cal-Mex",
+									"Cajun",
+									"Russian",
+									"Latin American",
+									"Irish",
+									"Caribbean",
+									"Veggie",
+									"Sweets", # the above commented-out "Sweet drinks" could go here.
+									"Jewish-style deli",
+									"Seafood",
+									"Indonesian",
+									"British",
+									"Ice cream",
+									"Drinks"
+								   ]
+							}
+						]
+					]
 				}.freeze
 			end
 
