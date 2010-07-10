@@ -106,7 +106,8 @@ module MacroDeck
 					],
 					"validations" => [
 						["validates_list_items_in_list", "features",
-							{ "list" => [ 	"Date-Friendly",
+							{ "allow_nil" => true,
+							  "list" => [ 	"Date-Friendly",
 									"Kid Friendly",
 									"Outdoor Seating",
 									"Vegetarian-Friendly",
@@ -118,7 +119,8 @@ module MacroDeck
 							}
 						],
 						["validates_list_items_in_list", "alcohol",
-							{ "list" => [	"BYO", # Not legal everywhere :(
+							{ "allow_nil" => true,
+							  "list" => [	"BYO", # Not legal everywhere :(
 									"Beer", # Should we split it into Domestic Beer and Imported Beer?
 									"Wine",
 									"Liquor"
@@ -126,7 +128,8 @@ module MacroDeck
 							}
 						],
 						["validates_list_items_in_list", "fare",
-							{ "list" => [	"Modern",
+							{ "allow_nil" => true,
+							  "list" => [	"Modern",
 									"Italian",
 									"Pizza",
 									"American",
