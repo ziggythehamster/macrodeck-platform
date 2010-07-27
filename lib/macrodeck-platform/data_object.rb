@@ -30,7 +30,15 @@ module MacroDeck
 					"function(doc) {
 						if (doc.tags) {
 							doc.tags.map(function(tag) {
-								emit(tag, 1);
+								// walk through the path and emit each piece.
+								path = [];
+								path_and_tag = [];
+								for (path_idx = 0; path_idx < doc.path.length; path_idx++) {
+									path.push(doc.path[path_idx]); // put the path component into the array (which will increase in length)
+									path_and_tag = path;
+									path_and_tag.push(tag); // append the tag to the end of the path, basically.
+									emit(path_and_tag, 1);
+								}
 							});
 						}
 					}",
