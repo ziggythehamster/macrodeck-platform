@@ -30,7 +30,7 @@ module MacroDeck
 					"function(doc) {
 						if (doc.tags) {
 							doc.tags.map(function(tag) {
-								for (i = 1; i <= doc.path.length; i++) {
+								for (i = 0; i <= doc.path.length; i++) {
 									var path_and_tag = doc.path.slice(0, i);
 									path_and_tag.push(tag);
 									emit(path_and_tag, 1);
