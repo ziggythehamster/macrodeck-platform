@@ -94,14 +94,14 @@ module MacroDeck
 						["postal_code", "String", false],
 						["phone_number", "String", false],
 						["url", "String", false],
-						["geo", "Array", false], # [lat,lng]
-						["fare", "Array", false],
-						["features", "Array", false],
+						["geo", ["Float"], false], # [lat,lng]
+						["fare", ["String"], false],
+						["features", ["String"], false],
 						["parking", "String", false],
 						["hours", "Hash", false],
 						["atmosphere", "String", false],
-						["alcohol", "Array", false],
-						["credit_cards_accepted", "Array", false],
+						["alcohol", ["String"], false],
+						["credit_cards_accepted", ["String"], false],
 						["reservations", "String", false]
 					],
 					"validations" => [
