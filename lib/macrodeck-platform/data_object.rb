@@ -67,11 +67,6 @@ module MacroDeck
 				base.validates_presence_of :created_by
 				base.validates_presence_of :updated_by
 				base.validates_presence_of :owned_by
-				base.validates_true_for :path,		:logic => lambda { path.is_a?(Array) }
-				base.validates_true_for :tags,		:logic => lambda { tags.is_a?(Array) }
-				base.validates_true_for :created_by,	:logic => lambda { created_by.is_a?(String) }
-				base.validates_true_for :updated_by,	:logic => lambda { updated_by.is_a?(String) }
-				base.validates_true_for :owned_by,	:logic => lambda { owned_by.is_a?(String) }
 			end
 
 			# Returns the parent of the object. If the object is at the root, this will return [].
