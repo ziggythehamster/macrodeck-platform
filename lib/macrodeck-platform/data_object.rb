@@ -5,12 +5,12 @@ module MacroDeck
 			def self.included(base)
 				base.property :path,		:type => ["String"]	# An array containing where this object sits in the tree. See <http://wiki.apache.org/couchdb/How_to_store_hierarchical_data>.
 				base.property :tags,		:type => ["String"]	# FINALLY! Easy tags. This is also an array.
-				base.property :created_by	# The ID of the author of the item.
-				base.property :updated_by	# The ID of the updater of the item.
-				base.property :owned_by		# The ID of the owner of the item.
-				base.property :title
-				base.property :description
-				base.property :human_id		# A human-readable identifier. Was called url_part in the old platform.
+				base.property :created_by,	:type => "String"	# The ID of the author of the item.
+				base.property :updated_by,	:type => "String"	# The ID of the updater of the item.
+				base.property :owned_by,	:type => "String"	# The ID of the owner of the item.
+				base.property :title,		:type => "String"
+				base.property :description,	:type => "String"
+				base.property :human_id,	:type => "String"	# A human-readable identifier. Was called url_part in the old platform.
 
 				# Some basic views.
 				base.view_by :created_by
