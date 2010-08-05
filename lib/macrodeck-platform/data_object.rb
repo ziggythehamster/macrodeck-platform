@@ -55,10 +55,17 @@ module MacroDeck
 							emit(doc.path, 1);
 						}
 					}",
-					:reduce =>
-					"function(key, values, rereduce) {
-						return sum(values);
-					}"
+					:reduce => "function(key, values, rereduce) { return sum(values); }"
+				}
+				# Same as above but the path is only emitted if the type matches this object.
+				base.view_by :path_and_type, {
+					:map =>
+					"function(doc) {
+						if (doc.path && doc.couchrest-type && doc.couchrest-type == #{base.class.to_s.inspect}) {
+							emit(doc.path, 1);
+						}
+					}",
+					:reduce => "function(key, values, rereduce) { return sum(values); }"
 				}
 				
 				# Validations that happen on this class.
