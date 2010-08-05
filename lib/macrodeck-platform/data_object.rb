@@ -61,7 +61,7 @@ module MacroDeck
 				base.view_by :path_and_type, {
 					:map =>
 					"function(doc) {
-						if (doc.path && doc.couchrest-type && doc.couchrest-type == #{base.class.to_s.inspect}) {
+						if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == #{self.class.to_s.inspect}) {
 							emit(doc.path, 1);
 						}
 					}",
