@@ -67,6 +67,7 @@ module MacroDeck
 				base.validates_presence_of :created_by
 				base.validates_presence_of :updated_by
 				base.validates_presence_of :owned_by
+				base.validates_length_of :path, :minimum => 1
 			end
 
 			# Returns the parent of the object. If the object is at the root, this will return [].
