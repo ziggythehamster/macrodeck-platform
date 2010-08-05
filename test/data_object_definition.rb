@@ -78,11 +78,11 @@ module MacroDeck
 
 			# Tests that the object's validations get populated.
 			def test_005_defined_object_validations
-				assert_equal Validatable::ValidatesPresenceOf,		::MacroDeckTestObject.validations[5].class
-				assert_equal :required_str,				::MacroDeckTestObject.validations[5].attribute
-				assert_equal Validatable::ValidatesInclusionOf,		::MacroDeckTestObject.validations[6].class
-				assert_equal :validated_str,				::MacroDeckTestObject.validations[6].attribute
-				assert_equal ["One", "Two", "Three"],			::MacroDeckTestObject.validations[6].within
+				assert_equal Validatable::ValidatesPresenceOf,		::MacroDeckTestObject.validations[6].class
+				assert_equal :required_str,				::MacroDeckTestObject.validations[6].attribute
+				assert_equal Validatable::ValidatesInclusionOf,		::MacroDeckTestObject.validations[7].class
+				assert_equal :validated_str,				::MacroDeckTestObject.validations[7].attribute
+				assert_equal ["One", "Two", "Three"],			::MacroDeckTestObject.validations[7].within
 			end
 
 			# Tests that the object cannot be created more than once.

@@ -54,6 +54,9 @@ module MacroDeck
 				assert_equal :updated_by,			::DataObject.validations[3].attribute
 				assert_equal Validatable::ValidatesPresenceOf,	::DataObject.validations[4].class
 				assert_equal :owned_by,				::DataObject.validations[4].attribute
+				assert_equal Validatable::ValidatesLengthOf,	::DataObject.validations[5].class
+				assert_equal :path,				::DataObject.validations[5].attribute
+				assert_equal 1,					::DataObject.validations[5].minimum
 			end
 
 			# Test the behavior of Country.
@@ -77,11 +80,11 @@ module MacroDeck
 
 			# Test the validations of Country.
 			def test_006_country_validations
-				assert_equal Validatable::ValidatesPresenceOf,	::Country.validations[5].class
-				assert_equal :abbreviation,			::Country.validations[5].attribute
-				assert_equal Validatable::ValidatesLengthOf,	::Country.validations[6].class
+				assert_equal Validatable::ValidatesPresenceOf,	::Country.validations[6].class
 				assert_equal :abbreviation,			::Country.validations[6].attribute
-				assert_equal 2,					::Country.validations[6].is
+				assert_equal Validatable::ValidatesLengthOf,	::Country.validations[7].class
+				assert_equal :abbreviation,			::Country.validations[7].attribute
+				assert_equal 2,					::Country.validations[7].is
 			end
 
 			# Test the behavior of Region.
@@ -122,8 +125,8 @@ module MacroDeck
 
 			# Test the validations of Locality (there are no properties).
 			def test_012_locality_validations
-				assert_equal Validatable::ValidatesPresenceOf,	::Locality.validations[5].class
-				assert_equal :title,				::Locality.validations[5].attribute
+				assert_equal Validatable::ValidatesPresenceOf,	::Locality.validations[6].class
+				assert_equal :title,				::Locality.validations[6].attribute
 			end
 
 			# Test the behavior of Place.
@@ -178,14 +181,14 @@ module MacroDeck
 
 			# Test the validations of Place.
 			def test_015_place_validations
-				assert_equal Validatable::ValidatesListItemsInList,	::Place.validations[5].class
-				assert_equal :features,					::Place.validations[5].attribute
 				assert_equal Validatable::ValidatesListItemsInList,	::Place.validations[6].class
-				assert_equal :alcohol,					::Place.validations[6].attribute
+				assert_equal :features,					::Place.validations[6].attribute
 				assert_equal Validatable::ValidatesListItemsInList,	::Place.validations[7].class
-				assert_equal :fare,					::Place.validations[7].attribute
+				assert_equal :alcohol,					::Place.validations[7].attribute
 				assert_equal Validatable::ValidatesListItemsInList,	::Place.validations[8].class
-				assert_equal :credit_cards_accepted,			::Place.validations[8].attribute
+				assert_equal :fare,					::Place.validations[8].attribute
+				assert_equal Validatable::ValidatesListItemsInList,	::Place.validations[9].class
+				assert_equal :credit_cards_accepted,			::Place.validations[9].attribute
 			end
 
 			# Test the behavior of Neighborhood
@@ -195,8 +198,8 @@ module MacroDeck
 
 			# Test the validations of Neighborhood (there are no properties).
 			def test_017_neighborhood_validations
-				assert_equal Validatable::ValidatesPresenceOf,	::Neighborhood.validations[5].class
-				assert_equal :title,				::Neighborhood.validations[5].attribute
+				assert_equal Validatable::ValidatesPresenceOf,	::Neighborhood.validations[6].class
+				assert_equal :title,				::Neighborhood.validations[6].attribute
 			end
 
 			# Test the behavior of Event.
@@ -216,8 +219,8 @@ module MacroDeck
 
 			# Tests the validations of Event.
 			def test_020_event_validations
-				assert_equal Validatable::ValidatesPresenceOf,	::Event.validations[5].class
-				assert_equal :start_time,			::Event.validations[5].attribute
+				assert_equal Validatable::ValidatesPresenceOf,	::Event.validations[6].class
+				assert_equal :start_time,			::Event.validations[6].attribute
 			end
 		end
 	end
