@@ -67,6 +67,17 @@ module MacroDeck
 					}",
 					:reduce => "function(key, values, rereduce) { return sum(values); }"
 				}
+				# Same as above but the last path item has the title inserted so that it alphabetizes.
+				base.view_by :path_and_type_alpha, {
+					:map =>
+					"function(doc) {
+						if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == #{base.name.to_s.inspect}) {
+							doc.path[doc.path.length - 1] = doc.title + '/' + doc.path[doc.path.length - 1];
+							emit(doc.path, 1);
+						}
+					}",
+					:reduce => "function(key, values, rereduce) { return sum(values); }"
+				}
 				
 				# Validations that happen on this class.
 				base.validates_presence_of :path
