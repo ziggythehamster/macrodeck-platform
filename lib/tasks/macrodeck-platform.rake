@@ -1,5 +1,3 @@
-require "init"
-
 namespace :macrodeck do
 	desc "Do a fresh test"
 	task(:test => [:clear_test, :run_test])
