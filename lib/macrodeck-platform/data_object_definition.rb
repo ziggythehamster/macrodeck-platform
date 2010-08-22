@@ -7,9 +7,10 @@ module MacroDeck
 		module DataObjectDefinition
 			def self.included(base)
 				base.unique_id :object_type
-				base.property :object_type
+				base.property :object_type,	:type => "String"
 				base.property :fields
 				base.property :validations
+				base.property :views
 
 				base.view_by :object_type
 
@@ -22,6 +23,7 @@ module MacroDeck
 				base.validates_true_for :object_type, :logic => lambda { object_type.is_a?(String) }
 				base.validates_true_for :fields, :logic => :validate_fields, :message => "is not valid"
 				base.validates_true_for :validations, :logic => :validate_validations, :message => "is not valid"
+				base.validates_true_for :views, :logic => :validate_views, :message => "is not valid"
 			end
 
 			# Executes the code necessary to define this object
@@ -78,6 +80,31 @@ module MacroDeck
 			end
 
 			private
+				# Returns true if the views array looks valid.
+				# Should be an array of hashes like this:
+				#    [ { :view_by => "name_of_view", :map => "map_function", :reduce => "reduce_function" }, { ... } ]
+				def validate_views
+					if self.views.is_a?(Array)
+						if self.views.length == 0
+							return true
+						else
+							self.views.each do |view|
+								if view.is_a?(Hash) && !view[:view_by].nil? && !view[:map].nil? && !view[:reduce].nil?
+									return true
+								else
+									return false
+								end
+							end
+						end
+					else
+						if self.views.nil?
+							return true
+						else
+							return false
+						end
+					end
+				end
+
 				# Returns true if the fields array is at least visibly valid.
 				# We won't know for sure since we don't check every detail.
 				def validate_fields
