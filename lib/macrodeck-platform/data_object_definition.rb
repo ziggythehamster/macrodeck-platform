@@ -88,13 +88,15 @@ module MacroDeck
 						if self.views.length == 0
 							return true
 						else
+							valid = false
 							self.views.each do |view|
 								if view.is_a?(Hash) && !view[:view_by].nil? && !view[:map].nil? && !view[:reduce].nil?
-									return true
+									valid = true
 								else
-									return false
+									valid = false
 								end
 							end
+							return valid
 						end
 					else
 						if self.views.nil?
@@ -112,13 +114,15 @@ module MacroDeck
 						if self.fields.length == 0
 							return true
 						else
+							valid = false
 							self.fields.each do |field|
 								if field.is_a?(Array) && field.length == 3 && field[0].is_a?(String) && field[1].is_a?(String) && (field[2].is_a?(TrueClass) || field[2].is_a?(FalseClass))
-									return true
+									valid = true
 								else
-									return false
+									valid = false
 								end
 							end
+							return valid
 						end
 					else
 						return false
@@ -131,20 +135,22 @@ module MacroDeck
 						if self.validations.length == 0
 							return true
 						else
+							valid = false
 							self.validations.each do |validation|
 								if validation.is_a?(Array) && validation.length == 3 &&
 									validation[0].is_a?(String) && validation[0] =~ /^validates_/ &&
 									(validation[1].is_a?(Symbol) || validation[1].is_a?(String)) && # TODO: Validate the field exists.
 									validation[2].is_a?(Hash)
-									return true
+									valid = true
 								elsif validation.is_a?(Array) && validation.length == 2 &&
 									validation[0].is_a?(String) && validation[0] =~ /^validates_/ &&
 									(validation[1].is_a?(Symbol) || validation[1].is_a?(String)) # TODO: Validate the field exists.
-									return true
+									valid = true
 								else
-									return false
+									valid = false
 								end
 							end
+							return valid
 						end
 					else
 						return false
