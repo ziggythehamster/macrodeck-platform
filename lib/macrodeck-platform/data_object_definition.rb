@@ -30,6 +30,7 @@ module MacroDeck
 			def define!
 				properties = ""
 				validations = ""
+				views = ""
 				class_body = ""
 
 				@defined = false if @defined.nil?
@@ -64,6 +65,14 @@ module MacroDeck
 							end
 						end
 
+						# Iterate the views and define them.
+						unless self.views.nil?
+							self.views.each do |view|
+								symbol = view["view_by"].to_sym.inspect
+								views << "view_by #{symbol}, { :map => #{view["map"].to_s.inspect}, :reduce => #{view["reduce"].to_s.inspect} }"
+							end
+						end
+
 						# Define the class.
 						klass = self.object_type.split(" ")[0]
 						class_body =
@@ -71,6 +80,7 @@ module MacroDeck
 								include ::MacroDeck::PlatformSupport::DataObject
 								#{properties}
 								#{validations}
+								#{views}
 							end"
 						Kernel.eval(class_body)
 					else
@@ -82,7 +92,7 @@ module MacroDeck
 			private
 				# Returns true if the views array looks valid.
 				# Should be an array of hashes like this:
-				#    [ { :view_by => "name_of_view", :map => "map_function", :reduce => "reduce_function" }, { ... } ]
+				#    [ { "view_by" => "name_of_view", "map" => "map_function", "reduce" => "reduce_function" }, { ... } ]
 				def validate_views
 					if self.views.is_a?(Array)
 						if self.views.length == 0
@@ -90,7 +100,7 @@ module MacroDeck
 						else
 							valid = false
 							self.views.each do |view|
-								if view.is_a?(Hash) && !view[:view_by].nil? && !view[:map].nil? && !view[:reduce].nil?
+								if view.is_a?(Hash) && !view["view_by"].nil? && !view["map"].nil? && !view["reduce"].nil?
 									valid = true
 								else
 									valid = false
