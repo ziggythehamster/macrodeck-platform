@@ -209,11 +209,11 @@ module MacroDeck
 						  "function(doc) {
 						  	if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == 'Place') {
 								if (doc.path.length == 4) {
-									var path = doc.path.dup;
+									var path = eval(doc.path.toSource());
 									path[3] = doc.title + '/' + path[3];
 									emit(path, 1);
 								} else if (doc.path.length == 5) {
-									var path = doc.path.dup;
+									var path = eval(doc.path.toSource());
 									path[4] = doc.title + '/' + path[4];
 									emit([path[0], path[1], path[2], path[4]], 1);
 								} else {
