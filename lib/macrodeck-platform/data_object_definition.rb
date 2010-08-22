@@ -69,9 +69,8 @@ module MacroDeck
 						unless self.views.nil?
 							self.views.each do |view|
 								symbol = view["view_by"].to_sym.inspect
-								map = view["map"].to_s.inspect.gsub('\n', " ").gsub('\t', " ")
-								reduce = view["reduce"].to_s.inspect.gsub('\n', " ").gsub('\t', " ")
-								views << "view_by #{symbol}, { :map => #{map}, :reduce => #{view["reduce"].to_s.inspect} }\n"
+								new_hash = { :map => view["map"], :reduce => view["reduce"] }
+								views << "view_by #{symbol}, #{new_hash.inspect}\n"
 							end
 						end
 
