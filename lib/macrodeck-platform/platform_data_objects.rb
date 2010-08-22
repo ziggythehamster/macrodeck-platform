@@ -185,6 +185,42 @@ module MacroDeck
 								    ]
 							}
 						]
+					],
+					"views" => [
+						# Makes sure that the only path returned is [country,region,locality,place]
+						{ "view_by" => "path_and_type_without_neighborhood",
+						  "map" => 
+						  "function(doc) {
+						  	if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == 'Place') {
+								if (doc.path.length == 4) {
+									emit(doc.path, 1); // No neighborhood.
+								} else if (doc.path.length == 5) {
+									emit([doc.path[0], doc.path[1], doc.path[2], doc.path[4]], 1);
+								} else {
+									emit(doc.path, 'ERROR');
+								}
+							}
+						   }",
+						   "reduce" => "_count"
+						},
+						# Same as above but alphabetically.
+						{ "view_by" => "path_and_type_without_neighborhood_alpha",
+						  "map" =>
+						  "function(doc) {
+						  	if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == 'Place') {
+								if (doc.path.length == 4) {
+									doc.path[3] = doc.title + '/' + doc.path[3];
+									emit(doc.path, 1);
+								} else if (doc.path.length == 5) {
+									doc.path[4] = doc.title + '/' + doc.path[4];
+									emit([doc.path[0], doc.path[1], doc.path[2], doc.path[4]], 1);
+								} else {
+									emit(doc.path, 'ERROR');
+								}
+							}
+						   }",
+						   "reduce" => "_count"
+						}
 					]
 				}.freeze
 			end
