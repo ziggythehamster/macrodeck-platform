@@ -72,8 +72,9 @@ module MacroDeck
 					:map =>
 					"function(doc) {
 						if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == #{base.name.to_s.inspect}) {
-							doc.path[doc.path.length - 1] = doc.title + '/' + doc.path[doc.path.length - 1];
-							emit(doc.path, 1);
+							path = eval(doc.path.toSource());
+							path[path.length - 1] = doc.title + '/' + path[path.length - 1];
+							emit(path, 1);
 						}
 					}",
 					:reduce => "function(key, values, rereduce) { return sum(values); }"
