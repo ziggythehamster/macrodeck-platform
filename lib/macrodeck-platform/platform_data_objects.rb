@@ -193,7 +193,7 @@ module MacroDeck
 						  "function(doc) {
 						  	if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == 'Place') {
 								if (doc.path.length == 4) {
-									emit(doc.path, 1); // No neighborhood.
+									emit(doc.path, 1);
 								} else if (doc.path.length == 5) {
 									emit([doc.path[0], doc.path[1], doc.path[2], doc.path[4]], 1);
 								} else {
