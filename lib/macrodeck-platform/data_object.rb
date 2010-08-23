@@ -38,10 +38,7 @@ module MacroDeck
 							});
 						}
 					}",
-					:reduce =>
-					"function(key, values, rereduce) {
-						return sum(values);
-					}"
+					:reduce => "_count"
 				}
 
 				# Return the key as the path and the value as 1 for
@@ -55,7 +52,7 @@ module MacroDeck
 							emit(doc.path, 1);
 						}
 					}",
-					:reduce => "function(key, values, rereduce) { return sum(values); }"
+					:reduce => "_count"
 				}
 				# Same as above but the path is only emitted if the type matches this object.
 				base.view_by :path_and_type, {
@@ -65,7 +62,7 @@ module MacroDeck
 							emit(doc.path, 1);
 						}
 					}",
-					:reduce => "function(key, values, rereduce) { return sum(values); }"
+					:reduce => "_count"
 				}
 				# Same as above but the last path item has the title inserted so that it alphabetizes.
 				base.view_by :path_and_type_alpha, {
@@ -77,7 +74,7 @@ module MacroDeck
 							emit(path, 1);
 						}
 					}",
-					:reduce => "function(key, values, rereduce) { return sum(values); }"
+					:reduce => "_count"
 				}
 				
 				# Validations that happen on this class.
