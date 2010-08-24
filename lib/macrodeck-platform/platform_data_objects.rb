@@ -253,7 +253,7 @@ module MacroDeck
 									}
 								});
 							}
-						  }"
+						  }",
 						  "reduce" => "_count"
 						}
 					]
