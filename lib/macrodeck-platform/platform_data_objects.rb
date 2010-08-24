@@ -238,6 +238,23 @@ module MacroDeck
 							}
 						  }",
 						  "reduce" => "_count"
+						},
+						# Same as above but alphabetically.
+						{ "view_by" => "fare_alpha",
+						  "map" =>
+						  "function(doc) {
+							if (doc.fare && doc['couchrest-type'] == 'Place') {
+								doc.fare.map(function(fare) {
+									for(i = 0; i <= doc.path.length; i++) {
+										var path_and_fare = doc.path.slice(0, i);
+										path_and_fare.push(fare);
+										path_and_fare.push(doc.title);
+										emit(path_and_fare, 1);
+									}
+								});
+							}
+						  }"
+						  "reduce" => "_count"
 						}
 					]
 				}.freeze
