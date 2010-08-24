@@ -222,6 +222,22 @@ module MacroDeck
 							}
 						   }",
 						   "reduce" => "_count"
+						},
+						# Emits the fare just like tags.
+						{ "view_by" => "fare",
+						  "map" =>
+						  "function(doc) {
+							if (doc.fare && doc['couchrest-type'] == 'Place') {
+								doc.fare.map(function(fare) {
+									for (i = 0; i <= doc.path.length; i++) {
+										var path_and_fare = doc.path.slice(0, i);
+										path_and_fare.push(fare);
+										emit(path_and_fare, 1);
+									}
+								});
+							}
+						  }",
+						  "reduce" => "_count"
 						}
 					]
 				}.freeze
