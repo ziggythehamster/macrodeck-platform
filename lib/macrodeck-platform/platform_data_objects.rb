@@ -204,7 +204,7 @@ module MacroDeck
 						   "reduce" => "_count"
 						},
 						# Same as above but alphabetically.
-						{ "view_by" => "path__without_neighborhood_alpha",
+						{ "view_by" => "path_without_neighborhood_alpha",
 						  "map" =>
 						  "function(doc) {
 						  	if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == 'Place') {
