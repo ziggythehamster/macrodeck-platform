@@ -214,13 +214,19 @@ module MacroDeck
 				assert_equal "end_time",			::Event.properties[9].name
 				assert_equal "Time",				::Event.properties[9].type
 				assert_equal "recurrence",			::Event.properties[10].name
-				assert_equal "Symbol",				::Event.properties[10].type
+				assert_equal "String",				::Event.properties[10].type
+				assert_equal "event_type",			::Event.properties[11].name
+				assert_equal "String",				::Event.properties[11].type
 			end
 
 			# Tests the validations of Event.
 			def test_020_event_validations
 				assert_equal Validatable::ValidatesPresenceOf,	::Event.validations[6].class
 				assert_equal :start_time,			::Event.validations[6].attribute
+				assert_equal Validatable::ValidatesListItemsInList,	::Event.validations[7].class
+				assert_equal :event_type,				::Event.validations[7].attribute
+				assert_equal Validatable::ValidatesListItemsInList,	::Event.validations[8].class
+				assert_equal :recurrence,				::Event.validations[8].attribute
 			end
 		end
 	end
