@@ -48,27 +48,17 @@ module MacroDeck
 				base.view_by :path, {
 					:map =>
 					"function(doc) {
-						if (doc.path) {
-							emit(doc.path, 1);
-						}
-					}",
-					:reduce => "_count"
-				}
-				# Same as above but the path is only emitted if the type matches this object.
-				base.view_by :path_and_type, {
-					:map =>
-					"function(doc) {
-						if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == #{base.name.to_s.inspect}) {
+						if (doc.path && doc['couchrest-type'] && (doc['couchrest-type'] == #{base.name.to_s.inspect} || #{base.name.to_s.inspect} == 'DataObject' ) ) {
 							emit(doc.path, 1);
 						}
 					}",
 					:reduce => "_count"
 				}
 				# Same as above but the last path item has the title inserted so that it alphabetizes.
-				base.view_by :path_and_type_alpha, {
+				base.view_by :path_alpha, {
 					:map =>
 					"function(doc) {
-						if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == #{base.name.to_s.inspect}) {
+						if (doc.path && doc['couchrest-type'] && (doc['couchrest-type'] == #{base.name.to_s.inspect} || #{base.name.to_s.inspect} == 'DataObject' ) ) {
 							path = eval(doc.path.toSource());
 							path[path.length - 1] = doc.title + '/' + path[path.length - 1];
 							emit(path, 1);
