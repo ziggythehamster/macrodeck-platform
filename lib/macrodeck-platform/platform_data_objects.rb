@@ -79,8 +79,7 @@ module MacroDeck
 						["start_time", "Time", true],
 						["end_time", "Time", false],
 						["recurrence", "String", false],
-						["event_type", "String", false],
-						["description", "String", false]
+						["event_type", "String", false]
 					],
 					"validations" => [
 						["validates_list_items_in_list", "event_type",
