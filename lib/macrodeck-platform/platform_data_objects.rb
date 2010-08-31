@@ -98,6 +98,32 @@ module MacroDeck
 							  "list" => [ "weekly", "monthly", "none", "yearly", "monthly_nth_nday" ]
 							}
 						]
+					],
+					"views" => [
+						# Remove the neighborhood and place, replace ID with time.
+						# indexes:
+						# 0 = country_id
+						# 1 = region_id
+						# 2 = locality_id
+						# 3 = neighborhood_id or place_id or event_id
+						# 4 = place_id or event_id
+						# 5 = event_id or not present
+						# lengths:
+						# 6 = neighborhood, place, and city
+						# 5 = neighborhood and city, or place w/o hood and city
+						# 4 = city only
+						{ "view_by" => "path_without_place_or_neighborhood_with_time",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Event' && doc['start_time']) {
+								if (doc.path.length == 6 || doc.path.length == 5 || doc.path.length == 4) {
+									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.start_time];
+									emit(new_path, 1);
+								}
+							}
+						  }",
+						  "reduce" => "_count"
+						}
 					]
 				}.freeze
 			end
