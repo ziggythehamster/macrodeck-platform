@@ -123,6 +123,18 @@ module MacroDeck
 							}
 						  }",
 						  "reduce" => "_count"
+						},
+						# Take the full path but make the last item be the start time.
+						{ "view_by" => "path_and_start_time",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Event' && doc['start_time']) {
+								var new_path = eval(doc.path.toSource());
+								new_path[new_path.length - 1] = doc.start_time;
+								emit(new_path, 1);
+							}
+						  }",
+						  "reduce" => "_count"
 						}
 					]
 				}.freeze
