@@ -238,7 +238,8 @@ module MacroDeck
 									"British",
 									"Ice cream",
 									"Drinks",
-									"Bar"
+									"Bar",
+									"International"
 								   ]
 							}
 						],
