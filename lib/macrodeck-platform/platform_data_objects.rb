@@ -178,6 +178,7 @@ module MacroDeck
 									"Romantic",
 									"Waterfront",
 									"Sports Bar",
+									"Street Food",
 									"Cash Only", # FIXME: Make items imported set credit_cards_accepted to "None" or something.
 									"Great Wines" # subjective?
 								    ]
