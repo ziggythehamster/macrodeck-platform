@@ -225,6 +225,7 @@ module MacroDeck
 									"Tex-Mex",
 									"Baked Goods",
 									"Japanese",
+									"Sushi",
 									"Groceries",
 									"Southwestern",
 									"French",
