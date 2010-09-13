@@ -190,6 +190,7 @@ module MacroDeck
 							  "list" => [	"Modern",
 									"Italian",
 									"Pizza",
+									"Pasta",
 									"American",
 									"Dim Sum",
 									"Ethiopian",
