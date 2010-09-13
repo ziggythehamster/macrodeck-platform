@@ -177,6 +177,7 @@ module MacroDeck
 									"Delivery",
 									"Romantic",
 									"Waterfront",
+									"Sports Bar",
 									"Great Wines" # subjective?
 								    ]
 							}
