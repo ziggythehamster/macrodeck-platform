@@ -200,6 +200,7 @@ module MacroDeck
 									"Coffee",
 									"Tea",
 									"Bakery",
+									"Donuts",
 									"Wine Bar",
 									"Pizza",
 									"Pasta",
