@@ -198,6 +198,7 @@ module MacroDeck
 							  "list" => [	"Modern",
 									"Italian",
 									"Coffee",
+									"Tea",
 									"Bakery",
 									"Wine Bar",
 									"Pizza",
