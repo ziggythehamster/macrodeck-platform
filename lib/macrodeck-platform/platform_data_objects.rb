@@ -202,6 +202,7 @@ module MacroDeck
 									"Tea",
 									"Bakery",
 									"Donuts",
+									"Organic",
 									"Wine Bar",
 									"Pizza",
 									"Pasta",
