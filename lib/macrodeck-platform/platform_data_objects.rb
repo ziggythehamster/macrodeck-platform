@@ -245,6 +245,7 @@ module MacroDeck
 									"Asian",
 									"Indian",
 									"Chinese",
+									"Noodle Shop",
 									"Steakhouse",
 									"Hawaiian",
 									"Tacos", # perhaps not a fare/isn't every Mexican place going to have this?
