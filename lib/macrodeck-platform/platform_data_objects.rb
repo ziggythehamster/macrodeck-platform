@@ -169,6 +169,7 @@ module MacroDeck
 									"Vegetarian-Friendly",
 									"Wi-Fi",
 									"Live Music",
+									"Daily Specials",
 									"Delivery",
 									"Great Wines" # subjective?
 								    ]
@@ -179,7 +180,8 @@ module MacroDeck
 							  "list" => [	"BYO", # Not legal everywhere :(
 									"Beer", # Should we split it into Domestic Beer and Imported Beer?
 									"Wine",
-									"Liquor"
+									"Liquor",
+									"Bar"
 								    ]
 							}
 						],
@@ -228,7 +230,8 @@ module MacroDeck
 									"Indonesian",
 									"British",
 									"Ice cream",
-									"Drinks"
+									"Drinks",
+									"Bar"
 								   ]
 							}
 						],
