@@ -191,6 +191,7 @@ module MacroDeck
 									"Italian",
 									"Pizza",
 									"Pasta",
+									"Sandwiches",
 									"American",
 									"Dim Sum",
 									"Ethiopian",
