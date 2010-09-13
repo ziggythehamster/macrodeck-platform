@@ -227,6 +227,7 @@ module MacroDeck
 									"Mexican",
 									"Brazilian",
 									"Tex-Mex",
+									"Tapas",
 									"Baked Goods",
 									"Japanese",
 									"Sushi",
