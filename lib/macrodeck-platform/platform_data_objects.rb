@@ -203,6 +203,7 @@ module MacroDeck
 									"Sandwiches",
 									"Irish Pub",
 									"American",
+									"Breakfast",
 									"Dim Sum",
 									"Ethiopian",
 									"Burgers",
