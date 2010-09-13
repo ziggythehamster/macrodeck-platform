@@ -220,12 +220,13 @@ module MacroDeck
 									"Southwestern",
 									"French",
 									"Korean",
-									# "Sweet drinks" # this exists for Koriente but is it a fare?
+									"Sweet drinks" # this exists for Koriente but is it a fare?
 									"Vietnamese",
 									"Thai",
 									"Southern",
 									"Barbecue",
 									"Pan-Asian",
+									"Asian",
 									"Indian",
 									"Chinese",
 									"Steakhouse",
