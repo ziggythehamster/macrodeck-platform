@@ -205,6 +205,7 @@ module MacroDeck
 									"Burgers",
 									"Greek",
 									"Spanish",
+									"Vegetarian",
 									"Deli",
 									"Middle Eastern",
 									"Mexican",
