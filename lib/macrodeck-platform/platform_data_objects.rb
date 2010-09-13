@@ -196,6 +196,7 @@ module MacroDeck
 									"Italian",
 									"Coffee",
 									"Bakery",
+									"Wine Bar",
 									"Pizza",
 									"Pasta",
 									"Diner",
