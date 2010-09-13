@@ -167,10 +167,14 @@ module MacroDeck
 									"Kid Friendly",
 									"Outdoor Seating",
 									"Vegetarian-Friendly",
+									"Vegan Friendly",
+									"Gluten-Free Friendly",
+									"Happy Hour",
 									"Wi-Fi",
 									"Live Music",
 									"Daily Specials",
 									"Delivery",
+									"Romantic",
 									"Great Wines" # subjective?
 								    ]
 							}
