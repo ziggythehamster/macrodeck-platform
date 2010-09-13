@@ -196,6 +196,7 @@ module MacroDeck
 									"Italian",
 									"Pizza",
 									"Pasta",
+									"Diner",
 									"Sandwiches",
 									"Irish Pub",
 									"American",
