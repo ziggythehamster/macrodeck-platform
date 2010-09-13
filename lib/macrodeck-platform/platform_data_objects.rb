@@ -194,6 +194,8 @@ module MacroDeck
 							{ "allow_nil" => true,
 							  "list" => [	"Modern",
 									"Italian",
+									"Coffee",
+									"Bakery",
 									"Pizza",
 									"Pasta",
 									"Diner",
