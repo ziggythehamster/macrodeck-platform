@@ -260,7 +260,8 @@ module MacroDeck
 									"Irish",
 									"Caribbean",
 									"Veggie",
-									"Sweets", # the above commented-out "Sweet drinks" could go here.
+									"Sweets",
+									"Chicken",
 									"Jewish-style deli",
 									"Seafood",
 									"Indonesian",
