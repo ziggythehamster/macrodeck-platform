@@ -215,6 +215,8 @@ module MacroDeck
 									"Vegetarian",
 									"Deli",
 									"Middle Eastern",
+									"Mediterranean",
+									"Buffet",
 									"Mexican",
 									"Brazilian",
 									"Tex-Mex",
