@@ -217,6 +217,7 @@ module MacroDeck
 									"Baked Goods",
 									"Japanese",
 									"Groceries",
+									"Southwestern",
 									"French",
 									"Korean",
 									# "Sweet drinks" # this exists for Koriente but is it a fare?
