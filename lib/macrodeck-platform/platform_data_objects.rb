@@ -192,6 +192,7 @@ module MacroDeck
 									"Pizza",
 									"Pasta",
 									"Sandwiches",
+									"Irish Pub",
 									"American",
 									"Dim Sum",
 									"Ethiopian",
