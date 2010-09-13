@@ -206,6 +206,7 @@ module MacroDeck
 									"Dim Sum",
 									"Ethiopian",
 									"Burgers",
+									"Fast Food",
 									"Greek",
 									"Spanish",
 									"Vegetarian",
