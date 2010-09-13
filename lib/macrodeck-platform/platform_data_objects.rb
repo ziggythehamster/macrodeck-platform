@@ -170,6 +170,7 @@ module MacroDeck
 									"Vegan Friendly",
 									"Gluten-Free Friendly",
 									"Happy Hour",
+									"Late Night",
 									"Wi-Fi",
 									"Live Music",
 									"Daily Specials",
@@ -239,7 +240,8 @@ module MacroDeck
 									"Ice cream",
 									"Drinks",
 									"Bar",
-									"International"
+									"International",
+									"Pub Food"
 								   ]
 							}
 						],
