@@ -203,6 +203,7 @@ module MacroDeck
 									"Pasta",
 									"Diner",
 									"Sandwiches",
+									"Soups",
 									"Irish Pub",
 									"American",
 									"Breakfast",
