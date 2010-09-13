@@ -209,6 +209,7 @@ module MacroDeck
 									"Soups",
 									"Irish Pub",
 									"American",
+									"German",
 									"Soul",
 									"Breakfast",
 									"Dim Sum",
