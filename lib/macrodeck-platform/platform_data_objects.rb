@@ -236,6 +236,7 @@ module MacroDeck
 									"Thai",
 									"Southern",
 									"Barbecue",
+									"California",
 									"Pan-Asian",
 									"Asian",
 									"Indian",
