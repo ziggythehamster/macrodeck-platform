@@ -212,6 +212,7 @@ module MacroDeck
 									"Breakfast",
 									"Dim Sum",
 									"Ethiopian",
+									"African",
 									"Burgers",
 									"Fast Food",
 									"Greek",
