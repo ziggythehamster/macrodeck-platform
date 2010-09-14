@@ -220,6 +220,7 @@ module MacroDeck
 									"African",
 									"Burgers",
 									"Fast Food",
+									"Hot Dogs",
 									"Greek",
 									"Spanish",
 									"Vegetarian",
