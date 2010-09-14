@@ -220,6 +220,7 @@ module MacroDeck
 									"Dim Sum",
 									"Ethiopian",
 									"African",
+									"Moroccan",
 									"Burgers",
 									"Fast Food",
 									"Hot Dogs",
