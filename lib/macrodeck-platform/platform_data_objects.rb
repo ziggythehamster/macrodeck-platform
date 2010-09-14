@@ -204,6 +204,7 @@ module MacroDeck
 									"Donuts",
 									"Bagels",
 									"Organic",
+									"Gastropub", # ??? WTF ???
 									"Wine Bar",
 									"Pizza",
 									"Pasta",
