@@ -205,6 +205,7 @@ module MacroDeck
 									"Bagels",
 									"Organic",
 									"Gastropub", # ??? WTF ???
+									"Filipino",
 									"Pizza",
 									"Pasta",
 									"Diner",
