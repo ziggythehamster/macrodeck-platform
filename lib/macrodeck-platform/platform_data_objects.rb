@@ -260,6 +260,7 @@ module MacroDeck
 									"Latin American",
 									"Irish",
 									"Caribbean",
+									"Cuban",
 									"Veggie",
 									"Sweets",
 									"Chicken",
