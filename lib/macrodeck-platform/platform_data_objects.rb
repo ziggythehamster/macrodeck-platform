@@ -244,6 +244,7 @@ module MacroDeck
 									"Sweet drinks",
 									"Smoothies",
 									"Vietnamese",
+									"Pho",
 									"Thai",
 									"Southern",
 									"Barbecue",
