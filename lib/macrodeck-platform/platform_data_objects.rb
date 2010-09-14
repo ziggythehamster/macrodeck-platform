@@ -251,6 +251,7 @@ module MacroDeck
 									"California",
 									"Pan-Asian",
 									"Asian",
+									"Malaysian",
 									"Indian",
 									"Chinese",
 									"Noodle Shop",
