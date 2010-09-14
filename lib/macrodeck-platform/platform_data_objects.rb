@@ -177,7 +177,6 @@ module MacroDeck
 									"Delivery",
 									"Romantic",
 									"Waterfront",
-									"Sports Bar",
 									"Street Food",
 									"Cash Only", # FIXME: Make items imported set credit_cards_accepted to "None" or something.
 									"Great Wines" # subjective?
@@ -190,7 +189,8 @@ module MacroDeck
 									"Beer", # Should we split it into Domestic Beer and Imported Beer?
 									"Wine",
 									"Liquor",
-									"Bar"
+									"Bar",
+									"Sports Bar"
 								    ]
 							}
 						],
