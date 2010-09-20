@@ -82,6 +82,7 @@ module MacroDeck
 						["event_type", "String", false]
 					],
 					"validations" => [
+						["validates_presence_of", "title"],
 						["validates_list_items_in_list", "event_type",
 							{ "allow_nil" => true,
 							  "list" => [	"Drink Special",
