@@ -223,10 +223,12 @@ module MacroDeck
 			def test_020_event_validations
 				assert_equal Validatable::ValidatesPresenceOf,	::Event.validations[6].class
 				assert_equal :start_time,			::Event.validations[6].attribute
-				assert_equal Validatable::ValidatesListItemsInList,	::Event.validations[7].class
-				assert_equal :event_type,				::Event.validations[7].attribute
+				assert_equal Validatable::ValidatesPresenceOf,	::Event.validations[7].class
+				assert_equal :title,				::Event.validations[7].attribute
 				assert_equal Validatable::ValidatesListItemsInList,	::Event.validations[8].class
-				assert_equal :recurrence,				::Event.validations[8].attribute
+				assert_equal :event_type,				::Event.validations[8].attribute
+				assert_equal Validatable::ValidatesListItemsInList,	::Event.validations[9].class
+				assert_equal :recurrence,				::Event.validations[9].attribute
 			end
 		end
 	end
