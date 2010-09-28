@@ -1,5 +1,5 @@
 # Add search_by to CouchRest::Design
-class ::CouchRest::Design < Document
+class ::CouchRest::Design < ::CouchRest::Document
 	def search_by(*keys)
 		opts = keys.pop if keys.last.is_a?(Hash)
 		opts ||= {}
