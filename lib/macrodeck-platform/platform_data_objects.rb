@@ -81,6 +81,17 @@ module MacroDeck
 						["recurrence", "String", false],
 						["event_type", "String", false]
 					],
+					"fulltext" => [
+						["by_title_or_description",
+							{ "index" =>
+							  "function(doc) {
+								var res = new Document();
+								res.add(doc.title);
+								res.add(doc.description);
+							  }"
+							}
+						]
+					],
 					"validations" => [
 						["validates_presence_of", "title"],
 						["validates_list_items_in_list", "event_type",
