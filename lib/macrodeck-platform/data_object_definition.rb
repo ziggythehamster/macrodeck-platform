@@ -11,6 +11,7 @@ module MacroDeck
 				base.property :fields
 				base.property :validations
 				base.property :views
+				base.property :fulltext
 
 				base.view_by :object_type
 
