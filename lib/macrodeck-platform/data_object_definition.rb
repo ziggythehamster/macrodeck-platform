@@ -32,6 +32,7 @@ module MacroDeck
 				properties = ""
 				validations = ""
 				views = ""
+				fulltext = ""
 				class_body = ""
 
 				@defined = false if @defined.nil?
@@ -75,6 +76,14 @@ module MacroDeck
 							end
 						end
 
+						# Iterate the fulltext search indexes.
+						unless self.fulltext.nil?
+							self.fulltext.each do |ft|
+								fulltext << "self.design_doc['fulltext'] ||= {}\n"
+								fulltext << "self.design_doc['fulltext'][#{ft[0].inspect}] = #{ft[1].inspect}\n"
+							end
+						end
+
 						# Define the class.
 						klass = self.object_type.split(" ")[0]
 						class_body =
@@ -83,6 +92,11 @@ module MacroDeck
 								#{properties}
 								#{validations}
 								#{views}
+
+								def initialize
+									super
+									#{fulltext}
+								end
 							end"
 						Kernel.eval(class_body)
 					else
