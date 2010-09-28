@@ -92,11 +92,6 @@ module MacroDeck
 								#{properties}
 								#{validations}
 								#{views}
-
-								def initialize
-									super
-									#{fulltext}
-								end
 							end"
 						Kernel.eval(class_body)
 					else
