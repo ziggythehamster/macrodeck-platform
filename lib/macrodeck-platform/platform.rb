@@ -23,6 +23,7 @@ module MacroDeck
 					module ::MacroDeck
 						class Model < CouchRest::ExtendedDocument
 							include Validatable
+							include CouchRest::MacroDeckPatches::SearchMixin
 							use_database CouchRest.database!(\"#{@database_name}\")
 						end
 					end"
