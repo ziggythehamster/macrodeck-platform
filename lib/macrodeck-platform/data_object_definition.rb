@@ -94,7 +94,6 @@ module MacroDeck
 								#{views}
 								#{fulltext}
 							end"
-						puts class_body
 						Kernel.eval(class_body)
 					else
 						raise "DataObjectDefinition #{self.object_type} is invalid!"
