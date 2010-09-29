@@ -22,3 +22,24 @@ class ::CouchRest::Design < ::CouchRest::Document
 		method_name
 	end
 end
+
+# Create a mixin to add search (used by ExtendedDocument)
+module CouchRest
+	module MacroDeckPatches
+		module SearchMixin
+			def self.included(base)
+				base.extend(ClassMethods)
+			end
+
+			module ClassMethods
+				def search_by(*keys)
+					opts = keys.pop if keys.last.is_a?(Hash)
+					opts ||= {}
+					keys.push opts
+					design_doc.view_by(*keys)
+					req_design_doc_refresh
+				end
+			end
+		end
+	end
+end
