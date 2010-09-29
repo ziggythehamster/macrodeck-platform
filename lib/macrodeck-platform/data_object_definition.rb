@@ -79,8 +79,8 @@ module MacroDeck
 						# Iterate the fulltext search indexes.
 						unless self.fulltext.nil?
 							self.fulltext.each do |ft|
-								fulltext << "self.design_doc['fulltext'] ||= {}\n"
-								fulltext << "self.design_doc['fulltext'][#{ft[0].inspect}] = #{ft[1].inspect}\n"
+								symbol = ft[0].to_sym.inspect
+								fulltext << "search_by #{symbol}, #{ft[1].inspect}\n"
 							end
 						end
 
@@ -92,7 +92,9 @@ module MacroDeck
 								#{properties}
 								#{validations}
 								#{views}
+								#{fulltext}
 							end"
+						puts class_body
 						Kernel.eval(class_body)
 					else
 						raise "DataObjectDefinition #{self.object_type} is invalid!"
