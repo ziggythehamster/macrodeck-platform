@@ -82,7 +82,7 @@ module MacroDeck
 						["event_type", "String", false]
 					],
 					"fulltext" => [
-						["title_or_description",
+						["by_title_or_description",
 							{ "index" =>
 							  "function(doc) {
 								var res = new Document();
