@@ -173,6 +173,18 @@ module MacroDeck
 						["credit_cards_accepted", ["String"], false],
 						["reservations", "String", false]
 					],
+					"fulltext" => [
+						["by_title_or_description",
+							{ "index" =>
+							  "function(doc) {
+								var res = new Document();
+								res.add(doc.title);
+								res.add(doc.description);
+								return res;
+							  }"
+							}
+						]
+					],
 					"validations" => [
 						["validates_list_items_in_list", "features",
 							{ "allow_nil" => true,
