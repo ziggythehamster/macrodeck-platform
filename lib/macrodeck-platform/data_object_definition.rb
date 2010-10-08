@@ -85,6 +85,7 @@ module MacroDeck
 								#{views}
 							end"
 						Kernel.eval(class_body)
+						Kernel.eval("::#{klass}.save_design_doc!")
 					else
 						raise "DataObjectDefinition #{self.object_type} is invalid!"
 					end
