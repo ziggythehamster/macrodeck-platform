@@ -88,6 +88,7 @@ module MacroDeck
 								var res = new Document();
 								res.add(doc.title);
 								res.add(doc.description);
+								return res;
 							  }"
 							}
 						]
