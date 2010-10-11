@@ -5,7 +5,7 @@ require "couchrest"
 
 class CouchRest::Database
 	def search(design, index, query, options={})
-		CouchRest.get CouchRest.paramify_url("#{@root}/_fti/#{design}/#{index}", options.merge(:q => query))
+		CouchRest.get CouchRest.paramify_url("#{@root}/_fti/_design/#{design}/#{index}", options.merge(:q => query))
 	end
 end
 
