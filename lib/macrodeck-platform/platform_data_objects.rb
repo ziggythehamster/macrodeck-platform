@@ -85,12 +85,14 @@ module MacroDeck
 						["by_title_or_description",
 							{ "index" =>
 							  "function(doc) {
-								var res = new Document();
-								res.add(doc.title);
-								res.add(doc.description);
-								res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
-								res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
-								return res;
+								if (doc['couchrest-type'] == 'Event') {
+									var res = new Document();
+									res.add(doc.title);
+									res.add(doc.description);
+									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
+									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
+									return res;
+								}
 							  }"
 							}
 						]
@@ -179,12 +181,14 @@ module MacroDeck
 						["by_title_or_description",
 							{ "index" =>
 							  "function(doc) {
-								var res = new Document();
-								res.add(doc.title);
-								res.add(doc.description);
-								res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
-								res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
-								return res;
+								if (doc['couchrest-type'] == 'Place') {
+									var res = new Document();
+									res.add(doc.title);
+									res.add(doc.description);
+									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
+									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
+									return res;
+								}
 							  }"
 							}
 						]
