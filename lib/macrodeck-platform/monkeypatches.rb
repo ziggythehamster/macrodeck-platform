@@ -1,7 +1,7 @@
 # This monkey patch is needed because for some reason, CouchDB requires
 # reduction parameters to be at the beginning of the query string
 
-def CouchRest
+module CouchRest
 	class << self
 		def paramify_url url, params = {}
 			if params && !params.empty?
