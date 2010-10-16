@@ -92,10 +92,10 @@ module MacroDeck
 									res.add(doc.description);
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
-									log.debug('start time is ' + doc.start_time);
+									log.info('start time is ' + doc.start_time);
 									dtstart = new Date();
 									dtstart.setISO8601(doc.start_time);
-									log.debug('start time as an object is ' + dtstart.toUTCString());
+									log.info('start time as an object is ' + dtstart.toUTCString());
 									res.add(dtstart, { \"field\":\"start_time\", \"type\":\"date\", \"store\":\"yes\" });
 									return res;
 								}
@@ -194,7 +194,7 @@ module MacroDeck
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
 									res.add(doc.fare.join(', '), { \"field\":\"fare\" });
-									log.debug('fares = ' + doc.fare.join(', '));
+									log.info('fares = ' + doc.fare.join(', '));
 									return res;
 								}
 							  }"
