@@ -189,7 +189,6 @@ module MacroDeck
 								if (doc['couchrest-type'] == 'Place') {
 									var fares = '';
 									fares = doc.fare.join(', ');
-									log.info('fares=' + fares);
 									var res = new Document();
 									res.add(doc.title);
 									res.add(doc.description);
