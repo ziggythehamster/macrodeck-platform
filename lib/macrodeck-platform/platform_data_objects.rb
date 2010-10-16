@@ -84,9 +84,9 @@ module MacroDeck
 					"fulltext" => [
 						["common_fields",
 							{ "index" =>
-							  "/*! include iso8601.js */
-							  function(doc) {
+							  "function(doc) {
 								if (doc['couchrest-type'] == 'Event') {
+									/*! include iso8601.js */
 									var res = new Document();
 									res.add(doc.title);
 									res.add(doc.description);
