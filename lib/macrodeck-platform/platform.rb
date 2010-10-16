@@ -40,6 +40,30 @@ module MacroDeck
 					::DataObject.send(:include, ::MacroDeck::PlatformSupport::DataObject)
 				end
 			end
+
+			# Processes include directives in the index, map, or reduce function.
+			#
+			# The format is as follows:
+			#
+			#   /*! include file.js */
+			#
+			# The file should exist in jslib/.
+			# The spaces should be left as is.
+			def process_includes(string)
+				regex = /^\/\*! include (.*) \*\/$/
+				new_string = string
+
+				# Check to see if the string matches. If so, fetch the file and include it.
+				if new_string.match(regex)
+					files_to_read = new_string.match(regex).captures
+					files_to_read.each do |f|
+						filedata = File.open("jslib/#{f}").read
+						new_string.gsub!(/^\/\*! include #{f} \*\/$/, filedata)
+					end
+				end
+
+				return new_string
+			end
 		end
 	end
 end
