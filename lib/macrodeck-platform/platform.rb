@@ -57,7 +57,7 @@ module MacroDeck
 				if new_string.match(regex)
 					files_to_read = new_string.match(regex).captures
 					files_to_read.each do |f|
-						filedata = File.open(File.expand_path(File.dirname(__FILE__) + "jslib/#{f}")).read
+						filedata = File.open(File.expand_path(File.dirname(__FILE__) + "/jslib/#{f}")).read
 						new_string.gsub!(/^\/\*! include #{f} \*\/$/, filedata)
 					end
 				end
