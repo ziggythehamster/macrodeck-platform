@@ -87,14 +87,13 @@ module MacroDeck
 							  "function(doc) {
 								if (doc['couchrest-type'] == 'Event') {
 									/*! include iso8601.js */
-									dtstart = parseISO8601(doc.start_time);
+									var dtstart = parseISO8601(doc.start_time);
 									log.info('dtstart=' + dtstart.toUTCString());
 									var res = new Document();
 									res.add(doc.title);
 									res.add(doc.description);
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
-									//res.add(dtstart, { \"field\":\"start_time\", \"type\":\"date\", \"store\":\"yes\" });
 									return res;
 								}
 							  }"
