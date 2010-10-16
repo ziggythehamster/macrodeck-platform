@@ -50,7 +50,7 @@ module MacroDeck
 			# The file should exist in jslib/.
 			# The spaces should be left as is.
 			def process_includes(string)
-				regex = /^\/\*! include (.*) \*\/$/
+				regex = /\/\*! include (.*) \*\//
 				new_string = string
 
 				# Check to see if the string matches. If so, fetch the file and include it.
