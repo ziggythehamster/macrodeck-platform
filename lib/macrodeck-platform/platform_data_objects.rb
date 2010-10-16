@@ -87,9 +87,8 @@ module MacroDeck
 							  "function(doc) {
 								if (doc['couchrest-type'] == 'Event') {
 									/*! include iso8601.js */
-									var dtstart = new Date();
-									dtstart.setISO8601(doc.start_time);
-
+									dtstart = parseISO8601(doc.start_time);
+									log.info('dtstart=' + dtstart.toUTCString());
 									var res = new Document();
 									res.add(doc.title);
 									res.add(doc.description);
