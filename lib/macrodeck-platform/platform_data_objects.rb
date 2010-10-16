@@ -95,7 +95,7 @@ module MacroDeck
 									res.add(doc.description);
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
-									res.add(dtstart, { \"field\":\"start_time\", \"type\":\"date\", \"store\":\"yes\" });
+									res.add(new Date(dtstart), { \"field\":\"start_time\", \"type\":\"date\", \"store\":\"yes\" });
 									return res;
 								}
 							  }"
