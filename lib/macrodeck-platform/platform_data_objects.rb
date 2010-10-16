@@ -91,6 +91,7 @@ module MacroDeck
 									res.add(doc.description);
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
+									res.add(doc.start_time, { \"field\":\"start_time\", \"type\":\"date\" });
 									return res;
 								}
 							  }"
@@ -187,6 +188,7 @@ module MacroDeck
 									res.add(doc.description);
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
+									res.add(doc.fare, { \"field\":\"fare\" });
 									return res;
 								}
 							  }"
