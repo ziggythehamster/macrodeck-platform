@@ -92,7 +92,10 @@ module MacroDeck
 									res.add(doc.description);
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
-									res.add(doc.start_time, { \"field\":\"start_time\", \"type\":\"date\" });
+									log.info('start time is ' + doc.start_time);
+									dtstart = new Date();
+									dtstart.setISO8601(doc.start_time);
+									res.add(dtstart, { \"field\":\"start_time\", \"type\":\"date\" });
 									return res;
 								}
 							  }"
