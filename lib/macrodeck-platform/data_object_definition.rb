@@ -70,7 +70,7 @@ module MacroDeck
 						unless self.views.nil?
 							self.views.each do |view|
 								symbol = view["view_by"].to_sym.inspect
-								new_hash = { :map => view["map"], :reduce => view["reduce"] }
+								new_hash = { :map => MacroDeck::Platform.process_includes(view["map"]), :reduce => MacroDeck::Platform.process_includes(view["reduce"]) }
 								views << "view_by #{symbol}, #{new_hash.inspect}\n"
 							end
 						end
