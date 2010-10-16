@@ -95,7 +95,7 @@ module MacroDeck
 									log.info('start time is ' + doc.start_time);
 									dtstart = new Date();
 									dtstart = Date_setISO8601(dtstart, doc.start_time);
-									res.add(dtstart, { \"field\":\"start_time\", \"type\":\"date\" });
+									res.add(dtstart, { \"field\":\"start_time\", \"type\":\"date\", \"store\":\"yes\" });
 									return res;
 								}
 							  }"
