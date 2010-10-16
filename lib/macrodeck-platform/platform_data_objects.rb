@@ -426,7 +426,7 @@ module MacroDeck
 						if doc
 							doc["fulltext"] ||= {}
 							definition["fulltext"].each do |ft|
-								doc["fulltext"][ft[0]] = ft[1]
+								doc["fulltext"][ft[0]] = MacroDeck::Platform.process_includes(ft[1])
 							end
 						end
 						doc.save
