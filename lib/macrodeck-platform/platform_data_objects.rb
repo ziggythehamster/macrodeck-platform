@@ -191,9 +191,6 @@ module MacroDeck
 									var res = new Document();
 									res.add(doc.title);
 									res.add(doc.description);
-									var fares = eval(doc['fare'].toSource()).join(', ');
-									log.info(fares);
-									res.add(fares);
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
 									return res;
