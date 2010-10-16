@@ -192,7 +192,7 @@ module MacroDeck
 									res.add(doc.description);
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
-									res.add(doc.fare, { \"field\":\"fare\" });
+									res.add(doc.fare.join(', '), { \"field\":\"fare\" });
 									return res;
 								}
 							  }"
