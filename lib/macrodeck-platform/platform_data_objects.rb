@@ -82,7 +82,7 @@ module MacroDeck
 						["event_type", "String", false]
 					],
 					"fulltext" => [
-						["by_title_or_description",
+						["common_fields",
 							{ "index" =>
 							  "function(doc) {
 								if (doc['couchrest-type'] == 'Event') {
@@ -179,7 +179,7 @@ module MacroDeck
 						["reservations", "String", false]
 					],
 					"fulltext" => [
-						["by_title_or_description",
+						["common_fields",
 							{ "index" =>
 							  "function(doc) {
 								if (doc['couchrest-type'] == 'Place') {
