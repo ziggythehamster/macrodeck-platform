@@ -90,8 +90,8 @@ module MacroDeck
 									var dtstart = parseISO8601(doc.start_time);
 									log.info('dtstart=' + dtstart.toUTCString());
 									var res = new Document();
-									res.add(doc.title);
-									res.add(doc.description);
+									res.add(doc.title, { \"boost\":2.0 });
+									res.add(doc.description, { \"boost\":1.5 });
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(new Date(dtstart.toUTCString()), { \"field\":\"start_time\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
@@ -189,8 +189,8 @@ module MacroDeck
 									var fares = '';
 									fares = doc.fare.join(', ');
 									var res = new Document();
-									res.add(doc.title);
-									res.add(doc.description);
+									res.add(doc.title, { \"boost\":2.0 });
+									res.add(doc.description, { \"boost\":1.5 });
 									res.add(fares);
 									res.add(fares, { \"field\":\"fare\", \"store\":\"yes\" });
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
