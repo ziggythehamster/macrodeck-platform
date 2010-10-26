@@ -401,6 +401,16 @@ module MacroDeck
 							}
 						  }",
 						  "reduce" => "_count"
+						},
+						# Return places that have a blank geo.
+						{ "view_by" => "missing_geo",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Place' && !doc.geo) {
+								emit(doc['_id'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
 						}
 					]
 				}.freeze
