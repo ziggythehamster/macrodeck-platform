@@ -406,7 +406,7 @@ module MacroDeck
 						{ "view_by" => "missing_geo",
 						  "map" =>
 						  "function(doc) {
-							if (doc['couchrest-type'] == 'Place' && !doc.geo) {
+							if (doc['couchrest-type'] == 'Place' && (!doc.geo || doc.geo == [])) {
 								emit(doc['_id'], 1);
 							}
 						  }",
