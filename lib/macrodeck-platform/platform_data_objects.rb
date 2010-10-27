@@ -157,6 +157,35 @@ module MacroDeck
 							}
 						  }",
 						  "reduce" => "_count"
+						},
+						# Emits the event type just like tags are emitted.
+						{ "view_by" => "event_type",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Event' && doc['event_type']) {
+								for (i = 0; i <= doc.path.length; i++) {
+									var path_and_event_type = doc.path.slice(0, i);
+									path_and_event_type.push(doc['event_type']);
+									emit(path_and_event_type, 1);
+								}
+							}
+						  }",
+						  "reduce" => "_count"
+						},
+						# Same as above but also emits the document title for sorting alphabetically. (maybe we want to do it by start_time?)
+						{ "view_by" => "event_type_alpha",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Event' && doc['event_type']) {
+								for (i = 0; i <= doc.path.length; i++) {
+									var path_and_event_type = doc.path.slice(0, i);
+									path_and_event_type.push(doc['event_type']);
+									path_and_event_type.push(doc['title']);
+									emit(path_and_event_type, 1);
+								}
+							}
+						  }",
+						  "reduce" => "_count"
 						}
 					]
 				}.freeze
