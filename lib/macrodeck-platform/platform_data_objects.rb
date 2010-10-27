@@ -146,6 +146,19 @@ module MacroDeck
 						  }",
 						  "reduce" => "_count"
 						},
+						# Same as above, but leave the hood and add the title instead of the time.
+						{ "view_by" => "path_without_place_alpha",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Event') {
+								if (doc.path.length == 6 || doc.path.length == 5 || doc.path.length == 4) {
+									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.path[3], doc.title];
+									emit(new_path, 1);
+								}
+							}
+						  }",
+						  "reduce" => "_count"
+						},
 						# Take the full path but make the last item be the start time.
 						{ "view_by" => "path_and_start_time",
 						  "map" =>
