@@ -54,7 +54,7 @@ module MacroDeck
 				new_string = string
 
 				# Check to see if the string matches. If so, fetch the file and include it.
-				if new_string.match(regex)
+				if !new_string.nil? && new_string.match(regex)
 					files_to_read = new_string.match(regex).captures
 					files_to_read.each do |f|
 						filedata = File.open(File.expand_path(File.dirname(__FILE__) + "/jslib/#{f}")).read
