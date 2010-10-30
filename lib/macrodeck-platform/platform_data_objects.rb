@@ -161,7 +161,8 @@ module MacroDeck
 									emit(new_path, 1);
 								}
 							}
-						  }"
+						  }",
+						  "reduce" => "_count"
 						},
 						# Same as above, but leave the hood and add the title instead of the time.
 						{ "view_by" => "path_without_place_alpha",
