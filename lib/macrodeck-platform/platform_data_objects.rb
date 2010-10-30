@@ -146,6 +146,23 @@ module MacroDeck
 						  }",
 						  "reduce" => "_count"
 						},
+						# Same as above but end time.
+						{ "view_by" => "path_without_place_or_neighborhood_with_end_time",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Event' && doc['end_time']) {
+								if (doc.path.length == 6 || doc.path.length == 5 || doc.path.length == 4) {
+									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.end_time];
+									emit(new_path, 1);
+								}
+							} else if (doc['couchrest-type'] == 'Event' && !doc['end_time']) {
+								if (doc.path.length == 6 || doc.path.length == 5 || doc.path.length == 4) {
+									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.start_time];
+									emit(new_path, 1);
+								}
+							}
+						  }"
+						},
 						# Same as above, but leave the hood and add the title instead of the time.
 						{ "view_by" => "path_without_place_alpha",
 						  "map" =>
