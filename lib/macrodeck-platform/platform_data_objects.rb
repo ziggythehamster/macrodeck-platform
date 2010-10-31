@@ -271,6 +271,7 @@ module MacroDeck
 									res.add(doc.title, { \"boost\":2.0 });
 									res.add(doc.description, { \"boost\":1.5 });
 									res.add(fares);
+									res.add(doc.address);
 									res.add(fares, { \"field\":\"fare\", \"store\":\"yes\" });
 									res.add(new Date(), { \"field\":\"indexed_at\", \"store\":\"yes\" });
 									res.add(doc.path.join('/'), { \"field\":\"path\", \"store\":\"yes\", \"index\":\"not_analyzed\" });
