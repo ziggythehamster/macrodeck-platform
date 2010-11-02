@@ -79,7 +79,8 @@ module MacroDeck
 						["start_time", "Time", true],
 						["end_time", "Time", false],
 						["recurrence", "String", false],
-						["event_type", "String", false]
+						["event_type", "String", false],
+						["bitly_hash", "String", false]
 					],
 					"fulltext" => [
 						["common_fields",
