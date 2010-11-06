@@ -269,7 +269,8 @@ module MacroDeck
 						["atmosphere", "String", false],
 						["alcohol", ["String"], false],
 						["credit_cards_accepted", ["String"], false],
-						["reservations", "String", false]
+						["reservations", "String", false],
+						["bitly_hash", "String", false]
 					],
 					"fulltext" => [
 						["common_fields",
@@ -498,6 +499,16 @@ module MacroDeck
 						  "map" =>
 						  "function(doc) {
 							if (doc['couchrest-type'] == 'Place' && (!doc.geo || doc.geo.length != 2)) {
+								emit(doc['_id'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
+						},
+						# Return places that have a blank bitly_hash.
+						{ "view_by" => "missing_bitly_hash",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Place' && !doc['bitly_hash']) {
 								emit(doc['_id'], 1);
 							}
 						  }",
