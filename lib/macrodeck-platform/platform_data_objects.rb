@@ -241,7 +241,7 @@ module MacroDeck
 						{ "view_by" => "missing_bitly_hash",
 						  "map" =>
 						  "function(doc) {
-							if (doc['couchrest-type'] == 'Event' && (!doc['bitly_hash']) {
+							if (doc['couchrest-type'] == 'Event' && !doc['bitly_hash']) {
 								emit(doc['_id'], 1);
 							}
 						  }",
