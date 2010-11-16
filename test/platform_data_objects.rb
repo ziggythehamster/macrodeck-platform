@@ -160,7 +160,7 @@ module MacroDeck
 				assert_equal "url",				::Place.properties[11].name
 				assert_equal "String",				::Place.properties[11].type
 				assert_equal "geo",				::Place.properties[12].name
-				assert_equal ["Float"],				::Place.properties[12].type
+				assert_equal "Hash",				::Place.properties[12].type
 				assert_equal "fare",				::Place.properties[13].name
 				assert_equal ["String"],			::Place.properties[13].type
 				assert_equal "features",			::Place.properties[14].name

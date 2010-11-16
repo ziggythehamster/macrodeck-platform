@@ -260,7 +260,7 @@ module MacroDeck
 						["postal_code", "String", false],
 						["phone_number", "String", false],
 						["url", "String", false],
-						["geo", ["Float"], false], # [lat,lng]
+						["geo", "Hash", false], # { 'type': 'Point', 'coordinates': [lat, lng] } - GeoJSON
 						["fare", ["String"], false],
 						["features", ["String"], false],
 						["parking", "String", false],
