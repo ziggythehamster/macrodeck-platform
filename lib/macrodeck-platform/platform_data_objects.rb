@@ -293,7 +293,13 @@ module MacroDeck
 						]
 					],
 					"spatial" => [
-						["geocode", "function(doc) {  if (doc.geo) { emit(doc.geo, [doc._id, [doc.geo.coordinates[0], doc.geo.coordinates[1] ]] ); } }"]
+						["geocode", "function(doc) {
+								if (doc['geo']) {
+									emit(doc['geo'], doc['_id']);
+								} else {
+									log('no geo on ' + doc['_id']);
+								}
+							    }"]
 					],
 					"validations" => [
 						["validates_list_items_in_list", "features",
