@@ -295,7 +295,7 @@ module MacroDeck
 					"spatial" => [
 						["geocode", "function(doc) {
 								if (doc['couchrest-type'] == 'Place') {
-									if (doc['geo']) {
+									if (doc['geo'] && doc['geo'].length == 2) {
 										emit({ type: 'Point', coordinates: [ doc['geo'][0], doc['geo'][1] ] }, doc['_id']);
 									} else {
 										log('no geo on ' + doc['_id']);
@@ -508,7 +508,7 @@ module MacroDeck
 						{ "view_by" => "missing_geo",
 						  "map" =>
 						  "function(doc) {
-							if (doc['couchrest-type'] == 'Place' && !doc['geo']) {
+							if (doc['couchrest-type'] == 'Place' && (!doc['geo'] || doc['geo'].length != 2) ) {
 								emit(doc['_id'], 1);
 							}
 						  }",
