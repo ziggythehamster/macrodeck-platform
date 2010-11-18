@@ -296,7 +296,8 @@ module MacroDeck
 						["geocode", "function(doc) {
 								if (doc['couchrest-type'] == 'Place') {
 									if (doc['geo'] && doc['geo'].length == 2) {
-										emit({ type: 'Point', coordinates: [ doc['geo'][0], doc['geo'][1] ] }, doc['_id']);
+										log('geo on ' + doc['_id'] + ' = ' + doc['geo'][0], + ',' +doc['geo'][1] );
+										emit({ type: \"Point\", coordinates: [ doc['geo'][0], doc['geo'][1] ] }, doc['_id']);
 									} else {
 										log('no geo on ' + doc['_id']);
 									}
