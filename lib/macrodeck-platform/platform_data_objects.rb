@@ -294,10 +294,12 @@ module MacroDeck
 					],
 					"spatial" => [
 						["geocode", "function(doc) {
-								if (doc['geo']) {
-									emit(doc['geo'], doc['_id']);
-								} else {
-									log('no geo on ' + doc['_id']);
+								if (doc['couchrest-type'] == 'Place') {
+									if (doc['geo']) {
+										emit(doc['geo'], doc['_id']);
+									} else {
+										log('no geo on ' + doc['_id']);
+									}
 								}
 							    }"]
 					],
@@ -506,7 +508,7 @@ module MacroDeck
 						{ "view_by" => "missing_geo",
 						  "map" =>
 						  "function(doc) {
-							if (doc['couchrest-type'] == 'Place' && (!doc.geo || doc.geo.length != 2)) {
+							if (doc['couchrest-type'] == 'Place' && !doc['geo']) {
 								emit(doc['_id'], 1);
 							}
 						  }",
