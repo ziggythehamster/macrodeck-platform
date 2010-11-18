@@ -292,6 +292,9 @@ module MacroDeck
 							}
 						]
 					],
+					"spatial" => [
+						["geocode", "function(doc) {  if (doc.geo) { emit(doc.geo, [doc._id, [doc.geo.coordinates[0], doc.geo.coordinates[1] ]] ); } }"]
+					],
 					"validations" => [
 						["validates_list_items_in_list", "features",
 							{ "allow_nil" => true,
@@ -537,14 +540,24 @@ module MacroDeck
 
 					db = CouchRest.database!(MacroDeck::Platform.database_name)
 					# Get the design doc.
-					if definition["fulltext"]
+					if definition["fulltext"] || definition["spatial"]
 						doc = db.get("_design/#{definition["object_type"]}")
 						if doc
 							doc["fulltext"] ||= {}
-							definition["fulltext"].each do |ft|
-								ftdef = ft[1]
-								ftdef["index"] = MacroDeck::Platform.process_includes(ftdef["index"])
-								doc["fulltext"][ft[0]] = ftdef
+							doc["spatial"] ||= {}
+							if definition["fulltext"]
+								definition["fulltext"].each do |ft|
+									ftdef = ft[1]
+									ftdef["index"] = MacroDeck::Platform.process_includes(ftdef["index"])
+									doc["fulltext"][ft[0]] = ftdef
+								end
+							end
+							if definition["spatial"]
+								definition["spatial"].each do |sp|
+									spdef = sp[1]
+									spdef = MacroDeck::Platform.process_includes(spdef)
+									doc["spatial"][sp[0]] = spdef
+								end
 							end
 						end
 						doc.save
