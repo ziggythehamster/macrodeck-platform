@@ -25,7 +25,7 @@ class CouchRest::ExtendedDocument
 	# Perform a spatial search. +bbox+ should be specified as an array.
 	def self.spatial_search(index, bbox, options={})
 		ret = self.database.spatial_search(self.to_s, index, bbox, options)
-		ret['rows'].collect! { |r| self.get(r['_id']) }
+		ret['rows'].collect! { |r| self.get(r['id']) }
 		ret
 	end
 end
