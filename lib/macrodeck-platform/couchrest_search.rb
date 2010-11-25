@@ -10,7 +10,7 @@ class CouchRest::Database
 
 	# Perform a spatial search. +bbox+ should be specified as an array.
 	def spatial_search(design, index, bbox, options={})
-		CouchRest.get CouchRest.paramify_url("#{@root}/_design/#{design}/_spatial/#{index}", options.merge(:bbox => bbox.join(","))
+		CouchRest.get CouchRest.paramify_url("#{@root}/_design/#{design}/_spatial/#{index}", options.merge(:bbox => bbox.join(",")))
 	end
 end
 
