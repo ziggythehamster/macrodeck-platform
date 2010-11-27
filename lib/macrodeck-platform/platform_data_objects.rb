@@ -237,11 +237,21 @@ module MacroDeck
 						  }",
 						  "reduce" => "_count"
 						},
-						# Return places that have a blank bitly_hash.
+						# Return events that have a blank bitly_hash.
 						{ "view_by" => "missing_bitly_hash",
 						  "map" =>
 						  "function(doc) {
 							if (doc['couchrest-type'] == 'Event' && !doc['bitly_hash']) {
+								emit(doc['_id'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
+						},
+						# Return events that have a blank _place.
+						{ "view_by" => "missing_place_info",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Event' && !doc['_place']) {
 								emit(doc['_id'], 1);
 							}
 						  }",
