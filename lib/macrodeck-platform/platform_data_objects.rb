@@ -81,7 +81,7 @@ module MacroDeck
 						["recurrence", "String", false],
 						["event_type", "String", false],
 						["bitly_hash", "String", false],
-						["_place", "Hash", false]
+						["place", "Hash", false]
 					],
 					"fulltext" => [
 						["common_fields",
@@ -247,11 +247,11 @@ module MacroDeck
 						  }",
 						  "reduce" => "_count"
 						},
-						# Return events that have a blank _place.
+						# Return events that have a blank place.
 						{ "view_by" => "missing_place_info",
 						  "map" =>
 						  "function(doc) {
-							if (doc['couchrest-type'] == 'Event' && !doc['_place']) {
+							if (doc['couchrest-type'] == 'Event' && !doc['place']) {
 								emit(doc['_id'], 1);
 							}
 						  }",
