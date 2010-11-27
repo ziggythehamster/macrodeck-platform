@@ -80,7 +80,8 @@ module MacroDeck
 						["end_time", "Time", false],
 						["recurrence", "String", false],
 						["event_type", "String", false],
-						["bitly_hash", "String", false]
+						["bitly_hash", "String", false],
+						["_place", "Hash", false]
 					],
 					"fulltext" => [
 						["common_fields",
