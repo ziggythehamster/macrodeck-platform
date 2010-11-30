@@ -105,6 +105,24 @@ module MacroDeck
 					return result["rows"][0]["value"]
 				end
 			end
+
+			# Returns the latitude of this object (if geo is set)
+			def lat
+				if !self["geo"].nil? && self["geo"].length == 2
+					return self["geo"][0]
+				else
+					return nil
+				end
+			end
+
+			# Returns the longitude of this object (if geo is set)
+			def lng
+				if !self["geo"].nil? && self["geo"].length == 2
+					return self["geo"][1]
+				else
+					return nil
+				end
+			end
 		end
 	end
 end
