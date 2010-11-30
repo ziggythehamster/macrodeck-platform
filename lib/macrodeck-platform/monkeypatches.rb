@@ -23,3 +23,11 @@ module CouchRest
 		end
 	end
 end
+
+
+# Adds a function to Numeric to convert a number to radians
+class Numeric
+	def to_radians
+		self * Math::PI / 180
+	end
+end
