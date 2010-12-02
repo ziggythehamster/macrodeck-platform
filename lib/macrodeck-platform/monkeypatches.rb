@@ -25,9 +25,15 @@ module CouchRest
 end
 
 
-# Adds a function to Numeric to convert a number to radians
+# Adds functions to Numeric to convert a number to radians/degrees
 class Numeric
+	# Turns the number that is in degrees to radians.
 	def to_radians
 		self * Math::PI / 180
+	end
+
+	# Turns the number that is in radians to degrees.
+	def to_degrees
+		self * 180 / Math::PI
 	end
 end
