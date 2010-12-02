@@ -51,6 +51,6 @@ class CouchRest::ExtendedDocument
 				ret << gs_obj.to_sortable_array(center)
 			end
 		end
-		return ret.sort
+		return ret.sort_by { |r| r[0] }
 	end
 end
