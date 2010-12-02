@@ -33,4 +33,24 @@ class CouchRest::ExtendedDocument
 		end
 		return ret
 	end
+
+	# Perform a proximity search. Returns an array of arrays where the first index
+	# in the array item is the distance and the second is the data object.
+	#
+	# FIXME: Add an option to allow specifying the radius of Earth, to allow
+	# for distances in km and other units.
+	def self.proximity_search(index, lat, lng, radius, options={})
+		bbox = GeospatialObject.bounding_box(lat, lng, radius)
+		center = GeospatialObject.new([lat, lng])
+		result = self.database.spatial_search(self.to_s, index, bbox, options)
+
+		ret = []
+		if result['rows']
+			result['rows'].each do |res|
+				gs_obj = GeospatialObject.new(self.get(res['id']))
+				ret << gs_obj.to_sortable_array(center)
+			end
+		end
+		return ret.sort
+	end
 end
