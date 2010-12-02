@@ -2,19 +2,34 @@
 class GeospatialObject
 	attr_reader :data_object
 
-	# GeospatialObject must be created with a passed data_object.
-	def initialize(data_object)
-		@data_object = data_object
+	# GeospatialObject must be created with a passed data_object or
+	# an array ([lat, lng])
+	def initialize(data_object_or_latlng)
+		if data_object_or_latlng.is_a?(Array)
+			@lat = data_object_or_latlng[0]
+			@lng = data_object_or_latlng[1]
+			@data_object = nil
+		else
+			@data_object = data_object_or_latlng
+		end
 	end
 
 	# Returns the latitude of the data object.
 	def lat
-		@data_object.lat
+		if @data_object.nil?
+			@lat
+		else
+			@data_object.lat
+		end
 	end
 
 	# Returns the longitude of the data object.
 	def lng
-		@data_object.lng
+		if @data_object.nil?
+			@lng
+		else
+			@data_object.lng
+		end
 	end
 
 	# Return the distance to the passed object.
