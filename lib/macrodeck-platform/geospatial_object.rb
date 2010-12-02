@@ -2,6 +2,18 @@
 class GeospatialObject
 	attr_reader :data_object
 
+	# Takes a point and returns a bounding box that can be used
+	# to query GeoCouch. Pass in a different earth radius if
+	# you're not working in miles.
+	def self.bounding_box(lat, lng, radius, earth_radius = 3963.1676)
+		x1 = lat - (radius / earth_radius).to_degrees
+		x2 = lat + (radius / earth_radius).to_degrees
+		y1 = lng - ((radius / earth_radius) / Math::cos(lat.to_radians)).to_degrees
+		y2 = lng + ((radius / earth_radius) / Math::cos(lat.to_radians)).to_degrees
+
+		return [x1, y1, x2, y2]
+	end
+
 	# GeospatialObject must be created with a passed data_object or
 	# an array ([lat, lng])
 	def initialize(data_object_or_latlng)
