@@ -33,4 +33,10 @@ class GeospatialObject
 		d = earth_radius * c
 		return d
 	end
+
+	# Returns an array that consists of [distance, data_object] for sorting.
+	# Pass in the geospatial object that you want to use to get the distance.
+	def to_sortable_array(geospatial_object)
+		[self.distance_to(geospatial_object), @data_object]
+	end
 end
