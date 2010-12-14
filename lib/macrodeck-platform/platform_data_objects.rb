@@ -188,6 +188,24 @@ module MacroDeck
 						  }",
 						  "reduce" => "_count"
 						},
+						# Same as above but with the time at the end (start and end, or just start)
+						{ "view_by" => "path_without_place_with_time",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Event' && doc['start_time'] && !doc['end_time']) {
+								if (doc.path.length == 6 || doc.path.length == 5 || doc.path.length == 4) {
+									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.path[3], doc['start_time']];
+									emit(new_path, 1);
+								}
+							} else if (doc['couchrest-type'] == 'Event' && doc['start_time'] && doc['end_time']) {
+								if (doc.path.length == 6 || doc.path.length == 5 || doc.path.length == 4) {
+									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.path[3], doc['start_time'], doc['end_time']];
+									emit(new_path, 1);
+								}
+							}
+						  }",
+						  "reduce" => "_count"
+						},
 						# Same as above but with end time at the end.
 						{ "view_by" => "path_without_place_with_end_time",
 						  "map" =>
