@@ -259,6 +259,22 @@ module MacroDeck
 									var path_and_event_type = doc.path.slice(0, i);
 									path_and_event_type.push(doc['event_type']);
 									path_and_event_type.push(doc['title']);
+
+									// FIXME: Implement this better
+									if (doc['event_type'] == 'Food and Drink Special') {
+										path_and_event_type[path_and_event_type.length - 2] = 'Food Special';
+										emit(path_and_event_type, 1);
+										path_and_event_type[path_and_event_type.length - 2] = 'Drink Special';
+										emit(path_and_event_type, 1);
+										path_and_event_type[path_and_event_type.length - 2] = 'Food and Drink Special';
+									} else if (doc['event_type'] == 'Drink Special and Entertainment') {
+										path_and_event_type[path_and_event_type.length - 2] = 'Entertainment';
+										emit(path_and_event_type, 1);
+										path_and_event_type[path_and_event_type.length - 2] = 'Drink Special';
+										emit(path_and_event_type, 1);
+										path_and_event_type[path_and_event_type.length - 2] = 'Drink Special and Entertainment';
+									}
+
 									emit(path_and_event_type, 1);
 								}
 							}
