@@ -262,17 +262,19 @@ module MacroDeck
 
 									// FIXME: Implement this better
 									if (doc['event_type'] == 'Food and Drink Special') {
-										path_and_event_type[path_and_event_type.length - 2] = 'Food Special';
-										emit(path_and_event_type, 1);
-										path_and_event_type[path_and_event_type.length - 2] = 'Drink Special';
-										emit(path_and_event_type, 1);
-										path_and_event_type[path_and_event_type.length - 2] = 'Food and Drink Special';
+										var key1 = path_and_event_type.slice(0); // dup the array
+										var key2 = path_and_event_Type.slice(0); // dup the array
+										key1[key1.length - 2] = 'Food Special';
+										key2[key2.length - 2] = 'Drink Special';
+										emit(key1, 1);
+										emit(key2, 1);
 									} else if (doc['event_type'] == 'Drink Special and Entertainment') {
-										path_and_event_type[path_and_event_type.length - 2] = 'Entertainment';
-										emit(path_and_event_type, 1);
-										path_and_event_type[path_and_event_type.length - 2] = 'Drink Special';
-										emit(path_and_event_type, 1);
-										path_and_event_type[path_and_event_type.length - 2] = 'Drink Special and Entertainment';
+										var key1 = path_and_event_type.slice(0); // dup the array
+										var key2 = path_and_event_type.slice(0); // dup the array
+										key1[key1.length - 2] = 'Entertainment';
+										key2[key2.length - 2] = 'Drink Special';
+										emit(key1, 1);
+										emit(key2, 1);
 									}
 
 									emit(path_and_event_type, 1);
