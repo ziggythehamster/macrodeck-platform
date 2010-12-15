@@ -263,7 +263,7 @@ module MacroDeck
 									// FIXME: Implement this better
 									if (doc['event_type'] == 'Food and Drink Special') {
 										var key1 = path_and_event_type.slice(0); // dup the array
-										var key2 = path_and_event_Type.slice(0); // dup the array
+										var key2 = path_and_event_type.slice(0); // dup the array
 										key1[key1.length - 2] = 'Food Special';
 										key2[key2.length - 2] = 'Drink Special';
 										emit(key1, 1);
