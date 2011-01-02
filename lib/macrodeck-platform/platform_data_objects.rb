@@ -592,6 +592,16 @@ module MacroDeck
 							}
 						  }",
 						  "reduce" => "_count"
+						},
+						# Return places with a foursquare_venue_id
+						{ "view_by" => "foursquare_venue_id",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Place' && doc['foursquare_venue_id']) {
+								emit(doc['foursquare_venue_id'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
 						}
 					]
 				}.freeze
