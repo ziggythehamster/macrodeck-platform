@@ -45,7 +45,11 @@ module MacroDeck
 						self.fields.each do |field|
 							symbol = field[0].to_sym.inspect
 							klass = field[1].inspect
-							properties << "property #{symbol}, :type => #{klass}\n"
+							if field[1].nil?
+								properties << "property #{symbol}"
+							else
+								properties << "property #{symbol}, :type => #{klass}\n"
+							end
 							properties << "validates_presence_of #{symbol}\n" if field[2] == true
 						end
 
@@ -129,7 +133,7 @@ module MacroDeck
 						else
 							valid = false
 							self.fields.each do |field|
-								if field.is_a?(Array) && field.length == 3 && field[0].is_a?(String) && (field[1].is_a?(String) || field[1].is_a?(Array)) && (field[2].is_a?(TrueClass) || field[2].is_a?(FalseClass))
+								if field.is_a?(Array) && field.length == 3 && field[0].is_a?(String) && (field[1].is_a?(String) || field[1].is_a?(Array) || field[1].is_a?(NilClass)) && (field[2].is_a?(TrueClass) || field[2].is_a?(FalseClass))
 									valid = true
 								else
 									valid = false
