@@ -327,7 +327,8 @@ module MacroDeck
 						["credit_cards_accepted", ["String"], false],
 						["reservations", "String", false],
 						["bitly_hash", "String", false],
-						["foursquare_venue_id", "String", false]
+						["foursquare_venue_id", "String", false],
+						["tips", "Array", false]
 					],
 					"fulltext" => [
 						["common_fields",
