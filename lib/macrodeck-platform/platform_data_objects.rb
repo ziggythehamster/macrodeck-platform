@@ -582,6 +582,16 @@ module MacroDeck
 							}
 						  }",
 						  "reduce" => "_count"
+						},
+						# Return places that have a blank foursquare_venue_id (and not blank geo)
+						{ "view_by" => "missing_foursquare_venue_id",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Place' && !doc['foursquare_venue_id'] && doc['geo']) {
+								emit(doc['_id'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
 						}
 					]
 				}.freeze
