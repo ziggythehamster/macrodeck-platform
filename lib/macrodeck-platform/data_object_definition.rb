@@ -129,7 +129,7 @@ module MacroDeck
 						else
 							valid = false
 							self.fields.each do |field|
-								if field.is_a?(Array) && field.length == 3 && field[0].is_a?(String) && field[1].is_a?(String) && (field[2].is_a?(TrueClass) || field[2].is_a?(FalseClass))
+								if field.is_a?(Array) && field.length == 3 && field[0].is_a?(String) && (field[1].is_a?(String) || field[1].is_a?(Array)) && (field[2].is_a?(TrueClass) || field[2].is_a?(FalseClass))
 									valid = true
 								else
 									valid = false
