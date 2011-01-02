@@ -328,7 +328,7 @@ module MacroDeck
 						["reservations", "String", false],
 						["bitly_hash", "String", false],
 						["foursquare_venue_id", "String", false],
-						["tips", ["String"], false]
+						["tips", nil, false]
 					],
 					"fulltext" => [
 						["common_fields",
