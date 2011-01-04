@@ -11,6 +11,14 @@ module MacroDeck
 				base.property :title,		:type => "String"
 				base.property :description,	:type => "String"
 				base.property :human_id,	:type => "String"	# A human-readable identifier. Was called url_part in the old platform.
+				base.property :created_at,	:type => "String", :read_only => true, :protected => true	# ISO8601 date
+				base.property :updated_at,	:type => "String", :read_only => true, :protected => true	# ISO8601 date
+
+				# Timestamp callback
+				base.set_callback :save, :before do |obj|
+					write_attribute "updated_at", Time.now.getutc.iso8601
+					write_attribute "created_at", Time.now.getutc.iso8601 if obj.new?
+				end
 
 				# Some basic views.
 				base.view_by :created_by
