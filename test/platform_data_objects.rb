@@ -1,5 +1,7 @@
 require "test/unit"
 
+CUSTOM_PROP_INDEX = 9 # The number to add to the index of properties to get to the custom ones defined on the object type.
+
 # Does a test against the platform data objects.
 module MacroDeck
 	module Tests
@@ -40,6 +42,10 @@ module MacroDeck
 				assert_equal "String",		::DataObject.properties[6].type
 				assert_equal "human_id",	::DataObject.properties[7].name
 				assert_equal "String",		::DataObject.properties[7].type
+				assert_equal "created_at",	::DataObject.properties[8].name
+				assert_equal "String",		::DataObject.properties[8].type
+				assert_equal "updated_at",	::DataObject.properties[9].name
+				assert_equal "String",		::DataObject.properties[9].type
 			end
 
 			# Tests the common validations of all DataObjects
