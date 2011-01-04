@@ -80,8 +80,8 @@ module MacroDeck
 
 			# Test the properties of Country.
 			def test_005_country_properties
-				assert_equal "abbreviation",	::Country.properties[8].name
-				assert_equal "String",		::Country.properties[8].type
+				assert_equal "abbreviation",	::Country.properties[CUSTOM_PROP_INDEX + 1].name
+				assert_equal "String",		::Country.properties[CUSTOM_PROP_INDEX + 1].type
 			end
 
 			# Test the validations of Country.
@@ -108,8 +108,8 @@ module MacroDeck
 
 			# Test the properties of Region.
 			def test_008_region_properties
-				assert_equal "abbreviation",			::Region.properties[8].name
-				assert_equal "String",				::Region.properties[8].type
+				assert_equal "abbreviation",			::Region.properties[CUSTOM_PROP_INDEX + 1].name
+				assert_equal "String",				::Region.properties[CUSTOM_PROP_INDEX + 1].type
 			end
 
 			# Test the validations of Region
@@ -157,32 +157,32 @@ module MacroDeck
 
 			# Test the properties of Place.
 			def test_014_place_properties
-				assert_equal "address",				::Place.properties[8].name
-				assert_equal "String",				::Place.properties[8].type
-				assert_equal "postal_code",			::Place.properties[9].name
-				assert_equal "String",				::Place.properties[9].type
-				assert_equal "phone_number",			::Place.properties[10].name
-				assert_equal "String",				::Place.properties[10].type
-				assert_equal "url",				::Place.properties[11].name
-				assert_equal "String",				::Place.properties[11].type
-				assert_equal "geo",				::Place.properties[12].name
-				assert_equal ["Float"],				::Place.properties[12].type
-				assert_equal "fare",				::Place.properties[13].name
-				assert_equal ["String"],			::Place.properties[13].type
-				assert_equal "features",			::Place.properties[14].name
-				assert_equal ["String"],			::Place.properties[14].type
-				assert_equal "parking",				::Place.properties[15].name
-				assert_equal "String",				::Place.properties[15].type
-				assert_equal "hours",				::Place.properties[16].name
-				assert_equal "Hash",				::Place.properties[16].type
-				assert_equal "atmosphere",			::Place.properties[17].name
-				assert_equal "String",				::Place.properties[17].type
-				assert_equal "alcohol",				::Place.properties[18].name
-				assert_equal ["String"],			::Place.properties[18].type
-				assert_equal "credit_cards_accepted",		::Place.properties[19].name
-				assert_equal ["String"],			::Place.properties[19].type
-				assert_equal "reservations",			::Place.properties[20].name
-				assert_equal "String",				::Place.properties[20].type
+				assert_equal "address",				::Place.properties[CUSTOM_PROP_INDEX + 1].name
+				assert_equal "String",				::Place.properties[CUSTOM_PROP_INDEX + 1].type
+				assert_equal "postal_code",			::Place.properties[CUSTOM_PROP_INDEX + 2].name
+				assert_equal "String",				::Place.properties[CUSTOM_PROP_INDEX + 2].type
+				assert_equal "phone_number",			::Place.properties[CUSTOM_PROP_INDEX + 3].name
+				assert_equal "String",				::Place.properties[CUSTOM_PROP_INDEX + 3].type
+				assert_equal "url",				::Place.properties[CUSTOM_PROP_INDEX + 4].name
+				assert_equal "String",				::Place.properties[CUSTOM_PROP_INDEX + 4].type
+				assert_equal "geo",				::Place.properties[CUSTOM_PROP_INDEX + 5].name
+				assert_equal ["Float"],				::Place.properties[CUSTOM_PROP_INDEX + 5].type
+				assert_equal "fare",				::Place.properties[CUSTOM_PROP_INDEX + 6].name
+				assert_equal ["String"],			::Place.properties[CUSTOM_PROP_INDEX + 6].type
+				assert_equal "features",			::Place.properties[CUSTOM_PROP_INDEX + 7].name
+				assert_equal ["String"],			::Place.properties[CUSTOM_PROP_INDEX + 7].type
+				assert_equal "parking",				::Place.properties[CUSTOM_PROP_INDEX + 8].name
+				assert_equal "String",				::Place.properties[CUSTOM_PROP_INDEX + 8].type
+				assert_equal "hours",				::Place.properties[CUSTOM_PROP_INDEX + 9].name
+				assert_equal "Hash",				::Place.properties[CUSTOM_PROP_INDEX + 9].type
+				assert_equal "atmosphere",			::Place.properties[CUSTOM_PROP_INDEX + 10].name
+				assert_equal "String",				::Place.properties[CUSTOM_PROP_INDEX + 10].type
+				assert_equal "alcohol",				::Place.properties[CUSTOM_PROP_INDEX + 11].name
+				assert_equal ["String"],			::Place.properties[CUSTOM_PROP_INDEX + 11].type
+				assert_equal "credit_cards_accepted",		::Place.properties[CUSTOM_PROP_INDEX + 12].name
+				assert_equal ["String"],			::Place.properties[CUSTOM_PROP_INDEX + 12].type
+				assert_equal "reservations",			::Place.properties[CUSTOM_PROP_INDEX + 13].name
+				assert_equal "String",				::Place.properties[CUSTOM_PROP_INDEX + 13].type
 			end
 
 			# Test the validations of Place.
@@ -215,14 +215,14 @@ module MacroDeck
 
 			# Tests the properties of Event.
 			def test_019_event_properties
-				assert_equal "start_time",			::Event.properties[8].name
-				assert_equal "Time",				::Event.properties[8].type
-				assert_equal "end_time",			::Event.properties[9].name
-				assert_equal "Time",				::Event.properties[9].type
-				assert_equal "recurrence",			::Event.properties[10].name
-				assert_equal "String",				::Event.properties[10].type
-				assert_equal "event_type",			::Event.properties[11].name
-				assert_equal "String",				::Event.properties[11].type
+				assert_equal "start_time",			::Event.properties[CUSTOM_PROP_INDEX + 1].name
+				assert_equal "Time",				::Event.properties[CUSTOM_PROP_INDEX + 1].type
+				assert_equal "end_time",			::Event.properties[CUSTOM_PROP_INDEX + 2].name
+				assert_equal "Time",				::Event.properties[CUSTOM_PROP_INDEX + 2].type
+				assert_equal "recurrence",			::Event.properties[CUSTOM_PROP_INDEX + 3].name
+				assert_equal "String",				::Event.properties[CUSTOM_PROP_INDEX + 3].type
+				assert_equal "event_type",			::Event.properties[CUSTOM_PROP_INDEX + 4].name
+				assert_equal "String",				::Event.properties[CUSTOM_PROP_INDEX + 4].type
 			end
 
 			# Tests the validations of Event.
