@@ -531,6 +531,25 @@ module MacroDeck
 						   }",
 						   "reduce" => "_count"
 						},
+						# Same as above, but by number of tips.
+						{ "view_by" => "path_without_neighborhood_tips",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Place' && doc['path'] && doc['tips']) {
+								if (doc.path.length == 4) {
+									var path = eval(doc.path.toSource());
+									path[3] = doc.tips.length + '/' + path[3];
+									emit(path, 1);
+								} else if (doc.path.length == 5) {
+									var path = eval(doc.path.toSource());
+									path[4] = doc.tips.length + '/' + path[4];
+								} else {
+									emit(doc.path, 'ERROR');
+								}
+							}
+						  }",
+						  "reduce" => "_count"
+						},
 						# Emits the fare just like tags.
 						{ "view_by" => "fare",
 						  "map" =>
