@@ -535,7 +535,7 @@ module MacroDeck
 						{ "view_by" => "path_without_neighborhood_tips",
 						  "map" =>
 						  "function(doc) {
-							if (doc['couchrest-type'] == 'Place' && doc['path'] && doc['tips']) {
+							if (doc['path'] && doc['couchrest-type'] && doc['couchrest-type'] == 'Place' && doc['tips']) {
 								if (doc.path.length == 4) {
 									var path = eval(doc.path.toSource());
 									path[3] = doc.tips.length + '/' + path[3];
