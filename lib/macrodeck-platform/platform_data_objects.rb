@@ -535,12 +535,13 @@ module MacroDeck
 						{ "view_by" => "path_without_neighborhood_tips",
 						  "map" =>
 						  "function(doc) {
+							/*! include numbers.js */
 							if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == 'Place' && doc.tips) {
 								if (doc.path.length == 4) {
-									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.tips.length + '/' + doc.path[3]];
+									var new_path = [doc.path[0], doc.path[1], doc.path[2], zeroPad(doc.tips.length, 3) + '/' + doc.path[3]];
 									emit(new_path, doc.tips.length);
 								} else if (doc.path.length == 5) {
-									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.tips.length + '/' + doc.path[4]];
+									var new_path = [doc.path[0], doc.path[1], doc.path[2], zeroPad(doc.tips.length, 3) + '/' + doc.path[4]];
 									emit(new_path, doc.tips.length);
 								}
 							}
