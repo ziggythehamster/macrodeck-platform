@@ -537,10 +537,10 @@ module MacroDeck
 						  "function(doc) {
 							if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == 'Place' && doc.tips) {
 								if (doc.path.length == 4) {
-									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.path[3], doc.tips.length];
+									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.tips.length + '/' + doc.path[3]];
 									emit(new_path, doc.tips.length);
 								} else if (doc.path.length == 5) {
-									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.path[4], doc.tips.length];
+									var new_path = [doc.path[0], doc.path[1], doc.path[2], doc.tips.length + '/' + doc.path[4]];
 									emit(new_path, doc.tips.length);
 								}
 							}
