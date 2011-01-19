@@ -548,6 +548,19 @@ module MacroDeck
 						  }",
 						  "reduce" => "_count"
 						},
+						# Emits the path but adds the number of tips to the last component.
+						{ "view_by" => "path_and_tips",
+						  "map" =>
+						  "function(doc) {
+							/*! include numbers.js */
+							if (doc.path && doc['couchrest-type'] && doc['couchrest-type'] == 'Place' && doc.tips) {
+								var new_path = doc.path.slice(0); // make a copy using .slice(0) trick
+								new_path[new_path.length - 1] = zeroPad(doc.tips.length, 3) + '/' + new_path[new_path.length - 1];
+								emit(new_path, doc.tips.length);
+							}
+						  }",
+						  "reduce" => "_count"
+						},
 						# Emits the fare just like tags.
 						{ "view_by" => "fare",
 						  "map" =>
