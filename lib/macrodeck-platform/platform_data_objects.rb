@@ -594,6 +594,23 @@ module MacroDeck
 						  }",
 						  "reduce" => "_count"
 						},
+						# Same as above but by number of tips.
+						{ "view_by" => "fare_tips",
+						  "map" =>
+						  "function(doc) {
+							if (doc.fare && doc['couchrest-type'] == 'Place' && doc.tips) {
+								doc.fare.map(function(fare) {
+									for(i = 0; i <= doc.path.length; i++) {
+										var path_and_fare = doc.path.slice(0, i);
+										path_and_fare.push(fare);
+										path_and_fare.push(doc.tips.length + '/' + doc.title);
+										emit(path_and_fare, 1);
+									}
+								});
+							}
+						  }",
+						  "reduce" => "_count"
+						},
 						# Return places that have a blank geo.
 						{ "view_by" => "missing_geo",
 						  "map" =>
