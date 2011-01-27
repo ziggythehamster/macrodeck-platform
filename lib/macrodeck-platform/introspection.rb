@@ -23,8 +23,17 @@ module MacroDeck
 
 		module InstanceMethods
 			# Returns the list of introspections.
-			def introspections
+			def self.introspections
 				self.class.instance_variable_get("@introspections")
+			end
+			
+			# Returns a human name for the attribute
+			def self.human_attribute_name(attribute)
+				if self.introspections[attribute.to_sym] && self.introspections[attribute.to_sym][:title]
+					return self.introspections[attribute.to_sym][:title]
+				else
+					return attribute.to_s
+				end
 			end
 		end
 	end
