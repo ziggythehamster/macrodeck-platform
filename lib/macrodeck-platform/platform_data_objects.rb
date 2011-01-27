@@ -15,9 +15,10 @@ module MacroDeck
 			# a geographic polygon describing the country.
 			def country
 				{
+					"title" => "Country",
 					"object_type" => "Country",
 					"fields" => [
-						["abbreviation", "String", true]
+						["abbreviation", "String", true, "Abbreviation"]
 					],
 					"validations" => [
 						["validates_length_of", "abbreviation", { "is" => 2 }]
@@ -35,9 +36,10 @@ module MacroDeck
 			# value might be a polygon that represents the region.
 			def region
 				{
+					"title" => "State",
 					"object_type" => "Region",
 					"fields" => [
-						["abbreviation", "String", false]
+						["abbreviation", "String", false, "Abbreviation"]
 					],
 					"validations" => []
 				}.freeze
@@ -48,6 +50,7 @@ module MacroDeck
 			# is stored in the title, so we require a title.
 			def locality
 				{
+					"title" => "City",
 					"object_type" => "Locality",
 					"fields" => [],
 					"validations" => [
@@ -61,6 +64,7 @@ module MacroDeck
 			# Tulsa Hills, etc.
 			def neighborhood
 				{
+					"title" => "Neighborhood",
 					"object_type" => "Neighborhood",
 					"fields" => [],
 					"validations" => [
@@ -74,14 +78,15 @@ module MacroDeck
 			# self explanitory.
 			def event
 				{
+					"title" => "Happening",
 					"object_type" => "Event",
 					"fields" => [
-						["start_time", "Time", true],
-						["end_time", "Time", false],
-						["recurrence", "String", false],
-						["event_type", "String", false],
-						["bitly_hash", "String", false],
-						["place", "Hash", false]
+						["start_time", "Time", true, "Start time"],
+						["end_time", "Time", false, "End time"],
+						["recurrence", "String", false, "Recurrence"],
+						["event_type", "String", false, "Event type"],
+						["bitly_hash", "String", false, "Bit.ly hash"],
+						["place", "Hash", false, "Place information"]
 					],
 					"fulltext" => [
 						["common_fields",
@@ -311,6 +316,7 @@ module MacroDeck
 			# fields of anything.. see below for more info.
 			def place
 				{
+					"title" => "Place",
 					"object_type" => "Place",
 					"fields" => [
 						["address", "String", false, "Address"],
