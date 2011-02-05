@@ -1,5 +1,5 @@
 # Load required files and libraries
-$LOAD_PATH << "./lib"
+$LOAD_PATH << File.join(File.dirname(__FILE__), "lib")
 
 require "rubygems"
 require "validatable"
