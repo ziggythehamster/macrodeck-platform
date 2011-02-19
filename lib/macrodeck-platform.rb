@@ -1,5 +1,6 @@
 require "macrodeck-platform/monkeypatches"
 require "macrodeck-platform/couchrest_search"
+require "macrodeck-platform/introspection"
 require "macrodeck-platform/model"
 require "macrodeck-platform/data_object_definition"
 require "macrodeck-platform/data_object"
