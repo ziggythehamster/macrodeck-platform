@@ -47,11 +47,15 @@ module MacroDeck
 							symbol = field[0].to_sym.inspect
 							klass = field[1].inspect
 							if field[1].nil?
-								properties << "property #{symbol}"
+								properties << "property #{symbol}\n"
 							else
 								properties << "property #{symbol}, :type => #{klass}\n"
 							end
 							properties << "validates_presence_of #{symbol}\n" if field[2] == true
+
+							if field[3]
+								properties << "introspect #{symbol}, :title => #{field[3].inspect}\n"
+							end
 						end
 
 						# Iterate the validations and define them.
@@ -85,6 +89,8 @@ module MacroDeck
 						class_body =
 							"class ::#{klass} < ::DataObject
 								include ::MacroDeck::PlatformSupport::DataObject
+								include ::MacroDeck::Introspection
+
 								#{properties}
 								#{validations}
 								#{views}
