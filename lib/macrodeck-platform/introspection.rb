@@ -15,7 +15,7 @@ module MacroDeck
 			#   +:description+ - human-readable description of the field.
 			#   +:internal+ - set true if this field isn't to appear to an average user.
 			def introspect(field_name, meta)
-				@introspections ||= []
+				@introspections ||= {}
 				@introspections[field_name.to_sym] ||= {}
 				@introspections[field_name.to_sym].merge!(meta)
 			end
