@@ -4,7 +4,7 @@
 
 module MacroDeck
 	module Introspection
-		def included(base)
+		def self.included(base)
 			base.send(:include, InstanceMethods)
 			base.extend(ClassMethods)
 		end
