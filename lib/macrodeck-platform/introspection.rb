@@ -5,7 +5,6 @@
 module MacroDeck
 	module Introspection
 		def self.included(base)
-			base.send(:include, InstanceMethods)
 			base.extend(ClassMethods)
 		end
 
@@ -19,17 +18,15 @@ module MacroDeck
 				@introspections[field_name.to_sym] ||= {}
 				@introspections[field_name.to_sym].merge!(meta)
 			end
-		end
 
-		module InstanceMethods
 			# Returns the list of introspections.
-			def self.introspections
-				self.class.instance_variable_get("@introspections")
+			def introspections
+				@introspections
 			end
-			
+
 			# Returns a human name for the attribute
-			def self.human_attribute_name(attribute)
-				if self.introspections[attribute.to_sym] && self.introspections[attribute.to_sym][:title]
+			def human_attribute_name(attribute)
+				if self.introspections && self.introspections[attribute.to_sym] && self.introspections[attribute.to_sym][:title]
 					return self.introspections[attribute.to_sym][:title]
 				else
 					return attribute.to_s
