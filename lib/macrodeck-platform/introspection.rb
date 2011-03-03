@@ -23,6 +23,10 @@ module MacroDeck
 					@fields_by_priority ||= {}
 					@fields_by_priority[meta[:priority].to_i] ||= []
 					@fields_by_priority[meta[:priority].to_i] << field_name.to_sym
+				else
+					@fields_by_priority ||= {}
+					@fields_by_priority[0] ||= []
+					@fields_by_priority[0] << field_name.to_sym
 				end
 			end
 
