@@ -55,7 +55,7 @@ module MacroDeck
 
 							if field[3] && field[3].is_a?(String)
 								properties << "introspect #{symbol}, :title => #{field[3].inspect}\n"
-							elsif field[3] && field[3].is_a(Hash)
+							elsif field[3] && field[3].is_a?(Hash)
 								title = field[3]["title"]
 								priority = field[3]["priority"]
 								internal = field[3]["internal"]
