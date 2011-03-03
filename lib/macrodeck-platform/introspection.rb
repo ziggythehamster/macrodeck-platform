@@ -18,11 +18,29 @@ module MacroDeck
 				@introspections ||= {}
 				@introspections[field_name.to_sym] ||= {}
 				@introspections[field_name.to_sym].merge!(meta)
+
+				if meta[:priority]
+					@fields_by_priority ||= {}
+					@fields_by_priority[meta[:priority].to_i] ||= []
+					@fields_by_priority[meta[:priority].to_i] << field_name.to_sym
+				end
 			end
 
 			# Returns the list of introspections.
 			def introspections
 				@introspections
+			end
+
+			# Returns the list of fields by priority as an array. The output looks like this:
+			#   [
+			#     [ priority, [ fields ] ]
+			#   ]
+			def fields_by_priority
+				if @fields_by_priority
+					return @fields_by_priority.sort.reverse
+				else
+					return nil
+				end
 			end
 
 			# Returns a human name for the attribute
