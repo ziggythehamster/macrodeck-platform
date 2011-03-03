@@ -83,10 +83,10 @@ module MacroDeck
 					"fields" => [
 						["start_time", "Time", true, "Start time"],
 						["end_time", "Time", false, "End time"],
-						["recurrence", "String", false, "Recurrence"],
+						["recurrence", "String", false, { "title" => "Recurrence", "internal" => true }],
 						["event_type", "String", false, "Event type"],
-						["bitly_hash", "String", false, "Bit.ly hash"],
-						["place", "Hash", false, "Place information"]
+						["bitly_hash", "String", false, { "title" => "Bit.ly hash", "internal" => true }],
+						["place", "Hash", false, { "title" => "Place information", "internal" => true }]
 					],
 					"fulltext" => [
 						["common_fields",
@@ -319,9 +319,9 @@ module MacroDeck
 					"title" => "Place",
 					"object_type" => "Place",
 					"fields" => [
-						["address", "String", false, "Address"],
-						["postal_code", "String", false, "Postal code"],
-						["phone_number", "String", false, "Phone number"],
+						["address", "String", false, { "title" => "Address", "priority" => 10 }],
+						["postal_code", "String", false, { "title" => "Postal code", "priority" => 10 }],
+						["phone_number", "String", false, { "title" => "Phone number", "priority" => 10 }],
 						["url", "String", false, "URL"],
 						["geo", ["Float"], false, "Geolocation"], 
 						["fare", ["String"], false, "Fare"],
@@ -332,8 +332,8 @@ module MacroDeck
 						["alcohol", ["String"], false, "Alcohol"],
 						["credit_cards_accepted", ["String"], false, "Credit cards accepted"],
 						["reservations", "String", false, "Reservations"],
-						["bitly_hash", "String", false, "Bit.ly hash"],
-						["foursquare_venue_id", "String", false, "Foursquare venue ID"],
+						["bitly_hash", "String", false, { "title" => "Bit.ly hash", "internal" => true }],
+						["foursquare_venue_id", "String", false, { "title" => "Foursquare venue ID", "internal" => true }],
 						["tips", nil, false, "Tips"]
 					],
 					"fulltext" => [
