@@ -13,6 +13,7 @@ module MacroDeck
 			#   +:title+ - human-readable title of the field.
 			#   +:description+ - human-readable description of the field.
 			#   +:internal+ - set true if this field isn't to appear to an average user.
+			#   +:priority+ - sets the priority of the field. Higher = more priority.
 			def introspect(field_name, meta)
 				@introspections ||= {}
 				@introspections[field_name.to_sym] ||= {}
