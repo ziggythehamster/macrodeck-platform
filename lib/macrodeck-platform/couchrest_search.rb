@@ -32,6 +32,9 @@ class CouchRest::ExtendedDocument
 				res_ids << res['id']
 			end
 			if res_ids.length > 0
+				# Chop off some if needed.
+				res_ids = res_ids[0..options[:limit].to_i] if options[:limit]
+
 				docs = ::DataObject.database.get_bulk(res_ids)
 				if docs["rows"]
 					ret = docs["rows"].collect { |d| ::DataObject.create_from_database(d["doc"]) }
@@ -62,6 +65,9 @@ class CouchRest::ExtendedDocument
 			if res_ids_with_dist.length > 0
 				res_ids_with_dist.sort_by { |r| r[0] }
 				res_ids = res_ids_with_dist.collect { |r| r[1] }
+
+				# If the :limit option is passed in, trim it to that many results
+				res_ids = res_ids[0..options[:limit].to_i] if options[:limit]
 
 				docs = ::DataObject.database.get_bulk(res_ids)
 				if docs["rows"]
