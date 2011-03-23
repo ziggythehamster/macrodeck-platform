@@ -32,7 +32,7 @@ module MacroDeck
 				if self.introspections[attribute.to_sym] && self.introspections[attribute.to_sym][:title]
 					return self.introspections[attribute.to_sym][:title]
 				else
-					return attribute.to_s
+					return attribute.to_s.capitalize
 				end
 			end
 		end
