@@ -59,12 +59,12 @@ class CouchRest::ExtendedDocument
 				gs_obj = GeospatialObject.new([res["bbox"][0], res["bbox"][1]])
 				res_ids_with_dist << [ gs_obj.distance_to(center), res["id"] ]
 			end
-			puts res_ids_with_dist.inspect
 			if res_ids_with_dist.length > 0
 				res_ids_with_dist.sort_by { |r| r[0] }
 				res_ids = res_ids_with_dist.collect { |r| r[1] }
-				puts res_ids.inspect
+
 				docs = ::DataObject.database.get_bulk(res_ids)
+				puts docs
 				if docs["rows"]
 					ret = docs["rows"].collect { |d| ::DataObject.create_from_database(d["doc"]) }
 				end
