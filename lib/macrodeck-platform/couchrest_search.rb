@@ -26,9 +26,16 @@ class CouchRest::ExtendedDocument
 	def self.spatial_search(index, bbox, options={})
 		result = self.database.spatial_search(self.to_s, index, bbox, options)
 		ret = []
+		res_ids = []
 		if result['rows']
 			result['rows'].each do |res|
-				ret << self.get(res['id'])
+				res_ids << res['id']
+			end
+			if res_ids.length > 0
+				docs = ::DataObject.database.get_bulk(res_ids)
+				if docs["rows"]
+					ret = docs["rows"].collect { |d| ::DataObject.create_from_database(d["doc"]) }
+				end
 			end
 		end
 		return ret
@@ -45,12 +52,22 @@ class CouchRest::ExtendedDocument
 		result = self.database.spatial_search(self.to_s, index, bbox, options)
 
 		ret = []
+		res_ids_with_dist = []
+		res_ids = []
 		if result['rows']
 			result['rows'].each do |res|
-				gs_obj = GeospatialObject.new(self.get(res['id']))
-				ret << gs_obj.to_sortable_array(center)
+				gs_obj = GeospatialObject.new([res["bbox"][0], res["bbox"][1]])
+				res_ids_with_dist << [ gs_obj.distance_to(center), res["id"] ]
+			end
+			if res_ids_with_dist.length > 0
+				res_ids_with_dist.sort_by { |r| r[0] }
+				res_ids = res_ids_with_dist.collect { |r| r[1] }
+				docs = ::DataObject.database.get_bulk(res_ids)
+				if docs["rows"]
+					ret = docs["rows"].collect { |d| ::DataObject.create_from_database(d["doc"]) }
+				end
 			end
 		end
-		return ret.sort_by { |r| r[0] }
+		return ret
 	end
 end
