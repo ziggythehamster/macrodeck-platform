@@ -64,7 +64,6 @@ class CouchRest::ExtendedDocument
 				res_ids = res_ids_with_dist.collect { |r| r[1] }
 
 				docs = ::DataObject.database.get_bulk(res_ids)
-				puts docs
 				if docs["rows"]
 					ret = docs["rows"].collect { |d| ::DataObject.create_from_database(d["doc"]) }
 				end
