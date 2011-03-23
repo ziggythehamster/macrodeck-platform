@@ -53,8 +53,14 @@ module MacroDeck
 							end
 							properties << "validates_presence_of #{symbol}\n" if field[2] == true
 
-							if field[3]
+							if field[3] && field[3].is_a?(String)
 								properties << "introspect #{symbol}, :title => #{field[3].inspect}\n"
+							elsif field[3] && field[3].is_a?(Hash)
+								title = field[3]["title"]
+								priority = field[3]["priority"]
+								internal = field[3]["internal"]
+								desc = field[3]["description"]
+								properties << "introspect #{symbol}, :title => #{title.inspect}, :description => #{desc.inspect}, :priority => #{priority.inspect}, :internal => #{internal.inspect}\n"
 							end
 						end
 

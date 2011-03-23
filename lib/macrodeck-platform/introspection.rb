@@ -5,7 +5,6 @@
 module MacroDeck
 	module Introspection
 		def self.included(base)
-			base.send(:include, InstanceMethods)
 			base.extend(ClassMethods)
 		end
 
@@ -14,22 +13,43 @@ module MacroDeck
 			#   +:title+ - human-readable title of the field.
 			#   +:description+ - human-readable description of the field.
 			#   +:internal+ - set true if this field isn't to appear to an average user.
+			#   +:priority+ - sets the priority of the field. Higher = more priority.
 			def introspect(field_name, meta)
 				@introspections ||= {}
 				@introspections[field_name.to_sym] ||= {}
 				@introspections[field_name.to_sym].merge!(meta)
-			end
-		end
 
-		module InstanceMethods
-			# Returns the list of introspections.
-			def self.introspections
-				self.class.instance_variable_get("@introspections")
+				if meta[:priority]
+					@fields_by_priority ||= {}
+					@fields_by_priority[meta[:priority].to_i] ||= []
+					@fields_by_priority[meta[:priority].to_i] << field_name.to_sym
+				else
+					@fields_by_priority ||= {}
+					@fields_by_priority[0] ||= []
+					@fields_by_priority[0] << field_name.to_sym
+				end
 			end
-			
+
+			# Returns the list of introspections.
+			def introspections
+				@introspections
+			end
+
+			# Returns the list of fields by priority as an array. The output looks like this:
+			#   [
+			#     [ priority, [ fields ] ]
+			#   ]
+			def fields_by_priority
+				if @fields_by_priority
+					return @fields_by_priority.sort.reverse
+				else
+					return nil
+				end
+			end
+
 			# Returns a human name for the attribute
-			def self.human_attribute_name(attribute)
-				if self.introspections[attribute.to_sym] && self.introspections[attribute.to_sym][:title]
+			def human_attribute_name(attribute)
+				if self.introspections && self.introspections[attribute.to_sym] && self.introspections[attribute.to_sym][:title]
 					return self.introspections[attribute.to_sym][:title]
 				else
 					return attribute.to_s.capitalize
