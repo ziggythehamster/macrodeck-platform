@@ -104,11 +104,16 @@ module MacroDeck
 			def expanded_path
 				ids = self.path.dup # CouchRest bug that overwrites path sometimes.
 				ids.pop # Last item will be self, and we can fill that in automagically.
+				exp_path = [] # Init to empty array.
 
-				# Use ::DataObject explicitly to make things work in subclasses.
-				result = ::DataObject.view("by_id", :keys => ids)
-				if result["rows"]
-					exp_path = result_rows.collect { [ r["key"], r["value"] ] }
+				# Check for ids being longer than 0 (which means this item is a root item)
+				if ids.length > 0
+					# Use ::DataObject explicitly to make things work in subclasses.
+					result = ::DataObject.view("by_id", :include_docs => false, :keys => ids)
+
+					if result["rows"]
+						exp_path = result["rows"].collect { |r| [ r["value"], r["key"] ] }
+					end
 				end
 
 				# Add this item's info.
