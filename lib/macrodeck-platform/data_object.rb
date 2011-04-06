@@ -106,7 +106,7 @@ module MacroDeck
 				ids.pop # Last item will be self, and we can fill that in automagically.
 
 				# Use ::DataObject explicitly to make things work in subclasses.
-				result = ::DataObject.view("by_id", :reduce => false, :include_docs => false, :keys => ids)
+				result = ::DataObject.view("by_id", :keys => ids)
 				if result["rows"]
 					exp_path = result_rows.collect { [ r["key"], r["value"] ] }
 				end
