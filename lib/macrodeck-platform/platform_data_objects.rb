@@ -7,7 +7,34 @@ module MacroDeck
 			def objects
 				["country", "region", "locality", "neighborhood", "place", "event"].freeze
 			end
-			
+
+			# A special photo is a photo of a special (duh!). Turks can use a photo
+			# to fill out an Event.
+			def special_photo
+				{
+					"title" => "Special photo"
+					"object_type" => "SpecialPhoto",
+					"fields" => [],
+					"validations" => [],
+					"has_attachment" => true,
+					"turk_fields" => [
+						{ "name" => "DaysOfWeek", "type" => ["Integer#DayOfWeek"] },
+						{ "name" => "StartTime", "type" => "Time" },
+						{ "name" => "EndTime", "type" => "Time" },
+						{ "name" => "Title", "type" => "String", "object_type" => "Event", "object_field" => "title" }
+					],
+					"turk_tasks" => [
+						{
+							"id" => "Task_DaysOfWeek",
+							"prerequisites" => [],
+							"title" => "What days of the week are shown in the photo?",
+							"turk_field" => "DaysOfWeek",
+							"answer_count" => 0
+						}
+					]
+				}
+			end
+
 			# A country is a simple object. The name of the
 			# country is stored in title (provided by DataObject)
 			# and the abbreviation is required and must be two
