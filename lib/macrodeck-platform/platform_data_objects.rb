@@ -30,6 +30,27 @@ module MacroDeck
 							"title" => "What days of the week are shown in the photo?",
 							"turk_field" => "DaysOfWeek",
 							"answer_count" => 0
+						},
+						{
+							"id" => "Task_StartTime",
+							"prerequisites" => ["Task_DaysOfWeek"],
+							"title" => "What time does the event on $$DaysOfWeek$$ start?",
+							"turk_field" => "StartTime",
+							"answer_count" => 0
+						},
+						{
+							"id" => "Task_EndTime",
+							"prerequisites" => ["Task_DaysOfWeek"],
+							"title" => "What time does the event on $$DaysOfWeek$$ end?",
+							"turk_field" => "EndTime",
+							"answer_count" => 0
+						}
+						{
+							"id" => "Task_Title"
+							"prerequisites" => ["Task_DaysOfWeek", "Task_StartTime"],
+							"title" => "What is the title for the event on $$DaysOfWeek$$ at $$StartTime$$?"
+							"turk_field" => "Title",
+							"answer_count" => 0
 						}
 					]
 				}
