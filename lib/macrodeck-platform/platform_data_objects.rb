@@ -5,7 +5,7 @@ module MacroDeck
 		class << self
 			# Returns an array of the objects defined here.
 			def objects
-				["country", "region", "locality", "neighborhood", "place", "event"].freeze
+				["country", "region", "locality", "neighborhood", "place", "event", "special_photo"].freeze
 			end
 
 			# A special photo is a photo of a special (duh!). Turks can use a photo
