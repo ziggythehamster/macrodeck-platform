@@ -46,9 +46,9 @@ module MacroDeck
 							"answer_count" => 0
 						},
 						{
-							"id" => "Task_Title"
+							"id" => "Task_Title",
 							"prerequisites" => ["Task_DaysOfWeek", "Task_StartTime"],
-							"title" => "What is the title for the event on $$DaysOfWeek$$ at $$StartTime$$?"
+							"title" => "What is the title for the event on $$DaysOfWeek$$ at $$StartTime$$?",
 							"turk_field" => "Title",
 							"answer_count" => 0
 						}
