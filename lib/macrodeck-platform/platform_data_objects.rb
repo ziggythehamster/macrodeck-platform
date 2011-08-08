@@ -12,7 +12,7 @@ module MacroDeck
 			# to fill out an Event.
 			def special_photo
 				{
-					"title" => "Special photo"
+					"title" => "Special photo",
 					"object_type" => "SpecialPhoto",
 					"fields" => [],
 					"validations" => [],
