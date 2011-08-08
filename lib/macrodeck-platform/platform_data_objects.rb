@@ -729,29 +729,30 @@ module MacroDeck
 					new_definition.define!
 
 					db = CouchRest.database!(MacroDeck::Platform.database_name)
+
 					# Get the design doc.
-					if definition["fulltext"] || definition["spatial"]
-						doc = db.get("_design/#{definition["object_type"]}")
-						if doc
+					doc = db.get("_design/#{definition["object_type"]}")
+
+					if doc
+						if definition["fulltext"]
 							doc["fulltext"] ||= {}
-							doc["spatial"] ||= {}
-							if definition["fulltext"]
-								definition["fulltext"].each do |ft|
-									ftdef = ft[1]
-									ftdef["index"] = MacroDeck::Platform.process_includes(ftdef["index"])
-									doc["fulltext"][ft[0]] = ftdef
-								end
-							end
-							if definition["spatial"]
-								definition["spatial"].each do |sp|
-									spdef = sp[1]
-									spdef = MacroDeck::Platform.process_includes(spdef)
-									doc["spatial"][sp[0]] = spdef
-								end
+							definition["fulltext"].each do |ft|
+								ftdef = ft[1]
+								ftdef["index"] = MacroDeck::Platform.process_includes(ftdef["index"])
+								doc["fulltext"][ft[0]] = ftdef
 							end
 						end
-						doc.save
+						if definition["spatial"]
+							doc["spatial"] ||= {}
+							definition["spatial"].each do |sp|
+								spdef = sp[1]
+								spdef = MacroDeck::Platform.process_includes(spdef)
+								doc["spatial"][sp[0]] = spdef
+							end
+						end
 					end
+
+					doc.save
 				end
 			end
 		end
