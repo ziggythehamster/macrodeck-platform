@@ -44,7 +44,7 @@ module MacroDeck
 							"title" => "What time does the event on $$DaysOfWeek$$ end?",
 							"turk_field" => "EndTime",
 							"answer_count" => 0
-						}
+						},
 						{
 							"id" => "Task_Title"
 							"prerequisites" => ["Task_DaysOfWeek", "Task_StartTime"],
