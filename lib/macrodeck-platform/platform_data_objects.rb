@@ -734,6 +734,15 @@ module MacroDeck
 					doc = db.get("_design/#{definition["object_type"]}")
 
 					if doc
+						if !definition["has_attachment"].nil?
+							doc["has_attachment"] = definition["has_attachment"]
+						end
+						if definition["turk_fields"]
+							doc["turk_fields"] = definition["turk_fields"]
+						end
+						if definition["turk_tasks"]
+							doc["turk_tasks"] = definition["turk_tasks"]
+						end
 						if definition["fulltext"]
 							doc["fulltext"] ||= {}
 							definition["fulltext"].each do |ft|
