@@ -96,6 +96,7 @@ module MacroDeck
 							"class ::#{klass} < ::DataObject
 								include ::MacroDeck::PlatformSupport::DataObject
 								include ::MacroDeck::Introspection
+								include ::MacroDeck::TurkSupport
 
 								#{properties}
 								#{validations}
