@@ -9,7 +9,12 @@ module MacroDeck
 
 		module ClassMethods
 			def turk_tasks
-				return self.stored_design_doc["turk_tasks"]
+				if @turk_tasks.nil?
+					@turk_tasks = self.stored_design_doc["turk_tasks"].collect { |task| TurkTask.new(self, task) }
+					return @turk_tasks
+				else
+					return @turk_tasks
+				end
 			end
 
 			def turk_fields
