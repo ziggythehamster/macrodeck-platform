@@ -4,6 +4,7 @@ class TurkTask
 	attr_reader :title
 	attr_reader :answer_count
 	attr_reader :field
+	attr_reader :show_fields
 
 	def initialize(obj, task)
 		# Link the field in both records.
@@ -16,5 +17,6 @@ class TurkTask
 		@prerequisites = task["prerequisites"]
 		@title = task["title"]
 		@answer_count = task["answer_count"]
+		@show_fields = task["show_fields"]
 	end
 end
