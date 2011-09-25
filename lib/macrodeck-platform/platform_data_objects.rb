@@ -135,7 +135,7 @@ module MacroDeck
 					"fields" => [
 						["start_time", "Time", true, "Start time"],
 						["end_time", "Time", false, "End time"],
-						["recurrence", "String", false, { "title" => "Recurrence", "internal" => true }],
+						["recurrence", "String", false, "Recurrence"],
 						["event_type", "String", false, "Event type"],
 						["bitly_hash", "String", false, { "title" => "Bit.ly hash", "internal" => true }],
 						["place", "Hash", false, { "title" => "Place information", "internal" => true }]
