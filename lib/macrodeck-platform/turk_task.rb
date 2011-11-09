@@ -40,12 +40,12 @@ class TurkTask
 		# Add a method to the instance that allows us to use the TurkTask as
 		# a surrogate for DataObject in behaviors.
 		(class << self; self; end).class_eval do
-			if @field["type"].is_a?(Array)
-				define_method @field["name"].to_sym do
+			if field["type"].is_a?(Array)
+				define_method field["name"].to_sym do
 					[]
 				end
 			else
-				define_method @field["name"].to_sym do
+				define_method field["name"].to_sym do
 					nil
 				end
 			end
