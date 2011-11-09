@@ -5,6 +5,7 @@ class TurkTask
 	attr_reader :answer_count
 	attr_reader :field
 	attr_reader :show_fields
+	attr_reader :field_behavior
 
 	def initialize(obj, task)
 		# Link the field in both records.
@@ -18,5 +19,22 @@ class TurkTask
 		@title = task["title"]
 		@answer_count = task["answer_count"]
 		@show_fields = task["show_fields"]
+
+		if @field["type"].is_a?(Array)
+			if @field["type"][0].include?("#")
+				@field_behavior = @field["type"][0].split("#")[1]
+			else
+				@field_behavior = @field["type"][0]
+			end
+		else
+			if @field["type"].include?("#")
+				@field_behavior = @field["type"].split("#")[1]
+			else
+				@field_behavior = @field["type"]
+			end
+		end
+
+		# Now tack on MacroDeck:: and Behavior.
+		@field_behavior = "MacroDeck::#{@field_behavior}Behavior"
 	end
 end
