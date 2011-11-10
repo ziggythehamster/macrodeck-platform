@@ -20,6 +20,7 @@ class TurkTask
 		@answer_count = task["answer_count"]
 		@show_fields = task["show_fields"]
 
+		# Figure out the behavior of the field.
 		if @field["type"].is_a?(Array)
 			if @field["type"][0].include?("#")
 				@field_behavior = @field["type"][0].split("#")[1]
@@ -32,6 +33,13 @@ class TurkTask
 			else
 				@field_behavior = @field["type"]
 			end
+		end
+
+		# Store the human attribute name for this field.
+		if @field["title"].nil?
+			@@human_attribute_names[@field["name"].to_sym] = @field["name"].to_s
+		else
+			@@human_attribute_names[@field["name"].to_sym] = @field["title"].to_s
 		end
 
 		# Now tack on MacroDeck:: and Behavior.
@@ -56,14 +64,6 @@ class TurkTask
 
 	# This method is required to make this class work as a replacement for DataObject in behaviors.
 	def self.human_attribute_name(attr)
-		if attr.to_s == @field["name"].to_s
-			if @field["title"].nil?
-				@field["name"].to_s
-			else
-				@field["title"].to_s
-			end
-		else
-			attr.to_s
-		end
+		@@human_attribute_names[attr.to_sym]
 	end
 end
