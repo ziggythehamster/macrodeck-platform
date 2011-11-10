@@ -42,7 +42,7 @@ class TurkTask
 		field_name = @field["name"] # to be accessible below.
 		field_type = @field["type"]
 		(class << self; self; end).class_eval do
-			if field_type.is_a?(Array)
+			if field_type.respond_to?(:length) && field_type.length == 1 # not checking for is_a?(Array); instead seeing if it is one element long. Highly unlikely a string type will be a single byte long.
 				define_method field_name.to_sym do
 					[]
 				end
@@ -56,6 +56,14 @@ class TurkTask
 
 	# This method is required to make this class work as a replacement for DataObject in behaviors.
 	def self.human_attribute_name(attr)
-		attr.to_s
+		if attr.to_s == @field["name"].to_s
+			if @field["title"].nil?
+				@field["name"].to_s
+			else
+				@field["title"].to_s
+			end
+		else
+			attr.to_s
+		end
 	end
 end
