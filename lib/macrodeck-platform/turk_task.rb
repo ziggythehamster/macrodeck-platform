@@ -53,4 +53,9 @@ class TurkTask
 			end
 		end
 	end
+
+	# This method is required to make this class work as a replacement for DataObject in behaviors.
+	def self.human_attribute_name(attr)
+		attr.to_s
+	end
 end
