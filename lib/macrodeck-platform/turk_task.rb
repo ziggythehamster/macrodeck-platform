@@ -36,6 +36,7 @@ class TurkTask
 		end
 
 		# Store the human attribute name for this field.
+		@@human_attribute_names ||= {}
 		if @field["title"].nil?
 			@@human_attribute_names[@field["name"].to_sym] = @field["name"].to_s
 		else
