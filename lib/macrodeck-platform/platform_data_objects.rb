@@ -18,9 +18,9 @@ module MacroDeck
 					"validations" => [],
 					"has_attachment" => true,
 					"turk_fields" => [
-						{ "name" => "DaysOfWeek", "type" => ["Integer#DayOfWeek"] },
-						{ "name" => "StartTime", "type" => "Time" },
-						{ "name" => "EndTime", "type" => "Time" },
+						{ "name" => "DaysOfWeek", "type" => ["Integer#DayOfWeek"], "title" => "Days of week" },
+						{ "name" => "StartTime", "type" => "Time", "title" => "Start time" },
+						{ "name" => "EndTime", "type" => "Time", "title" => "End time" },
 						{ "name" => "Title", "type" => "String", "object_type" => "Event", "object_field" => "title" }
 					],
 					"turk_tasks" => [
