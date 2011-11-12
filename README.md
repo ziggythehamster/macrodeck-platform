@@ -40,3 +40,28 @@ Tests
 I haven't been good about adding tests in the past - so suggestions are
 definitely welcome. This library will hopefully be very well tested by the
 time it gets put into production.
+
+Attachment Plan
+===============
+
+Here's some bullet points for how I think that we should implement attachments.
+It would be nice to be able to leverage Paperclip, but I think that given the
+fact that the MacroDeck Platform is very disconnected from ActiveRecord, it would
+probably take more work to make Paperclip work than it would be to implement
+something that sends files off to S3 and keeps track of where they are.
+
+* Use `right_aws` gem.
+* Allow the bucket name to be configured somehow by the hosting application.
+  Probably in a similar way to how the platform chooses a database name?
+* [Get a RightAws::S3::Bucket instance][4]. Should this be initialized when the
+  platform boots? Probably?
+* Determine a standard naming convention. /attachments/Class/id/attachmentname.ext
+  works for me. The attachment name probably needs to be randomly selected,
+  maybe another UUID?
+* An object should probably support many attachments.
+* Not sure how to use RightAWS to generate a temporary link (needs research).
+* Can use `bucket.key(path).public_link` but this doesn't make a temporary link
+  (so anyone who knows the URL can get the attachment... though if the filenames
+  are UUIDs, maybe this is OK)
+
+[4]: http://rubydoc.info/github/rightscale/right_aws/master/RightAws/S3:bucket
