@@ -63,5 +63,7 @@ something that sends files off to S3 and keeps track of where they are.
 * Can use `bucket.key(path).public_link` but this doesn't make a temporary link
   (so anyone who knows the URL can get the attachment... though if the filenames
   are UUIDs, maybe this is OK)
+* It appears that there's something like `interface.get_link` that allows you to
+  specify a bucket name, key, and validity duration. This could work.
 
 [4]: http://rubydoc.info/github/rightscale/right_aws/master/RightAws/S3:bucket
