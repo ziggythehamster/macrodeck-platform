@@ -41,6 +41,19 @@ module MacroDeck
 				end
 			end
 
+			def s3_bucket(access_key, secret_access_key)
+				# Attempt to load S3
+				unless defined?(RightAws)
+					begin
+						require "right_aws"
+					rescue LoadError
+						return nil
+					end
+				end
+
+				return RightAws::S3.new(access_key, secret_access_key).bucket(@database_name)
+			end
+
 			# Processes include directives in the index, map, or reduce function.
 			#
 			# The format is as follows:
