@@ -19,6 +19,7 @@ class TurkTask
 		@title = task["title"]
 		@answer_count = task["answer_count"]
 		@show_fields = task["show_fields"]
+		@data_object = obj
 
 		# Figure out the behavior of the field.
 		if @field["type"].is_a?(Array)
@@ -76,11 +77,13 @@ class TurkTask
 			prereq_met = true
 			root = answers
 			@prerequisites.each do |prereq|
-				if root.key?(prereq) && root[prereq].is_a?(Array)
-					val = root[prereq][0]
-					root = root["#{prereq}=#{val}"]
-				elsif root.key?(prereq)
-					root = root[prereq]
+				field_name = @data_object.turk_task_by_id(prereq).field
+
+				if root.key?(field_name) && root[field_name].is_a?(Array)
+					val = root[field_name][0]
+					root = root["#{field_name}=#{val}"]
+				elsif root.key?(field_name)
+					root = root["#{field_name}="]
 				else
 					prereq_met = false
 				end
