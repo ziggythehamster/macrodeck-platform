@@ -62,9 +62,26 @@ module MacroDeck
 		end
 
 		module ClassMethods
+			def turk_task_by_id(id)
+				if @turk_tasks_by_id.nil?
+					self.turk_tasks
+					return @turk_tasks_by_id[id]
+				else
+					return @turk_tasks_by_id[id]
+				end
+			end
+
 			def turk_tasks
 				if @turk_tasks.nil?
-					@turk_tasks = self.stored_design_doc["turk_tasks"].collect { |task| TurkTask.new(self, task) }
+					@turk_tasks = []
+					@turk_tasks_by_id = {}
+
+					self.stored_design_doc["turk_tasks"].each do |task|
+						task = TurkTask.new(self, task)
+						@turk_tasks << task
+						@turk_tasks_by_id[task.id] = task
+					end
+
 					return @turk_tasks
 				else
 					return @turk_tasks
