@@ -67,4 +67,26 @@ class TurkTask
 	def self.human_attribute_name(attr)
 		@@human_attribute_names[attr.to_sym]
 	end
+
+	# Determine if the prerequisites have been met
+	def prerequisites_met?(answers)
+		if @prerequisites.length == 0
+			return true
+		else
+			prereq_met = true
+			root = answers
+			@prerequisites.each do |prereq|
+				if root.key?(prereq) && root[prereq].is_a?(Array)
+					val = root[prereq][0]
+					root = root["#{prereq}=#{val}"]
+				elsif root.key?(prereq)
+					root = root[prereq]
+				else
+					prereq_met = false
+				end
+			end
+
+			return prereq_met
+		end
+	end
 end
