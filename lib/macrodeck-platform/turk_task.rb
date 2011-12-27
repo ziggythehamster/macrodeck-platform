@@ -77,7 +77,7 @@ class TurkTask
 			prereq_met = true
 			root = answers
 			@prerequisites.each do |prereq|
-				field_name = @data_object.turk_task_by_id(prereq).field
+				field_name = @data_object.turk_task_by_id(prereq).field.name
 
 				if root.key?(field_name) && root[field_name].is_a?(Array)
 					val = root[field_name][0]
@@ -90,6 +90,45 @@ class TurkTask
 			end
 
 			return prereq_met
+		end
+	end
+
+	# Determine if this question is answered
+	def answered?(answers)
+		# If there are no prerequisites, this answer will appear in the root.
+		if @prerequisites.length == 0
+			if answers[self.field.name].nil?
+				return false
+			else
+				return true
+			end
+		else
+			# Scan the prerequisite tree.
+			prereq_met = true
+			root = answers
+			@prerequisites.each do |prereq|
+				field_name = @data_object.turk_task_by_id(prereq).field.name
+
+				if root.key?(field_name) && root[field_name].is_a?(Array)
+					val = root[field_name][0]
+					root = root["#{field_name}=#{val}"]
+				elsif root.key?(field_name)
+					root = root["#{field_name}="]
+				else
+					prereq_met = false
+				end
+			end
+
+			# If the prerequisites are met, we can check the answer.
+			if prereq_met
+				if root.key?(self.field.name) && !root[self.field.name].nil?
+					return true
+				else
+					return false
+				end
+			else
+				return false
+			end
 		end
 	end
 end
