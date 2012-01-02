@@ -23,6 +23,17 @@ module MacroDeck
 						{ "name" => "EndTime", "type" => "Time", "title" => "End time" },
 						{ "name" => "Title", "type" => "String", "object_type" => "Event", "object_field" => "title" }
 					],
+					"views" => [
+						{ "view_by" => "turk_unanswered",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'SpecialPhoto' && (doc['turk_responses'] == undefined || doc['turk_responses'] == null || doc['turk_responses'] == {})) {
+								emit(doc['_id'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
+						}
+					],
 					"turk_tasks" => [
 						{
 							"id" => "Task_DaysOfWeek",
