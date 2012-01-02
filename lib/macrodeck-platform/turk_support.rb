@@ -22,7 +22,7 @@ module MacroDeck
 						# If an answer has been provided, don't add it to the list.
 						# If an answer has not been provided, check that it can be answered.
 
-						if self.turk_responses[task.field["name"]].nil?
+						if self.turk_responses.nil? || self.turk_responses[task.field["name"]].nil?
 							unsatisfied_tasks << task.id
 							if task.prerequisites.nil? || task.prerequisites.length == 0
 								# We can answer this immediately.
