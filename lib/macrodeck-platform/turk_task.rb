@@ -9,11 +9,13 @@ class TurkTask
 
 	def initialize(obj, task)
 		# Link the field in both records.
+		@field = nil
 		obj.turk_fields.each do |tf|
 			if tf["name"] == task["turk_field"]
 				@field = tf
 			end
 		end
+		raise "Turk task #{task["title"]} does not specify a valid field!" if @field.nil?
 		@id = task["id"]
 		@prerequisites = task["prerequisites"]
 		@title = task["title"]
@@ -97,7 +99,7 @@ class TurkTask
 	def answered?(answers)
 		# If there are no prerequisites, this answer will appear in the root.
 		if @prerequisites.length == 0
-			if answers[self.field["name"]].nil?
+			if answers[@field["name"]].nil?
 				return false
 			else
 				return true
@@ -121,7 +123,7 @@ class TurkTask
 
 			# If the prerequisites are met, we can check the answer.
 			if prereq_met
-				if root.key?(self.field["name"]) && !root[self.field["name"]].nil?
+				if root.key?(@field["name"]) && !root[@field["name"]].nil?
 					return true
 				else
 					return false
