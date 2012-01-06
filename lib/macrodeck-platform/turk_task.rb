@@ -99,7 +99,7 @@ class TurkTask
 	def answered?(answers)
 		# If there are no prerequisites, this answer will appear in the root.
 		if @prerequisites.length == 0
-			if answers[@field["name"]].nil?
+			if answers.nil? || !answers.key?(@field["name"]) || answers[@field["name"]].nil? || answers[@field["name"]].length == 0
 				return false
 			else
 				return true
