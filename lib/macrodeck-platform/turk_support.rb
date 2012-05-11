@@ -5,6 +5,7 @@ module MacroDeck
 	module TurkSupport
 		def self.included(base)
 			base.property :turk_responses, "Hash"
+			base.property :turk_events, "Hash"
 
 			base.extend ClassMethods
 		end
