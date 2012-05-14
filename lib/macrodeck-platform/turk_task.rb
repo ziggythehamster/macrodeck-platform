@@ -72,26 +72,43 @@ class TurkTask
 	end
 
 	# Determine if the prerequisites have been met
-	def prerequisites_met?(answers)
+	def prerequisites_met?(answers, return_root = false)
 		if @prerequisites.length == 0
-			return true
-		else
-			prereq_met = true
-			root = answers
-			@prerequisites.each do |prereq|
-				field_name = @data_object.turk_task_by_id(prereq).field["name"]
+			puts "[#{@id}#prerequisites_met?] Prerequisites met due to no prerequisites."
 
-				if root.key?(field_name) && root[field_name].is_a?(Array)
-					val = root[field_name][0]
-					root = root["#{field_name}=#{val}"]
-				elsif root.key?(field_name)
-					root = root["#{field_name}="]
-				else
-					prereq_met = false
+			if return_root
+				return [true, answers]
+			else
+				return true
+			end
+		else
+			puts "[#{@id}#prerequisites_met?] Checking prerequisites..."
+			prereq_met = true
+
+			@prerequisites.each_index do |prereq_index|
+				root = answers
+
+				# Check the completion of this branch of prerequisites.
+				@prerequisites[0..prereq_index].each do |prereq|
+					if root.key?(prereq) && root[prereq].is_a?(Array)
+						puts "[#{@id}#prerequisites_met?] prereq_index=#{prereq_index} prereq=#{prereq} exists in answers and is an array."
+						val = root[prereq][0] # FIXME: Test every possible answer
+						root = root["#{prereq}=#{val}"]
+					elsif root.key?(prereq)
+						puts "[#{@id}#prerequisites_met?] prereq_index=#{prereq_index} prereq=#{prereq} exists in answers and is not an array."
+						root = root["#{prereq}="]
+					else
+						puts "[#{@id}#prerequisites_met?] prereq_index=#{prereq_index} prereq=#{prereq} does not exist in answers, prerequisites unmet."
+						prereq_met = false
+					end
 				end
 			end
 
-			return prereq_met
+			if return_root
+				return [prereq_met, root]
+			else
+				return prereq_met
+			end
 		end
 	end
 
@@ -99,31 +116,18 @@ class TurkTask
 	def answered?(answers)
 		# If there are no prerequisites, this answer will appear in the root.
 		if @prerequisites.length == 0
-			if answers.nil? || !answers.key?(@field["name"]) || answers[@field["name"]].nil? || answers[@field["name"]].length == 0
+			if answers.nil? || !answers.key?(@id) || answers[@id].nil? || answers[@id].length == 0
 				return false
 			else
 				return true
 			end
 		else
-			# Scan the prerequisite tree.
-			prereq_met = true
-			root = answers
-			@prerequisites.each do |prereq|
-				field_name = @data_object.turk_task_by_id(prereq).field["name"]
-
-				if root.key?(field_name) && root[field_name].is_a?(Array)
-					val = root[field_name][0]
-					root = root["#{field_name}=#{val}"]
-				elsif root.key?(field_name)
-					root = root["#{field_name}="]
-				else
-					prereq_met = false
-				end
-			end
+			prereq_results = prerequsities_met?(answers, true)
+			prereq_met = prereq_results[0]
 
 			# If the prerequisites are met, we can check the answer.
 			if prereq_met
-				if root.key?(@field["name"]) && !root[@field["name"]].nil?
+				if prereq_results[1].key?(@id) && !prereq_results[1][@id].nil?
 					return true
 				else
 					return false
