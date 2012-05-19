@@ -122,7 +122,7 @@ class TurkTask
 				return true
 			end
 		else
-			prereq_results = prerequsities_met?(answers, true)
+			prereq_results = prerequisites_met?(answers, true)
 			prereq_met = prereq_results[0]
 
 			# If the prerequisites are met, we can check the answer.
