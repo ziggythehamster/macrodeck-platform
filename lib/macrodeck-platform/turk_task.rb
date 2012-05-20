@@ -84,6 +84,7 @@ class TurkTask
 		else
 			puts "[#{@id}#prerequisites_met?] Checking prerequisites..."
 			prereq_met = true
+			root = {}
 
 			@prerequisites.each_index do |prereq_index|
 				root = answers
