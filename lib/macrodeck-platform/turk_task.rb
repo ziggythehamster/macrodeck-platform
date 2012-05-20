@@ -128,7 +128,7 @@ class TurkTask
 
 			# If the prerequisites are met, we can check the answer.
 			if prereq_met
-				if prereq_results[1].key?(@id) && !prereq_results[1][@id].nil?
+				if !prereq_results[1].nil? && prereq_results[1].key?(@id) && !prereq_results[1][@id].nil?
 					return true
 				else
 					return false
