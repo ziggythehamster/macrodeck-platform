@@ -91,11 +91,11 @@ class TurkTask
 
 				# Check the completion of this branch of prerequisites.
 				@prerequisites[0..prereq_index].each do |prereq|
-					if root.key?(prereq) && root[prereq].is_a?(Array)
+					if !root.nil? && root.key?(prereq) && root[prereq].is_a?(Array)
 						puts "[#{@id}#prerequisites_met?] prereq_index=#{prereq_index} prereq=#{prereq} exists in answers and is an array."
 						val = root[prereq][0] # FIXME: Test every possible answer
 						root = root["#{prereq}=#{val}"]
-					elsif root.key?(prereq)
+					elsif !root.nil? && root.key?(prereq)
 						puts "[#{@id}#prerequisites_met?] prereq_index=#{prereq_index} prereq=#{prereq} exists in answers and is not an array."
 						root = root["#{prereq}="]
 					else
