@@ -16,6 +16,7 @@ class TurkTask
 			end
 		end
 		raise "Turk task #{task["title"]} does not specify a valid field!" if @field.nil?
+		@field["params"] ||= {} # So there's always params if there aren't any.
 		@id = task["id"]
 		@prerequisites = task["prerequisites"]
 		@title = task["title"]
