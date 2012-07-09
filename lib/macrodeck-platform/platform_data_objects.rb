@@ -19,9 +19,9 @@ module MacroDeck
 					"has_attachment" => true,
 					"turk_fields" => [
 						{ "name" => "DaysOfWeek", "type" => ["Integer#DayOfWeek"], "title" => "Days of week" },
-						{ "name" => "StartTime", "type" => "Time", "title" => "Start time", "params" => { "hide_date" => true } },
-						{ "name" => "EndTime", "type" => "Time", "title" => "End time", "params" => { "hide_date" => true } },
-						{ "name" => "Title", "type" => "String", "object_type" => "Event", "object_field" => "title" }
+						{ "name" => "StartTime", "type" => "Time#StartTime", "title" => "Start time", "params" => { "hide_date" => true } },
+						{ "name" => "EndTime", "type" => "Time#EndTime", "title" => "End time", "params" => { "hide_date" => true } },
+						{ "name" => "Title", "type" => "String#Title", "object_type" => "Event", "object_field" => "title" }
 					],
 					"views" => [
 						{ "view_by" => "turk_unanswered",
