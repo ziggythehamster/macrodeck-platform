@@ -21,7 +21,7 @@ module MacroDeck
 						{ "name" => "DaysOfWeek", "type" => ["Integer#DayOfWeek"], "title" => "Days of week" },
 						{ "name" => "StartTime", "type" => "Time", "title" => "Start time" },
 						{ "name" => "EndTime", "type" => "Time", "title" => "End time" },
-						{ "name" => "Title", "type" => "String", "object_type" => "Event", "object_field" => "title" }
+						{ "name" => "Title", "type" => "String#Title", "object_type" => "Event", "object_field" => "title" }
 					],
 					"views" => [
 						{ "view_by" => "turk_unanswered",
