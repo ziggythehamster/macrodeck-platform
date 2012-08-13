@@ -25,7 +25,7 @@ class TurkTask
 		@data_object = obj
 
 		# Figure out the behavior of the field.
-		if @field["type"].is_a?(Array)
+		if field_type_is_array?
 			if @field["type"][0].include?("#")
 				@field_behavior = @field["type"][0].split("#")[1]
 			else
@@ -70,6 +70,15 @@ class TurkTask
 	# This method is required to make this class work as a replacement for DataObject in behaviors.
 	def self.human_attribute_name(attr)
 		@@human_attribute_names[attr.to_sym]
+	end
+
+	# Returns true if the field type is an array
+	def field_type_is_array?
+		if @field["type"].is_a?(Array)
+			return true
+		else
+			return false
+		end
 	end
 
 	# Determine if the prerequisites have been met
