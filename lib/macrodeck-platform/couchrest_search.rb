@@ -5,7 +5,9 @@ require "couchrest"
 
 class CouchRest::Database
 	def search(design, index, query, options={})
-		CouchRest.get CouchRest.paramify_url("#{@root}/_fti/_design/#{design}/#{index}", options.merge(:q => query))
+		# This is the old syntax for the non-proxied version of CouchDB Lucene.
+		#CouchRest.get CouchRest.paramify_url("#{@root}/_fti/_design/#{design}/#{index}", options.merge(:q => query))
+		CouchRest.get CouchRest.paramify_url("#{@host}/_fti/local/#{@name.gsub('/','%2F')}/_design/#{design}/#{index}", options.merge(:q => query)
 	end
 
 	# Perform a spatial search. +bbox+ should be specified as an array.
