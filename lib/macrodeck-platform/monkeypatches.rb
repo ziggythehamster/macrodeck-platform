@@ -20,9 +20,7 @@ module CouchRest
 			end
 			url
 		end
-	end
 
-	module RestAPI
 		# Perform the RestClient request by removing the parse specific options, ensuring the 
 		# payload is prepared, and sending the request ready to parse the response.
 		#
@@ -35,10 +33,14 @@ module CouchRest
 
 			uri = URI(url)
 
+			puts uri.inspect
+
 			if uri.user && uri.password
 				request[:user] = uri.user
 				request[:password] = uri.password
 			end
+
+			puts request.inspect
 
 			begin
 				parse_response(RestClient::Request.execute(request), parser)
