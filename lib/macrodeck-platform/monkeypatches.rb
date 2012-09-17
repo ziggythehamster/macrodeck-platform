@@ -1,8 +1,7 @@
-# This monkey patch is needed because for some reason, CouchDB requires
-# reduction parameters to be at the beginning of the query string
-
 module CouchRest
 	class << self
+		# This monkey patch is needed because for some reason, CouchDB requires
+		# reduction parameters to be at the beginning of the query string
 		def paramify_url url, params = {}
 			if params && !params.empty?
 				prequery = []
@@ -22,8 +21,37 @@ module CouchRest
 			url
 		end
 	end
-end
 
+	module RestAPI
+		# Perform the RestClient request by removing the parse specific options, ensuring the 
+		# payload is prepared, and sending the request ready to parse the response.
+		#
+		# The monkeypatch here is to parse the URI and get username and password if they're provided.
+		def execute(url, method, options = {}, payload = nil)
+			request, parser = prepare_and_split_options(url, method, options)
+
+			# Prepare the payload if it is provided
+			request[:payload] = payload_from_doc(payload, parser) if payload
+
+			uri = URI(url)
+
+			if uri.user && uri.password
+				request[:user] = uri.user
+				request[:password] = uri.password
+			end
+
+			begin
+				parse_response(RestClient::Request.execute(request), parser)
+			rescue Exception => e
+				if $DEBUG
+					raise "Error while sending a #{method.to_s.upcase} request #{uri}\noptions: #{opts.inspect}\n#{e}"
+				else
+					raise e
+				end
+			end
+		end
+	end
+end
 
 # Adds functions to Numeric to convert a number to radians/degrees
 class Numeric
