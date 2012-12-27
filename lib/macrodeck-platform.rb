@@ -1,3 +1,8 @@
+# Libraries we need
+require "validatable"
+require "couchrest"
+require "couchrest_extended_document"
+
 require "macrodeck-platform/monkeypatches"
 require "macrodeck-platform/couchrest_search"
 require "macrodeck-platform/introspection"
