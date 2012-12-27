@@ -1,0 +1,22 @@
+Gem::Specification.new do |s|
+  s.name        = 'macrodeck-platform'
+  s.version     = '1.0.0'
+  s.date        = '2012-12-27'
+  s.summary     = "The MacroDeck Platform"
+  s.description = "The MacroDeck Platform for Ruby utilizes CouchDB to dynamically generate models from CouchDB"
+  s.authors     = ["Keith Gable"]
+  s.email       = 'ziggy@ignition-project.com'
+  s.files       = `git ls-files`.split("\n")
+  s.homepage    = 'https://github.com/ziggythehamster/macrodeck-platform'
+
+  # Required RubyGems version
+  s.required_rubygems_version = ">= 1.3.6"
+
+  # Dependencies.
+  s.add_development_dependency "rake"
+  s.add_dependency "couchrest",                     "~> 1.0.1"
+  s.add_dependency "couchrest_extended_document",   "~> 1.0.0"
+
+  # Set require path.
+  s.require_path = "lib"
+end
