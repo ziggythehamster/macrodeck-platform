@@ -6,7 +6,7 @@ module MacroDeck
 		def self.included(base)
 			base.property :turk_responses, "Hash"
 			base.property :turk_events, "Hash"
-			base.property :turk_created_paths, "Array"
+			base.property :turk_created_paths, ["String"]
 
 			base.extend ClassMethods
 		end
