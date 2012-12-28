@@ -1,32 +1,42 @@
+GIT
+  remote: git://github.com/ziggythehamster/validatable-validates_list_items_in_list.git
+  revision: 5d2397bdb03c0b95492e031241359dc0b2e7f07a
+  specs:
+    validatable-validates_list_items_in_list (0.0.1)
+      validatable
+
 PATH
   remote: .
   specs:
     macrodeck-platform (1.0.0)
       couchrest (~> 1.0.1)
       couchrest_extended_document (~> 1.0.0)
+      validatable
+      validatable-validates_list_items_in_list
 
 GEM
   specs:
-    activesupport (3.2.8)
+    activesupport (3.2.9)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    builder (3.0.0)
-    couchrest (1.0.1)
-      json (>= 1.4.6)
-      mime-types (>= 1.15)
-      rest-client (>= 1.5.1)
+    builder (3.1.4)
+    couchrest (1.0.2)
+      json (~> 1.5.1)
+      mime-types (~> 1.15)
+      rest-client (~> 1.6.1)
     couchrest_extended_document (1.0.0)
       activesupport (>= 2.3.0)
       builder (>= 2.1.2)
       couchrest (>= 1.0.0)
       mime-types (>= 1.15)
-    i18n (0.6.0)
-    json (1.7.5)
+    i18n (0.6.1)
+    json (1.5.4)
     mime-types (1.19)
     multi_json (1.5.0)
     rake (0.9.2.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    validatable (1.6.7)
 
 PLATFORMS
   ruby
@@ -34,3 +44,4 @@ PLATFORMS
 DEPENDENCIES
   macrodeck-platform!
   rake
+  validatable-validates_list_items_in_list!
