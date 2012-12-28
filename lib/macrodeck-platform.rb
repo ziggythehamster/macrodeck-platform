@@ -1,5 +1,6 @@
 # Libraries we need
 require "validatable"
+require "validatable-validates_list_items_in_list"
 require "couchrest"
 require "couchrest_extended_document"
 
