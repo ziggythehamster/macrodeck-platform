@@ -1,3 +1,0 @@
-[submodule "vendor-validatable"]
-	path = vendor-validatable
-	url = git://github.com/ziggythehamster/validatable.git
