@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "couchrest_extended_document",   "~> 1.0.0"
   s.add_runtime_dependency "validatable"
   s.add_runtime_dependency "validatable-validates_list_items_in_list"
+  s.add_runtime_dependency "uuidtools"
 
   # Set require path.
   s.require_path = "lib"
