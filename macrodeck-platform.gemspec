@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake"
   s.add_runtime_dependency "couchrest",                     "~> 1.0.1"
   s.add_runtime_dependency "couchrest_extended_document",   "~> 1.0.0"
-  s.add_runtime_dependency "validatable"
+  s.add_runtime_dependency "jnunemaker-validatable",        "~> 1.8.4"
   s.add_runtime_dependency "validatable-validates_list_items_in_list"
   s.add_runtime_dependency "uuidtools"
 
