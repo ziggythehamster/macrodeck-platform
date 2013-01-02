@@ -754,6 +754,19 @@ module MacroDeck
 				}.freeze
 			end
 
+			# Run this to define all of the objects that are already in
+			# the database. This does not make any destructive changes,
+			# it only injects objects into the application.
+			def define
+				puts ">>> Defining platform objects (non-destructively)..."
+
+				::DataObjectDefinition.all.each do |defn|
+					puts "--- Defining #{defn.object_type}"
+					defn.define!
+					puts "    Done!"
+				end
+			end
+
 			# Run this to define all of the objects.
 			def define!
 				puts ">>> Defining platform objects..."
