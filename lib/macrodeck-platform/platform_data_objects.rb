@@ -743,22 +743,39 @@ module MacroDeck
 
 			# Run this to define all of the objects.
 			def define!
+				puts ">>> Defining platform objects..."
+
 				self.objects.each do |obj|
+					puts "Checking definition of #{obj}..."
+
 					# Get the definition
 					definition = self.send(obj.to_sym).dup
 
 					# Check if the definition exists.
 					check_definition = ::DataObjectDefinition.view("by_object_type", :key => definition["object_type"])
 					if check_definition.length == 1
+						puts "#{obj} already exists. It will be replaced."
 						check_definition[0].destroy
 					elsif check_definition.length > 1
 						raise "Duplicate definition exists for #{definition['object_type']}"
 					end
 
+					puts "Creating new definition of #{obj}..."
 					new_definition = ::DataObjectDefinition.new(definition.dup)
+
+					if new_definition.valid?
+						puts "Definition is valid."
+					else
+						puts "Definition is invalid."
+					end
+
+					# Save!
 					new_definition.save
+
+					puts "Definition saved, injecting into application..."
 					new_definition.define!
 
+					puts "Updating design document..."
 					db = CouchRest.database!(MacroDeck::Platform.database_name)
 
 					# Get the design doc.
@@ -793,6 +810,8 @@ module MacroDeck
 					end
 
 					doc.save
+
+					puts "#{obj} design document updated! Done processing #{obj}."
 				end
 			end
 		end
