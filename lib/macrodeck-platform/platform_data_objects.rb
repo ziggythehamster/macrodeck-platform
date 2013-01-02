@@ -83,6 +83,19 @@ module MacroDeck
 						["first_name", "String", false, "First name"],
 						["last_name", "String", false, "Last name"],
 						["facebook_profile", "Hash", false, { "title" => "Facebook profile", "internal" => true }]
+					],
+					"validations" => [],
+					"views" => [
+						# Emits the Singly ID
+						{ "view_by" => "singly_id",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'User' && doc['singly_id']) {
+								emit(doc['singly_id'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
+						},
 					]
 				}
 			end
