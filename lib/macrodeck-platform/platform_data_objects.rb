@@ -5,7 +5,7 @@ module MacroDeck
 		class << self
 			# Returns an array of the objects defined here.
 			def objects
-				["country", "region", "locality", "neighborhood", "place", "event", "special_photo"].freeze
+				["country", "region", "locality", "neighborhood", "place", "event", "special_photo", "user"].freeze
 			end
 
 			# A special photo is a photo of a special (duh!). Turks can use a photo
@@ -67,6 +67,22 @@ module MacroDeck
 							"turk_field" => "Title",
 							"answer_count" => 0
 						}
+					]
+				}
+			end
+
+			# A user is a simple object used to represent a user
+			# in the platform.
+			def user
+				{
+					"title" => "User",
+					"object_type" => "User",
+					"fields" => [
+						["singly_id", "String", false, { "title" => "Singly ID", "internal" => true }],
+						["facebook_id", "String", false, { "title" => "Facebook ID", "internal" => true }],
+						["first_name", "String", false, "First name"],
+						["last_name", "String", false, "Last name"],
+						["facebook_profile", "Hash", false, { "title" => "Facebook profile", "internal" => true }]
 					]
 				}
 			end
