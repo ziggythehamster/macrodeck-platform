@@ -114,6 +114,18 @@ module MacroDeck
 					],
 					"validations" => [
 						["validates_length_of", "abbreviation", { "is" => 2 }]
+					],
+					"views" => [
+						# Emits the abbreviation.
+						{ "view_by" => "abbreviation",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Country' && doc['abbreviation']) {
+								emit(doc['abbreviation'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
+						},
 					]
 				}.freeze
 			end
@@ -133,7 +145,19 @@ module MacroDeck
 					"fields" => [
 						["abbreviation", "String", false, "Abbreviation"]
 					],
-					"validations" => []
+					"validations" => [],
+					"views" => [
+						# Emits the abbreviation.
+						{ "view_by" => "abbreviation",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Region' && doc['abbreviation']) {
+								emit(doc['abbreviation'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
+						},
+					]
 				}.freeze
 			end
 
