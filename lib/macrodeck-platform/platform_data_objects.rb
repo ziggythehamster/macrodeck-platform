@@ -774,6 +774,16 @@ module MacroDeck
 							}
 						  }",
 						  "reduce" => "_count"
+						},
+						# Return places with a facebook_id
+						{ "view_by" => "facebook_id",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Place' && doc['facebook_id']) {
+								emit(doc['facebook_id'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
 						}
 					]
 				}.freeze
