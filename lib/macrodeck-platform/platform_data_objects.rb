@@ -450,7 +450,8 @@ module MacroDeck
 						["reservations", "String", false, "Reservations"],
 						["bitly_hash", "String", false, { "title" => "Bit.ly hash", "internal" => true }],
 						["foursquare_venue_id", "String", false, { "title" => "Foursquare venue ID", "internal" => true }],
-						["tips", nil, false, "Tips"]
+						["tips", nil, false, "Tips"],
+						["facebook_id", "String", false, { "title" => "Facebook place ID", "internal" => true }]
 					],
 					"fulltext" => [
 						["common_fields",
