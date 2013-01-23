@@ -797,7 +797,7 @@ module MacroDeck
 
 				::DataObjectDefinition.all.each do |defn|
 					puts "--- Defining #{defn.object_type}"
-					defn.define!
+					defn.define
 					puts "    Done!"
 				end
 			end

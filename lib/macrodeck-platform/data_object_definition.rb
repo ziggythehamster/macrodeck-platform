@@ -28,8 +28,13 @@ module MacroDeck
 				base.validates_true_for :views, :logic => :validate_views, :message => "is not valid"
 			end
 
+			# Executes the code necessary to define this object, in a non-destructive manner.
+			def define
+				self.define!(false)
+			end
+
 			# Executes the code necessary to define this object
-			def define!
+			def define!(destructive = true)
 				properties = ""
 				validations = ""
 				views = ""
@@ -103,7 +108,7 @@ module MacroDeck
 								#{views}
 							end"
 						Kernel.eval(class_body)
-						Kernel.eval("::#{klass}.save_design_doc!")
+						Kernel.eval("::#{klass}.save_design_doc!") if destructive
 					else
 						raise "DataObjectDefinition #{self.object_type} is invalid!"
 					end
