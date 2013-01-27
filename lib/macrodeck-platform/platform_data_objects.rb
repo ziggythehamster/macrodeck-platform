@@ -5,7 +5,31 @@ module MacroDeck
 		class << self
 			# Returns an array of the objects defined here.
 			def objects
-				["country", "region", "locality", "neighborhood", "place", "event", "special_photo", "user"].freeze
+				["country", "region", "locality", "neighborhood", "place", "event", "special_photo", "user", "relationship"].freeze
+			end
+
+			# A relationship is a loose connection between two objects.
+			def relationship
+				{
+					"title" => "Relationship",
+					"object_type" => "Relationship",
+					"fields" => [
+						["source", "String", true, "Source object"],
+						["relationship", "String", true, "Relationship"],
+						["target", "String", true, "Target object"]
+					],
+					"views" => [
+						{ "view_by" => "relationship",
+						  "map" =>
+						  "function (doc) {
+						  	if (doc['couchrest-type'] == 'Relationship' && doc['source'] && doc['relationship'] && doc['target']) {
+						  		emit([ doc['source'], doc['relationship'], doc['target'] ], 1);
+						  	}
+						  }",
+						  "reduce" => "_count"
+						}
+					]
+				}
 			end
 
 			# A special photo is a photo of a special (duh!). Turks can use a photo
