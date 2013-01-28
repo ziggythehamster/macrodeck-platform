@@ -16,15 +16,32 @@ module MacroDeck
 					"fields" => [
 						["source", "String", true, "Source object"],
 						["relationship", "String", true, "Relationship"],
-						["target", "String", true, "Target object"]
+						["target", "String", true, "Target object"],
+						["facebook_id", "String", false,  { "title" => "Facebook ID", "internal" => true }],
+						["reciprocal", "TrueClass", false, "Reciprocal relationship?"]
 					],
+					"validations" => [],
 					"views" => [
 						{ "view_by" => "relationship",
 						  "map" =>
 						  "function (doc) {
 						  	if (doc['couchrest-type'] == 'Relationship' && doc['source'] && doc['relationship'] && doc['target']) {
 						  		emit([ doc['source'], doc['relationship'], doc['target'] ], 1);
+
+						  		if (doc['reciprocal'] && (doc['reciprocal'] === 'true' || doc['reciprocal'] === true)) {
+						  			emit([ doc['target'], doc['relationship'], doc['source'] ], 1);
+						  		}
 						  	}
+						  }",
+						  "reduce" => "_count"
+						},
+						# Emits the Facebook ID
+						{ "view_by" => "facebook_id",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'Relationship' && doc['facebook_id']) {
+								emit(doc['facebook_id'], 1);
+							}
 						  }",
 						  "reduce" => "_count"
 						}
