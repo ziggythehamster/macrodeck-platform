@@ -119,7 +119,7 @@ module MacroDeck
 							}
 						  }",
 						  "reduce" => "_count"
-						},
+						}
 					]
 				}
 			end
