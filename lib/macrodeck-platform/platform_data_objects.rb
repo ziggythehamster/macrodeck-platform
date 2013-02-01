@@ -136,6 +136,16 @@ module MacroDeck
 							}
 						  }",
 						  "reduce" => "_count"
+						},
+						# Emits the Facebook ID
+						{ "view_by" => "facebook_id",
+						  "map" =>
+						  "function(doc) {
+							if (doc['couchrest-type'] == 'User' && doc['facebook_id']) {
+								emit(doc['facebook_id'], 1);
+							}
+						  }",
+						  "reduce" => "_count"
 						}
 					]
 				}
