@@ -27,9 +27,15 @@ module MacroDeck
 						  "function (doc) {
 						  	if (doc['couchrest-type'] == 'Relationship' && doc['source'] && doc['relationship'] && doc['target']) {
 						  		emit([ doc['source'], doc['relationship'], doc['target'] ], 1);
+						  		emit(''.concat(doc['source']), 1);
+						  		emit(''.concat(doc['source'], '/', doc['relationship']), 1);
+						  		emit(''.concat(doc['source'], '/', doc['relationship'], '/', doc['target']), 1);
 
 						  		if (doc['reciprocal'] && (doc['reciprocal'] === 'true' || doc['reciprocal'] === true)) {
 						  			emit([ doc['target'], doc['relationship'], doc['source'] ], 1);
+							  		emit(''.concat(doc['target']), 1);
+							  		emit(''.concat(doc['target'], '/', doc['relationship']), 1);
+							  		emit(''.concat(doc['target'], '/', doc['relationship'], '/', doc['source']), 1);
 						  		}
 						  	}
 						  }",
